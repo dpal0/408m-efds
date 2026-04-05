@@ -9,22 +9,39 @@ extern "C"{
 #include welt_cpp_graph.h"
 #include "iis.h"
 
-class IntegralImageActor: public welt_cpp_actor{
+/*******************************************************************************
+* integral_image.h
+*
+* Computes the integral image (summed area table) from a 2D grayscale image
+* represented as a vector<vector<int>>. The integral image allows any
+* rectangular region sum to be computed in O(1) time using four lookups.
+*
+* Image dimensions are assumed to be 24x24 (per the EFDS project dataset).
+*******************************************************************************/
 
-public: 
-	IntegralImageActor(welt_c_fifo_pointer img_in,
-			   welt_c_fifo_pointer img_out;
-			   int index);
-	~IntergralImageActor();
+#include <vector>
+using std::vector;
 
-	IIS compute(IIS input_image_subwindow);
-	bool enable() override;
-	void invoke() override;
-	void reset() override;
-	void connect(welt_c_fifo_graph *graph) override;
+class IntegralImage {
+public:
+    /* Construct and compute the integral image from the given grayscale image.
+     * img is assumed to be a nRows x nCols 2D vector of pixel values (0-255). */
+    IntegralImage(const vector<vector<int>>* img, int nRows, int nCols);
+
+    /* Return the sum of pixel values in the rectangle defined by
+     * top-left (r1, c1) and bottom-right (r2, c2), inclusive. */
+    int rectSum(int r1, int c1, int r2, int c2) const;
+
+    /* Return the value at position (row, col) in the integral image. */
+    int get(int row, int col) const;
+
+    int getNRows() const;
+    int getNCols() const;
+
 private:
-	void buildIntegralImage(PTIS& subwindow);
-
+    vector<vector<int>> table;
+    int nRows;
+    int nCols;
 };
 
 #endif
