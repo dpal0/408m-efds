@@ -1,43 +1,36 @@
-#ifndef CLASSIFIER_ACTOR_H
-#define CLASSIFIER_ACTOR_H
+#ifndef integral_image_h
+#define integral_image_h
 
-extern "C"{
-#include "welt_c_util.h"
-#include "welt_c_fifo.h"
-}
-#include "welt_cpp_actor.h"
-#include "welt_cpp_graph.h"
-#include "iis.h"
-#include "StrongClassifier.h"
-#include <string>
+#include <vector>
+using namespace std;
 
-#define CLASSIFIER_ACTOR_MODE_CONFIGURE 0
-#define CLASSIFIER_ACTOR_MODE_READ      1
-#define CLASSIFIER_ACTOR_MODE_CLASSIFIY 2
-#define CLASSIFIER_ACTOR_MODE_TRUE      3
-#define CLASSIFIER_ACTOR_MODE_FLASE     4
-
-
-//TO DO: Figure out private fields, config files from the classifier
-
-class ClassifierActor: public welt_cpp_actor {
+/*******************************************************************************
+ * IntegralImage
+ *
+ * Computes and stores the integral image of a given grayscale image.
+ * The integral image ii satisfies:
+ *   ii[r][c] = sum of all pixels in the rectangle from (0,0) to (r,c)
+ *              inclusive.
+ *
+ * Once constructed, rectangleSum(r, c, h, w) returns the sum of pixels
+ * in any rectangle in O(1) using four lookups.
+ ******************************************************************************/
+class IntegralImage {
 public:
-	ClassifierActor(welt_c_fifo_pointer input,
-			welt_c_fifo_pointer continue_out,
-			welt_c_fifo_pointer abort_out); //Constructor takes config files for this classifier instance
-	
-	~ClassifierActor();
+    /* Compute the integral image from the given grayscale image grid. */
+    IntegralImage(const vector<vector<int>> &img);
 
-	bool enable() override;
-	void invoke() override;
+    /* Return the sum of pixels in the rectangle with top-left corner (r, c),
+     * height h, and width w. */
+    int rectangleSum(int r, int c, int h, int w) const;
 
-	void reset() override;
-
-	void connect() override;
+    int rows() const { return nRows; }
+    int cols() const { return nCols; }
 
 private:
-	welt_c_fifo_pointer input;
-	welt_c_fifo_pointer output;
+    int nRows;
+    int nCols;
+    vector<vector<int>> ii; /* integral image storage */
 };
 
-#endif 
+#endif
