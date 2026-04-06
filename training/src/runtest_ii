@@ -1,0 +1,6 @@
+g++ -c integral_image.cpp
+g++ -c integralimage_driver.cpp
+g++ -o ii_driver.exe integralimage_driver.o integral_image.o
+
+rm *.o
+./ii_driver.exe 
