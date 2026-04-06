@@ -1,41 +1,50 @@
-#ifndef features_h
-#define features_h
+#ifndef HAAR_FEATURE_H
+#define HAAR_FEATURE_H
 
 #include "integral_image.h"
 
 /*******************************************************************************
  * HaarFeature
  *
- * Represents one of four Haar feature types from the Viola-Jones paper:
- *   TYPE_2H - two rectangles side by side (horizontal)
- *   TYPE_2V - two rectangles stacked (vertical)
- *   TYPE_3H - three rectangles side by side (horizontal)
- *   TYPE_4  - four rectangles (2x2 checkerboard)
+ * Represents one of five Haar-like rectangle feature types from Viola-Jones:
+ *   TWO_RECT_VERTICAL   - two rectangles stacked vertically
+ *   TWO_RECT_HORIZONTAL - two rectangles side by side horizontally
+ *   THREE_RECT_VERTICAL - three rectangles stacked vertically
+ *   THREE_RECT_HORIZONTAL - three rectangles side by side horizontally
+ *   FOUR_RECT           - 2x2 checkerboard of four rectangles
  *
- * compute() returns (white region sum) - (black region sum).
- * The sign convention follows the VJ paper: white regions are positive,
- * black regions are negative.
+ * computeFeatureVal() returns (white region sum) - (black region sum).
  ******************************************************************************/
+
+enum Feature {
+    TWO_RECT_VERTICAL,
+    TWO_RECT_HORIZONTAL,
+    THREE_RECT_VERTICAL,
+    THREE_RECT_HORIZONTAL,
+    FOUR_RECT
+};
+
 class HaarFeature {
 public:
-    enum Type { TYPE_2H, TYPE_2V, TYPE_3H, TYPE_4 };
+    /* x, y: top-left corner (x = col, y = row)
+     * w, h: width and height of the feature window */
+    HaarFeature(int x, int y, int w, int h, Feature type);
 
-    /* r, c: top-left corner of the feature window
-     * h, w: height and width of the feature window */
-    HaarFeature(Type type, int r, int c, int h, int w);
+    /* Compute the feature value using a precomputed integral image. */
+    int computeFeatureVal(const IntegralImage& ii) const;
 
-    /* Compute the feature value using the precomputed integral image. */
-    int compute(const IntegralImage &ii) const;
+    void scale(float factor);
+    void toString() const;
 
-    Type getType() const { return type; }
-    int getR() const { return r; }
-    int getC() const { return c; }
-    int getH() const { return h; }
+    int getX() const { return x; }
+    int getY() const { return y; }
     int getW() const { return w; }
+    int getH() const { return h; }
+    Feature getType() const { return type; }
 
 private:
-    Type type;
-    int r, c, h, w;
+    int x, y, w, h;
+    Feature type;
 };
 
 #endif
