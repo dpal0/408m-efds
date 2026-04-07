@@ -11,7 +11,7 @@
 
 using namespace std;
 
-/* the dataset uses 24x24 sub-windows. */
+/* The dataset uses 24x24 sub-windows. */
 static const int IMG_ROWS = 24;
 static const int IMG_COLS = 24;
 
@@ -51,6 +51,32 @@ bool loadTXT(const string& path, vector<vector<int>>& img) {
     return true;
 }
 
+
+/*******************************************************************************
+ * loadImages
+ * Loads all .txt files from a directory, returning one 2D pixel grid per file.
+ ******************************************************************************/
+vector<vector<vector<int>>> loadImages(const string& dir) {
+    vector<vector<vector<int>>> images;
+    DIR* d = opendir(dir.c_str());
+    if (!d) {
+        cerr << "loadImages: cannot open directory " << dir << endl;
+        return images;
+    }
+    struct dirent* entry;
+    while ((entry = readdir(d)) != nullptr) {
+        string name = entry->d_name;
+        if (name.size() < 4 || name.substr(name.size() - 4) != ".txt")
+            continue;
+        string path = dir + "/" + name;
+        vector<vector<int>> img;
+        if (loadTXT(path, img))
+            images.push_back(img);
+    }
+    closedir(d);
+    cout << "Loaded " << images.size() << " images from " << dir << endl;
+    return images;
+}
 
 /*******************************************************************************
  * computeIntegralImages
