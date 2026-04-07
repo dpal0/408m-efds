@@ -31,12 +31,12 @@ top-left corner (r, c), height h, and width w.
 int HaarFeature::computeFeatureVal (const IntegralImage& ii) const {
     switch (type) {
         case TWO_RECT_VERTICAL: {
-            int rect1 = ii.rectangleSum(y,       x, h/2, w);
-            int rect2 = ii.rectangleSum(y + h/2, x, h/2, w);
+            int rect1 = ii.rectangleSum(y,       x, h/2, w); // upper
+            int rect2 = ii.rectangleSum(y + h/2, x, h/2, w); // lower
             return rect1 - rect2;
         } case TWO_RECT_HORIZONTAL: {
-            int rect1 = ii.rectangleSum(y, x,       h, w/2);
-            int rect2 = ii.rectangleSum(y, x + w/2, h, w/2);
+            int rect1 = ii.rectangleSum(y, x,       h, w/2); //left
+            int rect2 = ii.rectangleSum(y, x + w/2, h, w/2); //right
             return rect1 - rect2;
         } case THREE_RECT_VERTICAL: {
             int rect1 = ii.rectangleSum(y,         x, h/3, w);

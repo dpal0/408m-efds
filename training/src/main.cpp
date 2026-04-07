@@ -87,7 +87,7 @@ vector<IntegralImage> computeIntegralImages(
     vector<IntegralImage> iis;
     iis.reserve(images.size());
     for (const auto& img : images)
-        iis.emplace_back(img);
+        iis.push_back(img);
     return iis;
 }
 
@@ -110,20 +110,26 @@ vector<HaarFeature> generateFeatures() {
             for (int h = 1; y + h <= IMG_ROWS; h++) {
                 for (int w = 1; x + w <= IMG_COLS; w++) {
 
-                    if (h % 2 == 0)
-                        features.emplace_back(x, y, w, h, TWO_RECT_VERTICAL);
-
-                    if (w % 2 == 0)
-                        features.emplace_back(x, y, w, h, TWO_RECT_HORIZONTAL);
-
-                    if (h % 3 == 0)
-                        features.emplace_back(x, y, w, h, THREE_RECT_VERTICAL);
-
-                    if (w % 3 == 0)
-                        features.emplace_back(x, y, w, h, THREE_RECT_HORIZONTAL);
-
-                    if (h % 2 == 0 && w % 2 == 0)
-                        features.emplace_back(x, y, w, h, FOUR_RECT);
+                    if (h % 2 == 0) {
+                        HaarFeature feat(x, y, w, h, TWO_RECT_VERTICAL);
+                        features.push_back(feat);
+                    }
+                    if (w % 2 == 0) {
+                        HaarFeature feat(x, y, w, h, TWO_RECT_HORIZONTAL);
+                        features.push_back(feat);
+                    }
+                    if (h % 3 == 0) {
+                        HaarFeature feat(x, y, w, h, THREE_RECT_VERTICAL);
+                        features.push_back(feat);
+                    }
+                    if (w % 3 == 0) {
+                        HaarFeature feat(x, y, w, h, THREE_RECT_HORIZONTAL);
+                        features.push_back(feat);
+                    }
+                    if (h % 2 == 0 && w % 2 == 0) {
+                        HaarFeature feat(x, y, w, h, FOUR_RECT);
+                        features.push_back(feat);
+                    }
                 }
             }
         }
@@ -163,22 +169,22 @@ int main(int argc, char** argv) {
 
     // --- Precompute integral images ---
     cout << "Computing integral images..." << endl;
-    vector<IntegralImage> faceII    = computeIntegralImages(faceImgs);
-    vector<IntegralImage> nonfaceII = computeIntegralImages(nonfaceImgs);
+    vector<IntegralImage> face_training    = computeIntegralImages(faceImgs);
+    vector<IntegralImage> nonface_training = computeIntegralImages(nonfaceImgs);
 
     // --- Generate all candidate Haar features ---
     cout << "Generating candidate features..." << endl;
     vector<HaarFeature> features = generateFeatures();
 
     // --- Cascade training loop ---
-    // nonfaceII shrinks each stage: only false positives from the previous
+    // nonface_training shrinks each stage: only false positives from the previous
     // stage are passed to the next stage as negatives.
-    vector<IntegralImage> currentNegatives = nonfaceII;
+    vector<IntegralImage> currentNegatives = nonface_training;
 
     for (int stage = 0; stage < numStages; stage++) {
         cout << "\n=== Training stage " << stage + 1 << " / " << numStages
              << " ===" << endl;
-        cout << "Positives: " << faceII.size()
+        cout << "Positives: " << face_training.size()
              << "  Negatives: " << currentNegatives.size() << endl;
 
         if (currentNegatives.empty()) {
@@ -189,7 +195,7 @@ int main(int argc, char** argv) {
 
         // TODO (teammates): construct and train the strong classifier
         // StrongClassifier sc;
-        // sc.train(faceII, currentNegatives, features);
+        // sc.train(face_training, currentNegatives, features);
 
         // TODO (teammates): write the config file for this stage
         // string configPath = outputDir + "/classifier_" + to_string(stage+1) + ".cfg";
