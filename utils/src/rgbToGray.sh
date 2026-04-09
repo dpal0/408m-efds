@@ -1,10 +1,9 @@
-dir="../project-dataset"
+dir="../../dataset"
 
 rm -r $dir/gray
 cp -r $dir/orig $dir/gray
 
-dir="../project-dataset/gray"
-cd $dir
+cd $dir/gray
 
 for outerDir in "training" "testing" "validation"; do
 	cd $outerDir

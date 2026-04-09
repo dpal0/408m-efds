@@ -1,10 +1,15 @@
 #!/usr/bin/env bash
 
-mkdir ../project-dataset/orig
-dir="../project-dataset"
+dir_pd="../../project-dataset"
+dir="../../dataset"
+
+mv $dir_pd $dir
+
+mkdir $dir/orig
 mv $dir/testing $dir/orig
 mv $dir/training $dir/orig
-dir="../project-dataset/orig"
+
+dir="$dir/orig"
 mkdir $dir/validation
 mkdir $dir/validation/face
 mkdir $dir/validation/non-face

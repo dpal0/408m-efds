@@ -1,0 +1,3 @@
+#!/usr/bin/env bash
+
+g++ EvaluationMetrics.cpp -o EvaluationMetrics.exe
