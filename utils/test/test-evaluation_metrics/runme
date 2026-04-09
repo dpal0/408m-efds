@@ -1,5 +1,0 @@
-#!/usr/bin/env bash
-
-./EvaluationMetrics.exe 3 2 3 results.txt
-diff correct.txt results.txt
-rm EvaluationMetrics.exe

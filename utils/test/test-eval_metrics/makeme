@@ -1,0 +1,5 @@
+#!/usr/bin/env bash
+
+g++ -c ../../src/EvalMetrics.cpp
+g++ -c evalDriver.cpp -I../../src 
+g++ -o evalDriver.exe evalDriver.o EvalMetrics.o

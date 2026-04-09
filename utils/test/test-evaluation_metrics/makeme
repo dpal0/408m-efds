@@ -1,3 +1,0 @@
-#!/usr/bin/env bash
-
-g++ evalDriver.cpp -o EvaluationMetrics.exe
