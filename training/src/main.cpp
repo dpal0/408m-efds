@@ -157,7 +157,7 @@ int main(int argc, char** argv) {
     int    numStages  = stoi(argv[3]);
     string outputDir  = argv[4];
 
-    // --- Load images ---
+    // Load images
     cout << "Loading training images..." << endl;
     vector<vector<vector<int>>> faceImgs    = loadImages(faceDir);
     vector<vector<vector<int>>> nonfaceImgs = loadImages(nonfaceDir);
@@ -167,16 +167,16 @@ int main(int argc, char** argv) {
         return 1;
     }
 
-    // --- Precompute integral images ---
+    // Precompute integral images
     cout << "Computing integral images..." << endl;
     vector<IntegralImage> face_training    = computeIntegralImages(faceImgs);
     vector<IntegralImage> nonface_training = computeIntegralImages(nonfaceImgs);
 
-    // --- Generate all candidate Haar features ---
+    // Generate all candidate Haar features 
     cout << "Generating candidate features..." << endl;
     vector<HaarFeature> features = generateFeatures();
 
-    // --- Cascade training loop ---
+    //  Cascade training loop 
     // nonface_training shrinks each stage: only false positives from the previous
     // stage are passed to the next stage as negatives.
     vector<IntegralImage> currentNegatives = nonface_training;
@@ -193,22 +193,14 @@ int main(int argc, char** argv) {
             break;
         }
 
-        // TODO (teammates): construct and train the strong classifier
+        // TODO: construct and train the strong classifier
         // StrongClassifier sc;
-        // sc.train(face_training, currentNegatives, features);
-
-        // TODO (teammates): write the config file for this stage
+        // sc.train(face_training, currentNegatives, features); //talk to meat
+        //currentNegatives starts as a copy of nonface_training, 
+        //and then shrinks each stage to only the false positives from the previous stage.
+        // TODO: write the config file for this stage
         // string configPath = outputDir + "/classifier_" + to_string(stage+1) + ".cfg";
-        // sc.writeConfig(configPath);
-
-        // TODO (teammates): collect false positives for the next stage
-        // Pass currentNegatives through the trained sc and keep only those
-        // that are misclassified as faces (false positives).
-        // vector<IntegralImage> falsePositives;
-        // for (const auto& neg : currentNegatives)
-        //     if (sc.classify(neg))
-        //         falsePositives.push_back(neg);
-        // currentNegatives = falsePositives;
+        // sc.writeConfig(configPath); //change 
     }
 
     cout << "\nTraining complete." << endl;
