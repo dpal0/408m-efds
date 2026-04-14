@@ -1,0 +1,10 @@
+Tests EvaluationMetrics.cpp which is located in utils/src.
+
+It tests functionality with
+- 3 cascades
+- 5 "images": 2 face images and 3 nonface images
+
+These are set in the command line when calling the executable. The first 
+argument is the number of cascades. The second argument is the number of face
+images. The third argument is the number of non-face images. The fourth 
+argument is the txt file where the results are being saved to.

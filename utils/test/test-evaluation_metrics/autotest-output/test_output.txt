@@ -1,0 +1,10 @@
+Tests started on:
+Thu 09 Apr 2026 12:00:37 PM EDT
+-----------------------------------------------------
+Test result for:
+/homes/s/r/srod26/home/team4/utils/test/test-evaluation_metrics
+-----------------------------------------------------
+Error comparison result for: 
+/homes/s/r/srod26/home/team4/utils/test/test-evaluation_metrics
+Tests completed on:
+Thu 09 Apr 2026 12:00:38 PM EDT
