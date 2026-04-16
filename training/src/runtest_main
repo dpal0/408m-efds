@@ -1,3 +1,3 @@
-g++ -c main.cpp ii.cpp HaarFeature.cpp strongClassifier.cpp weakClassifier.cpp
-g++ -o main.exe main.o ii.o HaarFeature.o strongClassifier.o weakClassifier.o
+g++ -c main.cpp HaarFeature.cpp StrongClassifier.cpp WeakClassifier.cpp
+g++ -o main.exe main.o HaarFeature.o StrongClassifier.o WeakClassifier.o
 ./main.exe ../test/data/faces/ ../test/data/nonfaces/ 5 configs/
