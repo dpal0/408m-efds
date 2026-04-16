@@ -5,7 +5,7 @@
 class WeakClassifier{
 public:
     WeakClassifier(HaarFeature f);
-    void trainWeakClass(const std::vector<int*> &images, const std::vector<int>
+    void train(const std::vector<int*> &images, const std::vector<int>
         const std::vector<float> &weights);
     int predictFace(int *intImage);
     float getThresholdValue();
