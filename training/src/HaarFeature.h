@@ -1,50 +1,58 @@
-#ifndef HAAR_FEATURE_H
-#define HAAR_FEATURE_H
+#ifndef haar_feature_h
+#define haar_feature_h
 
-#include "integral_image.h"
-
-/*******************************************************************************
- * HaarFeature
- *
- * Represents one of five Haar-like rectangle feature types from Viola-Jones:
- *   TWO_RECT_VERTICAL   - two rectangles stacked vertically
- *   TWO_RECT_HORIZONTAL - two rectangles side by side horizontally
- *   THREE_RECT_VERTICAL - three rectangles stacked vertically
- *   THREE_RECT_HORIZONTAL - three rectangles side by side horizontally
- *   FOUR_RECT           - 2x2 checkerboard of four rectangles
- *
- * computeFeatureVal() returns (white region sum) - (black region sum).
- ******************************************************************************/
+#define IMG_DIM 24
 
 enum Feature {
-    TWO_RECT_VERTICAL,
-    TWO_RECT_HORIZONTAL,
-    THREE_RECT_VERTICAL,
-    THREE_RECT_HORIZONTAL,
-    FOUR_RECT
+    TWO_RECT_VERTICAL, // height must be multiple of 2
+    TWO_RECT_HORIZONTAL, // width must be multiple of 2
+    THREE_RECT_VERTICAL, // height must be multiple of 3
+    THREE_RECT_HORIZONTAL, // width must be multiple of 3
+    FOUR_RECT // height & width must be multiple of 2
 };
 
 class HaarFeature {
+
 public:
-    /* x, y: top-left corner (x = col, y = row)
-     * w, h: width and height of the feature window */
-    HaarFeature(int x, int y, int w, int h, Feature type);
 
-    /* Compute the feature value using a precomputed integral image. */
-    int computeFeatureVal(const IntegralImage& ii) const;
+    // constructor
+    HaarFeature (int x, int y, int w, int h, Feature type);
 
-    void scale(float factor);
-    void toString() const;
+    // accessors
+    int getX() { return x; }
+    int getY() { return y; }
+    int getWidth() { return w; }
+    int getHeight() { return h; }
+    int getType() { return type; }
 
-    int getX() const { return x; }
-    int getY() const { return y; }
-    int getW() const { return w; }
-    int getH() const { return h; }
-    Feature getType() const { return type; }
+    // mutators
+    void setX (int x) { this->x = x; }
+    void setY (int y) { this->y = y; }
+    void setWidth (int w) { this->w = w; }
+    void setHeight (int h) { this->h = h; }
+    void setType (Feature type) { this->type = type; }
 
+    // compute haar feature value
+    int computeFeatureVal (int* integralImg);
+
+    // resize feature
+    void scale (float factor);
+
+    // print feature (for debugging purposes)
+    void toString ();
+    
 private:
-    int x, y, w, h;
+    // helper compute haar feature value
+    int compute (int* integralImg, int x_start, int y_start, int x_end, 
+        int y_end);
+
+    // variables
+    int x;
+    int y;
+    int w;
+    int h;
     Feature type;
+
 };
 
 #endif

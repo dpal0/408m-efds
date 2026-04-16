@@ -5,8 +5,8 @@
 #include <vector>
 #include <string>
 #include <dirent.h>
-#include "integral_image.h"
 #include "HaarFeature.h"
+#include "WeakClassifier.h"
 #include "StrongClassifier.h"
 
 using namespace std;

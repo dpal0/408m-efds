@@ -6,15 +6,11 @@
 WeakClassifier::WeakClassifier(HaarFeature f)
     :feature(f), threshold(0), polarity(1), error(0){}
 
-float WeakClassifier::getThresholdValue(){
-    return this->threshold;
-}
-
-int WeakClassifier::getPolarityValue(){
-    return this->polarity;
-}
-float WeakClassifier::getErrorValue(){
-    return this->error;
+WeakClfassifier::WeakClassifier(HaarFeature f, float thresh, int pol, float err) {
+    feature = f;
+    threshold = thres;
+    polarity = pol;
+    error = err;
 }
 
 void WeakClassifier::train(const std::vector<int*> &images, const std>
