@@ -79,19 +79,6 @@ vector<vector<vector<int>>> loadImages(const string& dir) {
 }
 
 /*******************************************************************************
- * computeIntegralImages
- * Computes an IntegralImage for each loaded image.
- ******************************************************************************/
-vector<IntegralImage> computeIntegralImages(
-        const vector<vector<vector<int>>>& images) {
-    vector<IntegralImage> iis;
-    iis.reserve(images.size());
-    for (const auto& img : images)
-        iis.push_back(img);
-    return iis;
-}
-
-/*******************************************************************************
  * generateFeatures
  * Returns all valid Haar features for an IMG_ROWS x IMG_COLS window.
  * For each feature type, iterates over all valid (x, y, w, h) combinations.
@@ -159,18 +146,13 @@ int main(int argc, char** argv) {
 
     // Load images
     cout << "Loading training images..." << endl;
-    vector<vector<vector<int>>> faceImgs    = loadImages(faceDir);
-    vector<vector<vector<int>>> nonfaceImgs = loadImages(nonfaceDir);
+    vector<vector<vector<int>>> face_training    = loadImages(faceDir);
+    vector<vector<vector<int>>> nonface_training = loadImages(nonfaceDir);
 
     if (faceImgs.empty() || nonfaceImgs.empty()) {
         cerr << "Error: need at least one face and one non-face image." << endl;
         return 1;
     }
-
-    // Precompute integral images
-    cout << "Computing integral images..." << endl;
-    vector<IntegralImage> face_training    = computeIntegralImages(faceImgs);
-    vector<IntegralImage> nonface_training = computeIntegralImages(nonfaceImgs);
 
     // Generate all candidate Haar features 
     cout << "Generating candidate features..." << endl;
@@ -179,7 +161,7 @@ int main(int argc, char** argv) {
     //  Cascade training loop 
     // nonface_training shrinks each stage: only false positives from the previous
     // stage are passed to the next stage as negatives.
-    vector<IntegralImage> currentNegatives = nonface_training;
+    vector<vector<vector<int>>> currentNegatives = nonface_training;
 
     for (int stage = 0; stage < numStages; stage++) {
         cout << "\n=== Training stage " << stage + 1 << " / " << numStages

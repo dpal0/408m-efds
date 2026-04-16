@@ -8,6 +8,8 @@ public:
 
     // constructors
     WeakClassifier (HaarFeature f);
+
+    /* ADDED BY SAM: NEW CODE! KEEP. NOTE: I REMOVED THE OLD ACCESSOR METHODS */
     WeakClassifier (HaarFeature f, float thresh, int pol, float err);
     
     // accessors
@@ -15,8 +17,9 @@ public:
     float getThreshold() { return threshold; }
     int getPolarity() { return polarity; }
     float getError() { return error; }
+    /* END OF ADDITION */
 
-    void train(const std::vector<int*> &images, const std::vector<int>
+    float train(const std::vector<int*> &images, const std::vector<int>
         const std::vector<float> &weights);
     int predictFace(int *intImage);
 
