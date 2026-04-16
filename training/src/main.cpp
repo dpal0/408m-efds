@@ -7,7 +7,7 @@
 #include <dirent.h>
 #include "integral_image.h"
 #include "HaarFeature.h"
-#include "strongClassifier.h"
+#include "StrongClassifier.h"
 
 using namespace std;
 
@@ -193,14 +193,18 @@ int main(int argc, char** argv) {
             break;
         }
 
-        // TODO: construct and train the strong classifier
-        // StrongClassifier sc;
-        // sc.train(face_training, currentNegatives, features); //talk to meat
+        // Construct and train the strong classifier
+        StrongClassifier sc;
+        int rounds = 5;
+        sc.train(features, face_training, currentNegatives, rounds);
+
         //currentNegatives starts as a copy of nonface_training, 
         //and then shrinks each stage to only the false positives from the previous stage.
+
         // TODO: write the config file for this stage
         // string configPath = outputDir + "/classifier_" + to_string(stage+1) + ".cfg";
         // sc.writeConfig(configPath); //change 
+
     }
 
     cout << "\nTraining complete." << endl;

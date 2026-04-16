@@ -17,12 +17,12 @@ float WeakClassifier::getErrorValue(){
     return this->error;
 }
 
-void WeakClassifier::trainWeakClass(const std::vector<int*> &images, const std>
+void WeakClassifier::train(const std::vector<int*> &images, const std>
         const std::vector<float> &weights){
     //labels=list of 1's and 0's where 1=face, 0=no face of the ith image.
     //images=list of integral images.
     // output error if input sizes are different
-    if(images.size() !=labels.size() || images.size() !=weights.size() || labe>
+    if(images.size() !=labels.size() || images.size() !=weights.size()){
         std::cerr<<"Error in input sizes. Sizes must all be the same size.\n";
         return;
     }
