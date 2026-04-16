@@ -127,6 +127,51 @@ vector<HaarFeature> generateFeatures() {
 }
 
 /*******************************************************************************
+ * generate config file for one strong classifier
+ * For each strong classifier, pulls all the information related to the strong
+ classifier and writes it to a file.
+ The file is setup as follows:
+    1 line with strong classifier threshold
+    1 line for each weak classifier with x, y, width, height, feature type, 
+        wc_threshold, polarity, error, and weight
+ ******************************************************************************/
+void makeConfigFile (StrongClassifier* sc, int stage) {
+    ofstream configFile ("config" + to_string(stage) + "txt");
+
+    configFile << sc->getThreshold() << endl;
+
+    vector<wc_weight_pair> wc_vector = sc->getWeakClassifiers();
+
+    for (wc_weight_pair elt = wc_vector.begin(); elt != wc_vector.end(); ++elt) {
+        WeakClassifier* wc = elt.wc;
+        float weight = elt.weight;
+
+        HaarFeature* feature = wc->getHaarFeature();
+        float threshold = wc->getThresholdValue();
+        int polarity = wc->getPolarityValue();
+        float error = wc->getErrorValue();
+
+        int x = feature->getX();
+        int y = feature->getY();
+        int w = feature->getW();
+        int h = feature->getH();
+        Feature type = feature->getType();
+
+        configFile << x << " "
+                   << y << " "
+                   << w << " "
+                   << h << " "
+                   << type << " "
+                   << threshold << " "
+                   << polarity << " "
+                   << error << " "
+                   << weight << endl;
+    }
+    
+    configFile.close();
+}
+
+/*******************************************************************************
  * main
  * Usage: ./train <face_dir> <nonface_dir> <num_stages> <output_dir>
  *
@@ -180,13 +225,8 @@ int main(int argc, char** argv) {
         int rounds = 5;
         sc.train(features, face_training, currentNegatives, rounds);
 
-        //currentNegatives starts as a copy of nonface_training, 
-        //and then shrinks each stage to only the false positives from the previous stage.
-
-        // TODO: write the config file for this stage
-        // string configPath = outputDir + "/classifier_" + to_string(stage+1) + ".cfg";
-        // sc.writeConfig(configPath); //change 
-
+        // write to config file
+        makeConfigFile (&sc, stage);
     }
 
     cout << "\nTraining complete." << endl;
