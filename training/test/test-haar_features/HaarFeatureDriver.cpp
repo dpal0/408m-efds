@@ -1,75 +1,49 @@
 #include <iostream>
-#include "HaarFeature.h"
-#include "integral_image.h"
+#include <vector>
+#include "../../src/HaarFeature.h"
 using namespace std;
 
-/* Tests HaarFeature functionality using an IntegralImage.
- * Uses a 6x6 pixel image where p[r][c] = r + c + 2:
- *
- *   2  3  4  5  6  7
- *   3  4  5  6  7  8
- *   4  5  6  7  8  9
- *   5  6  7  8  9 10
- *   6  7  8  9 10 11
- *   7  8  9 10 11 12
- */
+/* Tests HaarFeater.h functionality with respect to computing 
+the value of different featires. Uses a 6x6 array as the tester
+integral image. 
+Note: make sure when using this tester, IMG_DIM = 6 in HaarFeature.h */
 int main (int argc, char** argv) {
 
-    // build the 6x6 pixel image
-    int nRows = 6, nCols = 6;
-    vector<vector<int>> img(nRows, vector<int>(nCols));
-    for (int r = 0; r < nRows; r++)
-        for (int c = 0; c < nCols; c++)
-            img[r][c] = r + c + 2;
+    // 6x6 array acting as the integral image
+    vector<vector<int>> ii = {{127,154,172,175,177,178},
+                              {155,185,200,195,189,181},
+                              {173,197,204,192,176,151},
+                              {174,189,192,180,166,137},
+                              {170,185,191,189,186,179},
+                              {170,186,192,186,179,173}};
 
-    IntegralImage ii(img);
+    // test vertical 2-rect feature
+    HaarFeature *hf = new HaarFeature(1, 2, 3, 4, TWO_RECT_VERTICAL);
+    int actual = (180+155-195-174) - (186+174-180-170);
+    cout << "2 rect vertical -- calculated: " << hf->computeFeatureVal(ii) 
+            << ", actual: " << actual << endl;
 
-    HaarFeature *hf;
+    // test horizontal 2-rect feature
+    *hf = HaarFeature(0, 2, 6, 1, TWO_RECT_HORIZONTAL);
+    actual = (204-200) - (151+200-181-204);
+    cout << "2 rect horizontal -- calculated: " << hf->computeFeatureVal(ii) 
+            << ", actual: " << actual << endl;
 
-    // TWO_RECT_VERTICAL: x=1, y=0, w=4, h=4
-    // rect1 = rows 0-1, cols 1-4 = (3+4+5+6) + (4+5+6+7) = 40
-    // rect2 = rows 2-3, cols 1-4 = (5+6+7+8) + (6+7+8+9) = 56
-    // expected = 40 - 56 = -16
-    hf = new HaarFeature(1, 0, 4, 4, TWO_RECT_VERTICAL);
-    cout << "2 rect vertical    -- computed: " << hf->computeFeatureVal(ii)
-         << ", expected: " << -16 << endl;
+    // test vertical 3-rect feature
+    *hf = HaarFeature(4, 3, 2, 3, THREE_RECT_VERTICAL);
+    actual = (137+192-151-180) - (179+180-137-189) + (173+189-179-186);
+    cout << "3 rect vertical -- calculated: " << hf->computeFeatureVal(ii) 
+            << ", actual: " << actual << endl;
 
-    // TWO_RECT_HORIZONTAL: x=0, y=1, w=6, h=2
-    // rect1 = rows 1-2, cols 0-2 = (3+4+5) + (4+5+6) = 27
-    // rect2 = rows 1-2, cols 3-5 = (6+7+8) + (7+8+9) = 45
-    // expected = 27 - 45 = -18
-    *hf = HaarFeature(0, 1, 6, 2, TWO_RECT_HORIZONTAL);
-    cout << "2 rect horizontal  -- computed: " << hf->computeFeatureVal(ii)
-         << ", expected: " << -18 << endl;
+    // test horizontal 3-rect feature
+    *hf = HaarFeature(0, 1, 6, 4, THREE_RECT_HORIZONTAL);
+    actual = (185-154) - (189+154-175-185) + (179+175-178-189);
+    cout << "3 rect horizontal -- calculated: " << hf->computeFeatureVal(ii) 
+            << ", actual: " << actual << endl;
 
-    // THREE_RECT_VERTICAL: x=0, y=0, w=3, h=6
-    // rect1 = rows 0-1, cols 0-2 = (2+3+4) + (3+4+5) = 21
-    // rect2 = rows 2-3, cols 0-2 = (4+5+6) + (5+6+7) = 33
-    // rect3 = rows 4-5, cols 0-2 = (6+7+8) + (7+8+9) = 45
-    // expected = 21 - 33 + 45 = 33
-    *hf = HaarFeature(0, 0, 3, 6, THREE_RECT_VERTICAL);
-    cout << "3 rect vertical    -- computed: " << hf->computeFeatureVal(ii)
-         << ", expected: " << 33 << endl;
-
-    // THREE_RECT_HORIZONTAL: x=0, y=0, w=6, h=3
-    // rect1 = rows 0-2, cols 0-1 = (2+3)+(3+4)+(4+5) = 21
-    // rect2 = rows 0-2, cols 2-3 = (4+5)+(5+6)+(6+7) = 33
-    // rect3 = rows 0-2, cols 4-5 = (6+7)+(7+8)+(8+9) = 45
-    // expected = 21 - 33 + 45 = 33
-    *hf = HaarFeature(0, 0, 6, 3, THREE_RECT_HORIZONTAL);
-    cout << "3 rect horizontal  -- computed: " << hf->computeFeatureVal(ii)
-         << ", expected: " << 33 << endl;
-
-    // FOUR_RECT: x=0, y=0, w=4, h=4
-    // rect1 (top-left)     = rows 0-1, cols 0-1 = 2+3+3+4 = 12
-    // rect2 (top-right)    = rows 0-1, cols 2-3 = 4+5+5+6 = 20
-    // rect3 (bottom-left)  = rows 2-3, cols 0-1 = 4+5+5+6 = 20
-    // rect4 (bottom-right) = rows 2-3, cols 2-3 = 6+7+7+8 = 28
-    // expected = 12 - 20 + 20 - 28 = -16
-    *hf = HaarFeature(0, 0, 4, 4, FOUR_RECT);
-    cout << "4 rect             -- computed: " << hf->computeFeatureVal(ii)
-         << ", expected: " << -16 << endl;
-
-    delete hf;
-    return 0;
+    // test 4-rect feature
+    *hf = HaarFeature(0, 0, 6, 6, FOUR_RECT);
+    actual = (204) - (151-204) + (192-204) - (173+204-151-192);
+    cout << "4 rect -- calculated: " << hf->computeFeatureVal(ii) 
+            << ", actual: " << actual << endl;
 }

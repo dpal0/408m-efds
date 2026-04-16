@@ -30,7 +30,7 @@ being done on the integral image.
 @param int* integralImg = array containing the precomputed integral image
 @return int = difference computed between the rectangles according to that
     specific haar feature. */
-int HaarFeature::computeFeatureVal (int* integralImg) {
+int HaarFeature::computeFeatureVal (vector<vector<int>> integralImg) {
     switch (type) {
         case TWO_RECT_VERTICAL: {
             int rect1 = compute (integralImg, x-1, y-1, x+w-1, y+h/2-1);
@@ -72,15 +72,17 @@ a predefined area on an integral image.
 @param int y_end = col at the bottom of the interest area (in the interest area)
 @return int = difference computed between the rectangles according to that
     specific haar feature. */
-int HaarFeature::compute (int* integralImg, int x_start, int y_start, 
+int HaarFeature::compute (vector<vector<int>> integralImg, int x_start, int y_start, 
     int x_end, int y_end) {
-    int retVal = integralImg[y_end * IMG_DIM + x_end];
+
+    int retVal = integralImg[y_end][x_end];
     if (y_start >= 0 && x_start >= 0)
-        retVal += integralImg[y_start * IMG_DIM + x_start];
+        retVal += integralImg[y_start][x_start];
     if (y_start >= 0)
-        retVal -= integralImg[y_start * IMG_DIM + x_end];
+        retVal -= integralImg[y_start][x_end];
     if (x_start >= 0)
-        retVal -= integralImg[y_end * IMG_DIM + x_start];
+        retVal -= integralImg[y_end][x_start];
+
     return retVal;
 }
 

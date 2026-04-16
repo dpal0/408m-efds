@@ -1,8 +1,6 @@
 #!/usr/bin/env bash
 
-./evalDriver.exe 3 2 3 results.txt
-diff correct.txt results.txt
-rm evalDriver.o
-rm evalDriver.exe
-rm EvalMetrics.o
+./HaarFeatureDriver.exe
 
+rm HaarFeatureDriver.o HaarFeature.o
+rm HaarFeatureDriver.exe

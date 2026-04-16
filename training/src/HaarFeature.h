@@ -1,7 +1,8 @@
 #ifndef haar_feature_h
 #define haar_feature_h
 
-#define IMG_DIM 24
+#include <vector>
+using namespace std;
 
 enum Feature {
     TWO_RECT_VERTICAL, // height must be multiple of 2
@@ -33,7 +34,7 @@ public:
     void setType (Feature type) { this->type = type; }
 
     // compute haar feature value
-    int computeFeatureVal (int* integralImg);
+    int computeFeatureVal (vector<vector<int>> integralImg);
 
     // resize feature
     void scale (float factor);
@@ -43,7 +44,7 @@ public:
     
 private:
     // helper compute haar feature value
-    int compute (int* integralImg, int x_start, int y_start, int x_end, 
+    int compute (vector<vector<int>> integralImg, int x_start, int y_start, int x_end, 
         int y_end);
 
     // variables
