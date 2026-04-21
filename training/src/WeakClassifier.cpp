@@ -19,7 +19,7 @@ float WeakClassifier::getErrorValue(){
     return this->error;
 }
 
-void WeakClassifier::trainWeakClass(const std::vector<std::vector<std::vector<int>>> &images, const std::vector<int> &labels,
+void WeakClassifier::train(const std::vector<std::vector<std::vector<int>>> &images, const std::vector<int> &labels,
         const std::vector<float> &weights){
     //labels=list of 1's and 0's where 1=face, 0=no face of the ith image.
     //images=list of integral images.
@@ -90,7 +90,7 @@ void WeakClassifier::trainWeakClass(const std::vector<std::vector<std::vector<in
     this->polarity=foundPolar;
     this->threshold=foundThreshold;
 }
-int WeakClassifier::predictFace(const std::vector<std::vector<int>> &intImage){ //input integral image.
+int WeakClassifier::classify(std::vector<std::vector<int>> &intImage){ //input integral image.
     float featVal=feature.computeFeatureVal(intImage); //find feature value based on input integral image
     if(polarity*featVal<polarity*threshold){ //use trained threshold and polarity to determine face or no face.
         return 1; //face

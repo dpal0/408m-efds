@@ -1,6 +1,7 @@
 
 #include "WeakClassifier.h"
 #include <vector>
+#include <cmath>
 
 struct wc_weight_pair
 {
