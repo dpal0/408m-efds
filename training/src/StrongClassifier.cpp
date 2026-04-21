@@ -38,7 +38,7 @@ int StrongClassifier::classify(const std::vector<std::vector<int>> &integralImag
 
 /** Training method, generates a linear combination of weak classifiers using AdaBoost algorithm 
   and saves it in the strong classifier. */
-void StrongClassifier::train(std::vector<HaarFeature *> features, std::vector<std::vector<int>> &positive_set, std::vector<std::vector<int>> &negative_set, int rounds)
+void StrongClassifier::train(std::vector<HaarFeature> features, std::vector<std::vector<int>> &positive_set, std::vector<std::vector<int>> &negative_set, int rounds)
 {
   int num_features = features.size();
   int num_positive = positive_set.size();
@@ -69,10 +69,10 @@ void StrongClassifier::train(std::vector<HaarFeature *> features, std::vector<st
   for (size_t t = 0; t < rounds; t++)
   {
     // Train weak classifiers using sample weights and record error for each, assuming Erica has train method returning error rate
-    std::vector<float> wc_errors(num_classifiers);
-    for (size_t i = 0; i < num_classifiers; i++)
+    std::vector<float> wc_errors(num_features);
+    for (size_t i = 0; i < num_features; i++)
     {
-      wc_errors[i] = wc_given[i]->train(positive_set, negative_set, sample_weights);
+      wc_errors[i] = wc[i]->train(positive_set, negative_set, sample_weights);
     }
 
     // Step 2: Choose the best weak classifier
@@ -83,7 +83,7 @@ void StrongClassifier::train(std::vector<HaarFeature *> features, std::vector<st
     // Step 4: Update sample weights for the next round
     for (size_t i = 0; i < num_positive; i++)
     {
-      if (wc_given[best_index]->classify(positive_set[i]) == 1)
+      if (wc[best_index]->classify(positive_set[i]) == 1)
       {
         sample_weights[i] *= std::pow(beta, 1);
       }
@@ -94,7 +94,7 @@ void StrongClassifier::train(std::vector<HaarFeature *> features, std::vector<st
     }
     for (size_t i = num_positive; i < (num_positive + num_negative); i++)
     {
-      if (wc_given[best_index]->classify(negative_set[i - num_positive]) == 0)
+      if (wc[best_index]->classify(negative_set[i - num_positive]) == 0)
       {
         sample_weights[i] *= std::pow(beta, 1);
       }
@@ -115,6 +115,6 @@ void StrongClassifier::train(std::vector<HaarFeature *> features, std::vector<st
     float alpha = std::log(1 / beta);
 
     // Final step: Store the selected weak classifier and its coefficient in the strong classifier
-    this->weak_classifiers.push_back({wc_given[best_index], alpha});
+    this->weak_classifiers.push_back({wc[best_index], alpha});
   }
 }
