@@ -10,9 +10,13 @@ public:
         const std::vector<int> &labels,
         const std::vector<float> &weights);
     int classify(const std::vector<std::vector<int>> &intImage);
-    float getThresholdValue();
-    int getPolarityValue();
-    float getErrorValue();
+    
+    // accessors
+    HaarFeature* getHaarFeature() { return &feature; }
+    float getThreshold() { return threshold; }
+    int getPolarity() { return polarity; }
+    float getError() { return error; }
+
 private:
     HaarFeature feature;
     float threshold;
