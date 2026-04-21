@@ -7,17 +7,14 @@ StrongClassifier::StrongClassifier() {
 }
 
 /** Constructor for classification with selected weak classifiers and weights, no threshold given */
-StrongClassifier::StrongClassifier(std::vector<WeakClassifier*> wc, float *weight) {
-  this->wc = wc;
+StrongClassifier::StrongClassifier(std::vector<wc_weight_pair> wc) {
+  this->weak_classifiers = wc;
   this->threshold = 0.0;
-  for (int i=0; i<wc.size(); i++) this->weight.push_back(weight[i]);
 }
 
 /** Constructor for classification with selected weak classifiers, weights, and threshold */
-StrongClassifier::StrongClassifier(std::vector<WeakClassifier*> wc, float *weight, float threshold) {
-  for (int i=0; i<wc.size(); i++) {
-    this->weak_classifiers.push_back({wc[i], weight[i]});
-  }
+StrongClassifier::StrongClassifier(std::vector<wc_weight_pair> wc, float threshold) {
+  this->weak_classifiers = wc;
   this->threshold = threshold;
 }
 
@@ -26,7 +23,7 @@ int StrongClassifier::classify(const std::vector<std::vector<int>> &integralImag
 {
   float sum = 0.0;
 
-  // Sum the weighted outputs of each weak classifier, assuming Erica has classify method returning 0 or 1
+  // Sum the weighted outputs of each weak classifier
   for (size_t i = 0; i < this->weak_classifiers.size(); i++)
   {
     int h = this->weak_classifiers[i].wc->classify(integralImage);
@@ -38,7 +35,7 @@ int StrongClassifier::classify(const std::vector<std::vector<int>> &integralImag
 
 /** Training method, generates a linear combination of weak classifiers using AdaBoost algorithm 
   and saves it in the strong classifier. */
-void StrongClassifier::train(std::vector<HaarFeature> features, std::vector<std::vector<int>> &positive_set, std::vector<std::vector<int>> &negative_set, int rounds)
+void StrongClassifier::train(std::vector<HaarFeature> features, std::vector<std::vector<std::vector<int>>> &positive_set, std::vector<std::vector<std::vector<int>>> &negative_set, int rounds)
 {
   int num_features = features.size();
   int num_positive = positive_set.size();
