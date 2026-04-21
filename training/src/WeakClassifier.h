@@ -2,32 +2,21 @@
 #define WEAKCLASSIFIER_H
 #include <vector>
 #include "HaarFeature.h"
-
 class WeakClassifier{
 public:
-
-    // constructors
-    WeakClassifier (HaarFeature f);
-
-    /* ADDED BY SAM: NEW CODE! KEEP. NOTE: I REMOVED THE OLD ACCESSOR METHODS */
-    WeakClassifier (HaarFeature f, float thresh, int pol, float err);
-    
-    // accessors
-    HaarFeature* getHaarFeature() { return &feature; }
-    float getThreshold() { return threshold; }
-    int getPolarity() { return polarity; }
-    float getError() { return error; }
-    /* END OF ADDITION */
-
-    float train(const std::vector<int*> &images, const std::vector<int>
+    WeakClassifier(HaarFeature f);
+    WeakClassifier(HaarFeature f, float threshold, int polarity, float error);
+    void trainWeakClass(const std::vector<std::vector<std::vector<int>>> &images, 
+        const std::vector<int> &labels,
         const std::vector<float> &weights);
-    int predictFace(int *intImage);
-
+    int predictFace(const std::vector<std::vector<int>> &intImage);
+    float getThresholdValue();
+    int getPolarityValue();
+    float getErrorValue();
 private:
     HaarFeature feature;
     float threshold;
     int polarity;
     float error;
 };
-
 #endif

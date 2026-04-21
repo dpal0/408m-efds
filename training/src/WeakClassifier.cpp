@@ -3,37 +3,41 @@
 #include <iostream>
 #include "WeakClassifier.h"
 
+
 WeakClassifier::WeakClassifier(HaarFeature f)
     :feature(f), threshold(0), polarity(1), error(0){}
-
-/* ADDED BY SAM: NEW CODE! KEEP */
-WeakClfassifier::WeakClassifier(HaarFeature f, float thresh, int pol, float err) {
-    feature = f;
-    threshold = thres;
-    polarity = pol;
-    error = err;
+WeakClassifier::WeakClassifier(HaarFeature f, float threshold, int polarity, float error)
+    :feature(f), threshold(threshold), polarity(polarity), error(error){}
+float WeakClassifier::getThresholdValue(){
+    return this->threshold;
 }
-/* END OF ADDITION */
 
-float WeakClassifier::train(const std::vector<int*> &images, const std>
+int WeakClassifier::getPolarityValue(){
+    return this->polarity;
+}
+float WeakClassifier::getErrorValue(){
+    return this->error;
+}
+
+void WeakClassifier::trainWeakClass(const std::vector<std::vector<std::vector<int>>> &images, const std::vector<int> &labels,
         const std::vector<float> &weights){
     //labels=list of 1's and 0's where 1=face, 0=no face of the ith image.
     //images=list of integral images.
     // output error if input sizes are different
-    if(images.size() !=labels.size() || images.size() !=weights.size()){
+    if(images.size() !=labels.size() || images.size() !=weights.size() || labels.size() !=weights.size()){
         std::cerr<<"Error in input sizes. Sizes must all be the same size.\n";
         return;
     }
     size_t lenImage=images.size(); //get size of the images array
-    float lowestError=std::numeric_limits<float>::max(); //gets max integer nu>
-    std::vector<int> featValArr(lenImage); //initialize array for getting the >
+    float lowestError=std::numeric_limits<float>::max(); //gets max integer number
+    std::vector<int> featValArr(lenImage); //initialize array with the number of images
     //used to determine polarity
     int polarPlus=1;
     int polarMinus=-1;
     // used to get the final polarity and final threshold
     int foundPolar=1;
     int foundThreshold=0;
-    // put in values into feature value array before finding best threshold an>
+    // put in values into feature value array before finding best threshold and best polarity
     for(size_t i=0; i<lenImage; i++){
         featValArr[i]=feature.computeFeatureVal(images[i]);
     }
@@ -71,7 +75,7 @@ float WeakClassifier::train(const std::vector<int*> &images, const std>
         std::cerr<<"Threshold found: "<<foundThreshold<<std::endl;
         std::cerr<<"errors1: "<<errors1<<std::endl;
         std::cerr<<"errors2: "<<errors2<<std::endl;
-        if(errors1<=errors2 && errors1<lowestError){ //when errors1 has less e>
+        if(errors1<=errors2 && errors1<lowestError){ //when errors1 has less than lowest error
             lowestError=errors1;
             foundPolar=polarPlus;
             foundThreshold=predictThreshold;
@@ -85,12 +89,10 @@ float WeakClassifier::train(const std::vector<int*> &images, const std>
     this->error=lowestError;
     this->polarity=foundPolar;
     this->threshold=foundThreshold;
-
-    return lowestError;
 }
-int WeakClassifier::predictFace(int *intImage){ //input integral image.
-    float featVal=feature.computeFeatureVal(intImage); //used HaarFeature and >
-    if(polarity*featVal<polarity*threshold){ //use trained threshold and polar>
+int WeakClassifier::predictFace(const std::vector<std::vector<int>> &intImage){ //input integral image.
+    float featVal=feature.computeFeatureVal(intImage); //find feature value based on input integral image
+    if(polarity*featVal<polarity*threshold){ //use trained threshold and polarity to determine face or no face.
         return 1; //face
     }
     return 0; //not face
