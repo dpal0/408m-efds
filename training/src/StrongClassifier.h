@@ -2,8 +2,8 @@
 #include "WeakClassifier.h"
 #include <vector>
 #include <cmath>
-
-
+#include <algorithm>
+#include <numeric>
 
 class StrongClassifier
 {

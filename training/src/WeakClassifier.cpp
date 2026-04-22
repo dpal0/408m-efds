@@ -80,7 +80,8 @@ void WeakClassifier::train(const std::vector<std::vector<std::vector<int>>> &ima
     this->polarity=foundPolar;
     this->threshold=foundThreshold;
 }
-int WeakClassifier::classify(std::vector<std::vector<int>> &intImage){ //input integral image.
+
+int WeakClassifier::classify(const std::vector<std::vector<int>> &intImage){ //input integral image.
     float featVal=feature.computeFeatureVal(intImage); //find feature value based on input integral image
     if(polarity*featVal<polarity*threshold){ //use trained threshold and polarity to determine face or no face.
         return 1; //face
