@@ -1,22 +1,31 @@
 #ifndef WEAKCLASSIFIER_H
 #define WEAKCLASSIFIER_H
+
 #include <vector>
 #include "HaarFeature.h"
+
 class WeakClassifier{
+
 public:
     WeakClassifier(HaarFeature f);
     WeakClassifier(HaarFeature f, float threshold, int polarity, float error);
+    
     void train(const std::vector<std::vector<std::vector<int>>> &images, 
         const std::vector<int> &labels,
         const std::vector<float> &weights);
     int classify(const std::vector<std::vector<int>> &intImage);
-    float getThresholdValue();
-    int getPolarityValue();
-    float getErrorValue();
+    
+    // accessors
+    HaarFeature* getHaarFeature() { return &feature; }
+    float getThreshold() { return threshold; }
+    int getPolarity() { return polarity; }
+    float getError() { return error; }
+
 private:
     HaarFeature feature;
     float threshold;
     int polarity;
     float error;
 };
+
 #endif

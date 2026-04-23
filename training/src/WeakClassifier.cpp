@@ -8,16 +8,6 @@ WeakClassifier::WeakClassifier(HaarFeature f)
     :feature(f), threshold(0), polarity(1), error(0){}
 WeakClassifier::WeakClassifier(HaarFeature f, float threshold, int polarity, float error)
     :feature(f), threshold(threshold), polarity(polarity), error(error){}
-float WeakClassifier::getThresholdValue(){
-    return this->threshold;
-}
-
-int WeakClassifier::getPolarityValue(){
-    return this->polarity;
-}
-float WeakClassifier::getErrorValue(){
-    return this->error;
-}
 
 void WeakClassifier::train(const std::vector<std::vector<std::vector<int>>> &images, const std::vector<int> &labels,
         const std::vector<float> &weights){
@@ -90,7 +80,8 @@ void WeakClassifier::train(const std::vector<std::vector<std::vector<int>>> &ima
     this->polarity=foundPolar;
     this->threshold=foundThreshold;
 }
-int WeakClassifier::classify(std::vector<std::vector<int>> &intImage){ //input integral image.
+
+int WeakClassifier::classify(const std::vector<std::vector<int>> &intImage){ //input integral image.
     float featVal=feature.computeFeatureVal(intImage); //find feature value based on input integral image
     if(polarity*featVal<polarity*threshold){ //use trained threshold and polarity to determine face or no face.
         return 1; //face

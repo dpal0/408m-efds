@@ -69,7 +69,7 @@ void StrongClassifier::train(std::vector<HaarFeature> features, std::vector<std:
     std::vector<float> wc_errors(num_features);
     for (size_t i = 0; i < num_features; i++)
     {
-      wc_errors[i] = wc[i]->train(positive_set, negative_set, sample_weights);
+      //wc_errors[i] = wc[i]->train(&positive_set, negative_set, sample_weights);
     }
 
     // Step 2: Choose the best weak classifier

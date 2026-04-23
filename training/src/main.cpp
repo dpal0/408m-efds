@@ -140,22 +140,22 @@ void makeConfigFile (StrongClassifier* sc, int stage) {
 
     configFile << sc->getThreshold() << endl;
 
-    vector<wc_weight_pair> wc_vector = sc->getWeakClassifiers();
-
-    for (wc_weight_pair elt = wc_vector.begin(); elt != wc_vector.end(); ++elt) {
-        WeakClassifier* wc = elt.wc;
-        float weight = elt.weight;
+    vector<StrongClassifier::wc_weight_pair> wc_vector = sc->getWeakClassifiers();
+    
+    for (StrongClassifier::wc_weight_pair it : wc_vector) {
+        WeakClassifier* wc = it.wc;
+        float weight = it.weight;
 
         HaarFeature* feature = wc->getHaarFeature();
-        float threshold = wc->getThresholdValue();
-        int polarity = wc->getPolarityValue();
-        float error = wc->getErrorValue();
+        float threshold = wc->getThreshold();
+        int polarity = wc->getPolarity();
+        float error = wc->getError();
 
         int x = feature->getX();
         int y = feature->getY();
-        int w = feature->getW();
-        int h = feature->getH();
-        Feature type = feature->getType();
+        int w = feature->getWidth();
+        int h = feature->getHeight();
+        int type = feature->getType();
 
         configFile << x << " "
                    << y << " "
@@ -194,7 +194,7 @@ int main(int argc, char** argv) {
     vector<vector<vector<int>>> face_training    = loadImages(faceDir);
     vector<vector<vector<int>>> nonface_training = loadImages(nonfaceDir);
 
-    if (faceImgs.empty() || nonfaceImgs.empty()) {
+    if (face_training.empty() || nonface_training.empty()) {
         cerr << "Error: need at least one face and one non-face image." << endl;
         return 1;
     }
