@@ -1,0 +1,5 @@
+2 rect vertical    -- computed: -16, expected: -16
+2 rect horizontal  -- computed: -18, expected: -18
+3 rect vertical    -- computed: 33, expected: 33
+3 rect horizontal  -- computed: 33, expected: 33
+4 rect             -- computed: -16, expected: -16

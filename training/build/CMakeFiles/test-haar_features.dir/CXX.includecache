@@ -1,0 +1,34 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/homes/d/p/dpal1/home/enee408m/project/efds/src/actors/integral_image.cpp
+integral_image.h
+/homes/d/p/dpal1/home/enee408m/project/efds/src/actors/integral_image.h
+integral_image.h
+/homes/d/p/dpal1/home/enee408m/project/efds/src/actors/integral_image.h
+
+/homes/d/p/dpal1/home/enee408m/project/efds/src/actors/integral_image.h
+
+/homes/d/p/dpal1/home/enee408m/project/training/src/HaarFeature.cpp
+iostream
+-
+HaarFeature.h
+/homes/d/p/dpal1/home/enee408m/project/training/src/HaarFeature.h
+
+/homes/d/p/dpal1/home/enee408m/project/training/src/HaarFeature.h
+vector
+-
+
+/homes/d/p/dpal1/home/enee408m/project/training/test/test-haar_features/HaarFeatureDriver.cpp
+iostream
+-
+vector
+-
+../../src/HaarFeature.h
+/homes/d/p/dpal1/home/enee408m/project/training/src/HaarFeature.h
+
