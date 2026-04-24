@@ -22,7 +22,9 @@ public:
     /* Return the sum of pixel values in the rectangle with top-left corner
      * (r, c), height h, and width w. */
     int rectangleSum(int r, int c, int h, int w) const;
-
+    const vector<vector<int>> &getImage() const{
+        return ii;
+    }
     int getNRows() const { return nRows; }
     int getNCols() const { return nCols; }
 
