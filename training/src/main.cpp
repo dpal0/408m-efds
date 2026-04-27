@@ -12,8 +12,8 @@
 using namespace std;
 
 /* The dataset uses 24x24 sub-windows. */
-static const int IMG_ROWS = 24;
-static const int IMG_COLS = 24;
+static const int IMG_ROWS = 4;
+static const int IMG_COLS = 4;
 
 /*******************************************************************************
  * loadTXT
@@ -135,41 +135,41 @@ vector<HaarFeature> generateFeatures() {
     1 line for each weak classifier with x, y, width, height, feature type, 
         wc_threshold, polarity, error, and weight
  ******************************************************************************/
-void makeConfigFile (StrongClassifier* sc, int stage) {
-    ofstream configFile ("config" + to_string(stage) + "txt");
+// void makeConfigFile (StrongClassifier* sc, int stage) {
+//     ofstream configFile ("config" + to_string(stage) + "txt");
 
-    configFile << sc->getThreshold() << endl;
+//     configFile << sc->getThreshold() << endl;
 
-    vector<StrongClassifier::wc_weight_pair> wc_vector = sc->getWeakClassifiers();
+//     vector<StrongClassifier::wc_weight_pair> wc_vector = sc->getWeakClassifiers();
     
-    for (StrongClassifier::wc_weight_pair it : wc_vector) {
-        WeakClassifier* wc = it.wc;
-        float weight = it.weight;
+//     for (StrongClassifier::wc_weight_pair it : wc_vector) {
+//         WeakClassifier& wc = it.wc;
+//         float weight = it.weight;
 
-        HaarFeature* feature = wc->getHaarFeature();
-        float threshold = wc->getThreshold();
-        int polarity = wc->getPolarity();
-        float error = wc->getError();
+//         HaarFeature* feature = wc->getHaarFeature();
+//         float threshold = wc->getThreshold();
+//         int polarity = wc->getPolarity();
+//         float error = wc->getError();
 
-        int x = feature->getX();
-        int y = feature->getY();
-        int w = feature->getWidth();
-        int h = feature->getHeight();
-        int type = feature->getType();
+//         int x = feature->getX();
+//         int y = feature->getY();
+//         int w = feature->getWidth();
+//         int h = feature->getHeight();
+//         int type = feature->getType();
 
-        configFile << x << " "
-                   << y << " "
-                   << w << " "
-                   << h << " "
-                   << type << " "
-                   << threshold << " "
-                   << polarity << " "
-                   << error << " "
-                   << weight << endl;
-    }
+//         configFile << x << " "
+//                    << y << " "
+//                    << w << " "
+//                    << h << " "
+//                    << type << " "
+//                    << threshold << " "
+//                    << polarity << " "
+//                    << error << " "
+//                    << weight << endl;
+//     }
     
-    configFile.close();
-}
+//     configFile.close();
+// }
 
 /*******************************************************************************
  * main
@@ -222,11 +222,17 @@ int main(int argc, char** argv) {
 
         // Construct and train the strong classifier
         StrongClassifier sc;
-        int rounds = 5;
+        int rounds = 1;
         sc.train(features, face_training, currentNegatives, rounds);
 
+        for (size_t i = 0; i < currentNegatives.size(); i++) {
+            if (sc.classify(currentNegatives[i])) {
+                currentNegatives.erase(currentNegatives.begin() + i);
+            }
+        }
+
         // write to config file
-        makeConfigFile (&sc, stage);
+        //makeConfigFile (&sc, stage);
     }
 
     cout << "\nTraining complete." << endl;

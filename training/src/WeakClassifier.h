@@ -10,7 +10,7 @@ public:
     WeakClassifier(HaarFeature f);
     WeakClassifier(HaarFeature f, float threshold, int polarity, float error);
     
-    void train(const std::vector<std::vector<std::vector<int>>> &images, 
+    float train(const std::vector<std::vector<std::vector<int>>> &images, 
         const std::vector<int> &labels,
         const std::vector<float> &weights);
     int classify(const std::vector<std::vector<int>> &intImage);

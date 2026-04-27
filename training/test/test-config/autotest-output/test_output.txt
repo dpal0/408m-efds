@@ -1,0 +1,10 @@
+Tests started on:
+Thu 16 Apr 2026 12:07:23 PM EDT
+-----------------------------------------------------
+Test result for:
+/homes/s/r/srod26/home/team4/training/test/test-haar_features
+-----------------------------------------------------
+Error comparison result for: 
+/homes/s/r/srod26/home/team4/training/test/test-haar_features
+Tests completed on:
+Thu 16 Apr 2026 12:07:24 PM EDT

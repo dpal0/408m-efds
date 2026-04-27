@@ -99,5 +99,5 @@ void HaarFeature::scale (float factor) {
 /* Prints the feature's values to the console. Used for debugging. */
 void HaarFeature::toString () {
     cout << "x: " << x << ", y: " << y << ", width: " 
-        << w << ", height: " << h << endl;
+        << w << ", height: " << h << ", type: " << type << endl;
 }
