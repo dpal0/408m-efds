@@ -128,8 +128,6 @@ void StrongClassifier::train(std::vector<HaarFeature> features, std::vector<std:
     float alpha = std::log(1 / beta);
 
     // Final step: Store the selected weak classifier and its coefficient in the strong classifier
-    wc[best_index].getHaarFeature()->toString();
     this->weak_classifiers.push_back({wc[best_index], alpha});
-    this->weak_classifiers.back().wc.getHaarFeature()->toString();
   }
 }
