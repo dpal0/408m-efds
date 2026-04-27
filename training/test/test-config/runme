@@ -1,0 +1,5 @@
+#!/usr/bin/env bash
+
+./configDriver.exe
+
+rm configDriver.o configDriver.exe
