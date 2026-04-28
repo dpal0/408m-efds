@@ -41,12 +41,17 @@ int StrongClassifier::classify(const std::vector<std::vector<int>> &integralImag
 
 /** Training method, generates a linear combination of weak classifiers using AdaBoost algorithm
   and saves it in the strong classifier. */
+<<<<<<< HEAD
 void StrongClassifier::train(std::vector<HaarFeature> features, std::vector<std::vector<std::vector<int>>> &positive_set, std::vector<std::vector<std::vector<int>>> &negative_set, int rounds)
+=======
+void StrongClassifier::train(std::vector<HaarFeature *> features, std::vector<std::vector<int>> &positive_set, std::vector<std::vector<int>> &negative_set, int rounds)
+>>>>>>> 4045f82620771edf1fde6ce2322a25c9c4104f4f
 {
   int num_features = features.size();
   int num_positive = positive_set.size();
   int num_negative = negative_set.size();
 
+<<<<<<< HEAD
   // Concatenate positive and negative sets for weak classifier training
   vector<vector<vector<int>>> images = positive_set;
   images.insert(images.end(), negative_set.begin(), negative_set.end());
@@ -60,6 +65,12 @@ void StrongClassifier::train(std::vector<HaarFeature> features, std::vector<std:
   for (int i = 0; i < features.size(); i++)
   {
     wc.push_back(WeakClassifier(features[i]));
+=======
+  // Initialize weak classifiers from the given features
+  std::vector<WeakClassifier*> wc;
+  for (int i = 0; i < features.size(); i++) {
+    wc.push_back(new WeakClassifier(features[i]));
+>>>>>>> 4045f82620771edf1fde6ce2322a25c9c4104f4f
   }
 
   // Initialize strong classifier with empty weak classifiers and weights
