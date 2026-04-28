@@ -1,74 +1,39 @@
-<<<<<<< HEAD
-#ifndef integral_image_h
-#define integral_image_h
-
-#include <vector>
-using namespace std;
-
-/*******************************************************************************
- * IntegralImage
- *
- * Computes and stores the integral image of a given grayscale image.
- * The integral image ii satisfies:
- *   ii[r][c] = sum of all pixels in the rectangle from (0,0) to (r,c)
- *              inclusive.
- *
- * Once constructed, rectangleSum(r, c, h, w) returns the sum of pixels
- * in any rectangle in O(1) using four lookups.
- ******************************************************************************/
-class IntegralImage {
-public:
-    /* Compute the integral image from the given grayscale image grid. */
-    IntegralImage(const vector<vector<int>> &img);
-
-    /* Return the sum of pixels in the rectangle with top-left corner (r, c),
-     * height h, and width w. */
-    int rectangleSum(int r, int c, int h, int w) const;
-
-    int rows() const { return nRows; }
-    int cols() const { return nCols; }
-
-private:
-    int nRows;
-    int nCols;
-    vector<vector<int>> ii; /* integral image storage */
+#ifndef CLASSIFIER_ACTOR_H
+#define CLASSIFIER_ACTOR_H
+extern "C"{
+#include "welt_c_fifo.h"
+#include "welt_c_util.h"
+}
+#include "welt_cpp_actor.h"
+#include "welt_cpp_graph.h"
+#include <opencv2/opencv.hpp>
+#include "StrongClassifier.h"
+#define CONFIGURE 1
+#define READ 2
+#define CLASSIFY 3
+#define TRUE_MOD 4
+#define FALSE_MOD 5
+struct IIS{
+    cv::Mat *I; //image window
+    int k; //image index
 };
-
-=======
-#ifndef integral_image_h
-#define integral_image_h
-
-#include <vector>
-using namespace std;
-
-/*******************************************************************************
- * IntegralImage
- *
- * Computes and stores the integral image of a given grayscale image.
- * The integral image ii satisfies:
- *   ii[r][c] = sum of all pixels in the rectangle from (0,0) to (r,c)
- *              inclusive.
- *
- * Once constructed, rectangleSum(r, c, h, w) returns the sum of pixels
- * in any rectangle in O(1) using four lookups.
- ******************************************************************************/
-class IntegralImage {
-public:
-    /* Compute the integral image from the given grayscale image grid. */
-    IntegralImage(const vector<vector<int>> &img);
-
-    /* Return the sum of pixels in the rectangle with top-left corner (r, c),
-     * height h, and width w. */
-    int rectangleSum(int r, int c, int h, int w) const;
-
-    int rows() const { return nRows; }
-    int cols() const { return nCols; }
-
-private:
-    int nRows;
-    int nCols;
-    vector<vector<int>> ii; /* integral image storage */
+class classifierActor: public welt_cpp_actor{
+public: 
+    classifierActor(welt_c_fifo_pointer in,welt_c_fifo_pointer abort_out, welt_c_fifo_pointer cont_out, int stage);
+    bool enable();
+    void invoke();
+    void reset();
+    void connect(welt_cpp_graph *graph) override;
+    ~classifierActor() override;
+private: 
+    welt_c_fifo_pointer in; //input from prev classifier actor. 
+                            // Format: (image window pointer I,image index k)
+    welt_c_fifo_pointer cont_out; //output to next classifier actor
+    welt_c_fifo_pointer abort_out; //when in false mode
+    int stage; //stage num
+    StrongClassifier *sc; //strong classifier object
+    int mode; //actor mode. 
+    IIS *currToken; //current input token (I,K)
 };
-
->>>>>>> 4659dca3b7f8ffed9f8565f1f1a92e41524b1708
+StrongClassifier* readConfigFile(int stage);
 #endif
