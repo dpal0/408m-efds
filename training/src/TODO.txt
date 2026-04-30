@@ -1,3 +1,0 @@
-Rewrite runtest_main to take in integral images directly
-Rewrite runtest_features to take in integral images directly
-Rewrite the scripts to take into account the new directories now
