@@ -1,12 +1,20 @@
-numCascades=1 # edit this line with number of strong classifiers
+numCascades=3 # edit this line with number of strong classifiers
 
 timestamp=$(date +"%Y-%m-%d_%H:%M:%S")
 
-dirData="../../dataset/project-dataset/integral/training"
-dirConfig="../../configs"
+# Data for training, comment out when testing/benchmarking
+# dirData="../../dataset/project-dataset/integral/training"
+# dirConfig="../../configs"
+# cd $dirConfig
+# mkdir $timestamp
+# cd ../training/src
 
+# Data for testing/benchmarking, comment out when training
+dirData="../test/testing-data-md"
+dirConfig="../test/config-outputs"
 cd $dirConfig
 mkdir $timestamp
-cd ../training/src
+cd ../../src
+
 
 ./main.exe $dirData/face $dirData/non-face $numCascades $dirConfig/$timestamp

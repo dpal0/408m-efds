@@ -39,8 +39,7 @@ int StrongClassifier::classify(const std::vector<std::vector<int>> &integralImag
   return (sum >= threshold) ? 1 : 0;
 }
 
-/** Training method, generates a linear combination of weak classifiers using AdaBoost algorithm
-  and saves it in the strong classifier. */
+/** Training method, generates a linear combination of weak classifiers using AdaBoost algorithm and saves it in the strong classifier. */
 void StrongClassifier::train(std::vector<HaarFeature> features, std::vector<std::vector<std::vector<int>>> &positive_set, std::vector<std::vector<std::vector<int>>> &negative_set, int rounds)
 {
   int num_features = features.size();
@@ -81,29 +80,29 @@ void StrongClassifier::train(std::vector<HaarFeature> features, std::vector<std:
   // Iterate through boosting rounds
   for (size_t t = 0; t < rounds; t++)
   {
-    // Train weak classifiers using sample weights and record error for each, assuming Erica has train method returning error rate
+    cout << "Training round " << t + 1 << " / " << rounds << endl;
+    // Train weak classifiers using sample weights and record error for each
     std::vector<float> wc_errors(num_features);
-    //cout << "Number of features: " << num_features << endl;
+    time_t start = time(NULL);
     for (size_t i = 0; i < num_features; i++)
     {
-      time_t start = time(NULL);
       wc_errors[i] = wc[i].train(images, labels, sample_weights);
       if (i % 1000 == 0) {
         time_t now = time(NULL);
-        //cout << "Trained weak classifier " << i << " with error " << wc_errors[i] << " time elapsed: " << difftime(now, start) << " seconds" << endl;
-        start = time(NULL);
+        cout <<  i << " Weak classifiers trained in " << difftime(now, start) << "s, round " << t + 1 << " is appx " << (i * 100.0 / num_features) << "\% complete" << endl;
       }
       if (wc_errors[i] == 0) {
-        //cout << "Weak Classifier " << i << ": Error = " << wc_errors[i] << endl;
+        // Avoid division by zero in later calculations
+        wc_errors[i] = 1e-10; 
       }
     }
 
-    // Step 2: Choose the best weak classifier
+    // Choose the best weak classifier (step 2 in AdaBoost algorithm)
     size_t best_index = std::distance(wc_errors.begin(), std::min_element(wc_errors.begin(), wc_errors.end()));
     float best_error = wc_errors[best_index];
     float beta = best_error / (1 - best_error);
 
-    // Step 4: Update sample weights for the next round
+    // Update sample weights for the next round (step 4 in AdaBoost algorithm)
     for (size_t i = 0; i < num_positive; i++)
     {
       if (wc[best_index].classify(positive_set[i]) == 1)
@@ -127,7 +126,7 @@ void StrongClassifier::train(std::vector<HaarFeature> features, std::vector<std:
       }
     }
 
-    // Step 1: Normalize sample weights
+    // Normalize sample weights (step 1 in AdaBoost algorithm)
     float sum_weights = std::accumulate(sample_weights.begin(), sample_weights.end(), 0.0f);
     for (size_t i = 0; i < sample_weights.size(); i++)
     {
@@ -137,9 +136,10 @@ void StrongClassifier::train(std::vector<HaarFeature> features, std::vector<std:
     // Calculate coefficient (alpha) for the chosen weak classifier, log base should be experimented with to find best performance
     float alpha = std::log(1 / beta);
 
-    //cout << "Round " << t + 1 << ": Selected weak classifier " << best_index << " with error " << best_error << " and alpha " << alpha << endl;
-    // Final step: Store the selected weak classifier and its coefficient in the strong classifier
+    cout << "Round " << t + 1 << ": Selected weak classifier " << best_index << " with error " << best_error << " and alpha " << alpha << endl;
+    // Store the selected weak classifier and its coefficient in the strong classifier (final step in AdaBoost algorithm)
     this->weak_classifiers.push_back({wc[best_index], alpha});
-    this->threshold += 0.5 * std::log(1 / beta); // Update threshold based on the error of the selected weak classifier
+    // Update threshold based on the error of the selected weak classifier, the constant 0.5 can be experimented with to find best performance
+    this->threshold += 0.5 * std::log(1 / beta);
   }
 }
