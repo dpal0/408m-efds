@@ -177,6 +177,7 @@ void makeConfigFile (StrongClassifier* sc, int stage, const string& dir) {
  *
  * Runs cascade training and writes one config file per stage to output_dir.
  ******************************************************************************/
+ #ifndef UNIT_TESTING
 int main(int argc, char** argv) {
 
     // parse command line arguments
@@ -262,3 +263,4 @@ int main(int argc, char** argv) {
     
     return 0;
 }
+#endif

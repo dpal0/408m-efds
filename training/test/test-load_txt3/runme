@@ -1,0 +1,3 @@
+#!/usr/bin/env bash
+
+./loadTxt3.exe

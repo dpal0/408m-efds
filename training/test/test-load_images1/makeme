@@ -1,0 +1,6 @@
+g++ -c loadImagesDriver1.cpp
+g++ -c ../../src/HaarFeature.cpp
+
+g++ -o loadImagesDriver1.exe loadImagesDriver1.o HaarFeature.o
+
+rm *.o

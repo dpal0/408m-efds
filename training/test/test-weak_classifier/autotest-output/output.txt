@@ -1,0 +1,8 @@
+Training Values: 
+Threshold: 2
+Polarity: -1
+Error: 0
+Prediction Values: 
+Image 0 | Label: 0 | Prediction: 0
+Image 1 | Label: 0 | Prediction: 0
+Image 2 | Label: 1 | Prediction: 1

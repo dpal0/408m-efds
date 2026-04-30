@@ -1,0 +1,6 @@
+#!/usr/bin/env bash
+
+./loadImagesDriver1.exe
+
+diff output0.txt inputs/input0.txt
+diff output1.txt inputs/input1.txt

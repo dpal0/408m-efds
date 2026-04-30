@@ -1,0 +1,5 @@
+Tests generateFeatures() in main.cpp
+
+This function generates all the potential Haar Features for a 24x24 pixel image
+
+This test ensures functionality by running the function and ensuring that there are 162,336 candidate features computed.

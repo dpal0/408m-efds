@@ -83,18 +83,18 @@ void StrongClassifier::train(std::vector<HaarFeature> features, std::vector<std:
   {
     // Train weak classifiers using sample weights and record error for each, assuming Erica has train method returning error rate
     std::vector<float> wc_errors(num_features);
-    cout << "Number of features: " << num_features << endl;
+    //cout << "Number of features: " << num_features << endl;
     for (size_t i = 0; i < num_features; i++)
     {
       time_t start = time(NULL);
       wc_errors[i] = wc[i].train(images, labels, sample_weights);
       if (i % 1000 == 0) {
         time_t now = time(NULL);
-        cout << "Trained weak classifier " << i << " with error " << wc_errors[i] << " time elapsed: " << difftime(now, start) << " seconds" << endl;
+        //cout << "Trained weak classifier " << i << " with error " << wc_errors[i] << " time elapsed: " << difftime(now, start) << " seconds" << endl;
         start = time(NULL);
       }
       if (wc_errors[i] == 0) {
-        cout << "Weak Classifier " << i << ": Error = " << wc_errors[i] << endl;
+        //cout << "Weak Classifier " << i << ": Error = " << wc_errors[i] << endl;
       }
     }
 
@@ -137,7 +137,7 @@ void StrongClassifier::train(std::vector<HaarFeature> features, std::vector<std:
     // Calculate coefficient (alpha) for the chosen weak classifier, log base should be experimented with to find best performance
     float alpha = std::log(1 / beta);
 
-    cout << "Round " << t + 1 << ": Selected weak classifier " << best_index << " with error " << best_error << " and alpha " << alpha << endl;
+    //cout << "Round " << t + 1 << ": Selected weak classifier " << best_index << " with error " << best_error << " and alpha " << alpha << endl;
     // Final step: Store the selected weak classifier and its coefficient in the strong classifier
     this->weak_classifiers.push_back({wc[best_index], alpha});
     this->threshold += 0.5 * std::log(1 / beta); // Update threshold based on the error of the selected weak classifier

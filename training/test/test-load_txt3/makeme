@@ -1,0 +1,6 @@
+g++ -c loadTxt3.cpp
+g++ -c ../../src/HaarFeature.cpp
+
+g++ -o loadTxt3.exe loadTxt3.o HaarFeature.o
+
+rm *.o

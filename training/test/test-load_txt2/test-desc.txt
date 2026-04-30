@@ -1,0 +1,5 @@
+Tests loadTXT() in main.cpp
+
+This function loads one .txt file and stores it as a 2D vector (row x col).
+
+This test ensures proper error handling if no file.txt does not have the 24 rows.

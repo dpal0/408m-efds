@@ -1,3 +1,0 @@
-g++ -c ../../src/HaarFeature.cpp
-g++ -c haarFeatureDriver.cpp
-g++ -o haarFeatureDriver.exe haarFeatureDriver.o HaarFeature.o

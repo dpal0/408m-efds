@@ -1,5 +1,0 @@
-2 rect vertical -- calculated: -44, actual: -44
-2 rect horizontal -- calculated: 38, actual: 38
-3 rect vertical -- calculated: -38, actual: -38
-3 rect horizontal -- calculated: 35, actual: 35
-4 rect -- calculated: 211, actual: 211
