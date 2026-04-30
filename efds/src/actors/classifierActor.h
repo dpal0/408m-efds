@@ -6,7 +6,7 @@ extern "C"{
 }
 #include "welt_cpp_actor.h"
 #include "welt_cpp_graph.h"
-#include <opencv2/opencv.hpp>
+//#include <opencv2/opencv.hpp>
 #include "StrongClassifier.h"
 #define CONFIGURE 1
 #define READ 2
