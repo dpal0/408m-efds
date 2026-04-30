@@ -6,15 +6,18 @@ extern "C"{
 }
 #include "welt_cpp_actor.h"
 #include "welt_cpp_graph.h"
-//#include <opencv2/opencv.hpp>
 #include "StrongClassifier.h"
 #define CONFIGURE 1
 #define READ 2
 #define CLASSIFY 3
 #define TRUE_MOD 4
 #define FALSE_MOD 5
+struct PTIS{
+   std::vector<std::vector<int>> pix;
+   PTIS() : pix(24,std::vector<int>(24,0)){}
+};
 struct IIS{
-    cv::Mat *I; //image window
+    PTIS *I; //image window
     int k; //image index
 };
 class classifierActor: public welt_cpp_actor{
@@ -35,5 +38,4 @@ private:
     int mode; //actor mode. 
     IIS *currToken; //current input token (I,K)
 };
-StrongClassifier* readConfigFile(int stage);
 #endif

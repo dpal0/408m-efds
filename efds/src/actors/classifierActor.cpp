@@ -44,6 +44,7 @@ void classifierActor::invoke(){
         case CONFIGURE: { //load in data from config file to create strong classifier
             ifstream configFile("config"+to_string(stage) + ".txt"); //opens config file with current stage
             if(!configFile.is_open()){ //when configFile can't be opened. 
+                std::cerr<<"config file error when open\n";
                 mode=FALSE_MOD;
                 break;
             }
@@ -74,22 +75,19 @@ void classifierActor::invoke(){
             break;
         }
         case READ: { //read input 
-            IIS *currToken; //used to store input token pair (I,K)
-            welt_c_fifo_read(in,&currToken); //store input pari in currToken
-            this->currToken=currToken; //put into private currToken, used later in Classify function
+            IIS *token; //used to store input token pair (I image window,K image index)
+            welt_c_fifo_read(in,&token); //store input token pair in currToken pair
+            this->currToken=token; //put into private currToken, used later in Classify function
             mode=CLASSIFY; 
             break;
         }
         case CLASSIFY:{ //classify as face or non-face
-            const int IMG_DIM=24; //image dimension is 24x24
-            cv::Mat *imgI=currToken->I; //get img from token
-            std::vector<std::vector<int>> img(IMG_DIM, std::vector<int>(IMG_DIM,0));
-            for(int r=0; r<IMG_DIM; r++){
-                for(int c=0; c<IMG_DIM;c++){
-                    img[r][c]=imgI->at<uchar>(r,c);
-                }
+            PTIS *imgI=this->currToken->I; //get img from token
+            IntegralImage ii(imgI->pix); //calls integral image function to convert image to integral image
+            if(sc==nullptr){
+                mode=FALSE_MOD;
+                break;
             }
-            IntegralImage ii(img);
             bool face=sc->classify(ii.getImage()); //created intImg used to classify face or non face. 
             if(face){ //face==1 is found mode=true
                 mode=TRUE_MOD;
@@ -99,15 +97,18 @@ void classifierActor::invoke(){
             break;
         }
         case TRUE_MOD:{
-            welt_c_fifo_write(cont_out, &currToken); //writes the (I,K) token and send it to the next actor
+            IIS *copyToken=new IIS(*this->currToken);
+            welt_c_fifo_write(cont_out, &copyToken); //writes the (I,K) token and send it to the next actor
             mode=READ;
             break;
         }
         case FALSE_MOD:{
-            welt_c_fifo_write(abort_out,&currToken); //writes to abort output to send (I,K) as non-face. 
+            IIS *copyToken=new IIS(*this->currToken);
+            welt_c_fifo_write(abort_out,&copyToken); //writes to abort output to send (I,K) as non-face. 
             mode=READ;
-            break;
         }
+        default:
+            break;
     }
 }
 void classifierActor::reset(){ //reset classifier actor
