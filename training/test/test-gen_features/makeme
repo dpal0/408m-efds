@@ -1,0 +1,6 @@
+g++ -c genFeaturesDriver.cpp
+g++ -c ../../src/HaarFeature.cpp
+
+g++ -o genFeaturesDriver.exe genFeaturesDriver.o HaarFeature.o
+
+rm *.o

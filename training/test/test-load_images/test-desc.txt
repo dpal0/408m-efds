@@ -1,0 +1,5 @@
+Tests loadImages() in main.cpp
+
+This function loads all the .txt files from  a specific directory and stores them in a vector. Each element/image of the vector is a 2D vector (row x col)
+
+This test ensures functionality by loading two sample inputs (located in inputs/), writing the inputted values to new textfiles, and comparing the original textfiles with the new textfiles.
