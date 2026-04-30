@@ -135,8 +135,8 @@ vector<HaarFeature> generateFeatures() {
  *   1 line for each weak classifier with x, y, width, height, feature type, 
  *       wc_threshold, polarity, error, and weight
  ******************************************************************************/
-void makeConfigFile (StrongClassifier* sc, int stage) {
-    ofstream configFile ("../configs/config" + to_string(stage) + ".txt");
+void makeConfigFile (StrongClassifier* sc, int stage, const string& dir) {
+    ofstream configFile (dir + "/config" + to_string(stage) + ".txt");
 
     configFile << sc->getThreshold() << endl;
 
@@ -248,7 +248,7 @@ int main(int argc, char** argv) {
         start = time(NULL);
 
         // write to config file
-        makeConfigFile (&sc, stage);
+        makeConfigFile (&sc, stage, outputDir);
     }
 
     // timer (overall) finish
@@ -256,7 +256,9 @@ int main(int argc, char** argv) {
     double overallElapsed = difftime(overallEnd, overallStart);
     cout << "\nTotal training time: " << overallElapsed << " seconds." << endl;
 
-    cout << "\nTraining complete." << endl;
+    cout << "\nConfig Files stored in: " << outputDir << endl;
+    
+    cout << "\nTraining complete." << endl << endl;
     
     return 0;
 }
