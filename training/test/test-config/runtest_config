@@ -1,5 +1,0 @@
-g++ -c configDriver.cpp HaarFeature.cpp StrongClassifier.cpp WeakClassifier.cpp 
-g++ -o configDriver.exe configDriver.o HaarFeature.o StrongClassifier.o WeakClassifier.o 
-./configDriver.exe
-
-rm configDriver.exe configDriver.o HaarFeature.o StrongClassifier.o WeakClassifier.o 

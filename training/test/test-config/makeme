@@ -4,3 +4,5 @@ g++ -c ../../src/WeakClassifier.cpp
 g++ -c ../../src/StrongClassifier.cpp
 
 g++ -o configDriver.exe configDriver.o HaarFeature.o WeakClassifier.o StrongClassifier.o
+
+rm *.o
