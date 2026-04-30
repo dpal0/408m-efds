@@ -1,0 +1,3 @@
+Tests WeakClassifier.h
+
+Creates 3 small sample images through initialization and runs through the weak classifier's training loop and classification. 

@@ -1,0 +1,7 @@
+g++ -c weakClassifierDriver.cpp
+g++ -c ../../src/HaarFeature.cpp
+g++ -c ../../src/WeakClassifier.cpp
+
+g++ -o weakClassifierDriver.exe weakClassifierDriver.o HaarFeature.o WeakClassifier.o
+
+rm *.o

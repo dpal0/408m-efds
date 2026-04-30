@@ -1,0 +1,3 @@
+Tests HaarFeature.cpp
+
+Calculates each type of Haar Feature and makes sure the output value is correct. This tests works with all 5 types of Haar Features and with different edge case boundaries (i.e. first row/col of image, last row/col of image, one row width, one row height).

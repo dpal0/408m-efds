@@ -1,4 +1,0 @@
-Tests HaarFeature.cpp
-
-Calculates each type of Haar Feature and 
-makes sure the output value is correct.

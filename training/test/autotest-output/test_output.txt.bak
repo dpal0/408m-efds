@@ -1,0 +1,46 @@
+Tests started on:
+Thu 30 Apr 2026 06:43:29 PM EDT
+-----------------------------------------------------
+Test result for:
+/homes/s/r/srod26/home/team4/training/test/test-config
+-----------------------------------------------------
+Error comparison result for: 
+/homes/s/r/srod26/home/team4/training/test/test-config
+-----------------------------------------------------
+Test result for:
+/homes/s/r/srod26/home/team4/training/test/test-gen_features
+-----------------------------------------------------
+Error comparison result for: 
+/homes/s/r/srod26/home/team4/training/test/test-gen_features
+-----------------------------------------------------
+Test result for:
+/homes/s/r/srod26/home/team4/training/test/test-load_images1
+-----------------------------------------------------
+Error comparison result for: 
+/homes/s/r/srod26/home/team4/training/test/test-load_images1
+-----------------------------------------------------
+Test result for:
+/homes/s/r/srod26/home/team4/training/test/test-load_images2
+-----------------------------------------------------
+Error comparison result for: 
+/homes/s/r/srod26/home/team4/training/test/test-load_images2
+-----------------------------------------------------
+Test result for:
+/homes/s/r/srod26/home/team4/training/test/test-load_txt1
+-----------------------------------------------------
+Error comparison result for: 
+/homes/s/r/srod26/home/team4/training/test/test-load_txt1
+-----------------------------------------------------
+Test result for:
+/homes/s/r/srod26/home/team4/training/test/test-load_txt2
+-----------------------------------------------------
+Error comparison result for: 
+/homes/s/r/srod26/home/team4/training/test/test-load_txt2
+-----------------------------------------------------
+Test result for:
+/homes/s/r/srod26/home/team4/training/test/test-load_txt3
+-----------------------------------------------------
+Error comparison result for: 
+/homes/s/r/srod26/home/team4/training/test/test-load_txt3
+Tests completed on:
+Thu 30 Apr 2026 06:43:39 PM EDT

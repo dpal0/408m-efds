@@ -1,0 +1,3 @@
+#!/usr/bin/env bash
+
+./loadTxt2.exe
