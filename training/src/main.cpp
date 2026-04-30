@@ -127,13 +127,13 @@ vector<HaarFeature> generateFeatures() {
 }
 
 /*******************************************************************************
- * generate config file for one strong classifier
- * For each strong classifier, pulls all the information related to the strong
- classifier and writes it to a file.
- The file is setup as follows:
-    1 line with strong classifier threshold
-    1 line for each weak classifier with x, y, width, height, feature type, 
-        wc_threshold, polarity, error, and weight
+ * makeConfigFile
+ * Generates one config file for one strong classifier. For each strong 
+ * classifier, pulls all the information related to the strong classifier and 
+ * writes it to a file. The file is setup as follows:
+ *   1 line with strong classifier threshold
+ *   1 line for each weak classifier with x, y, width, height, feature type, 
+ *       wc_threshold, polarity, error, and weight
  ******************************************************************************/
 void makeConfigFile (StrongClassifier* sc, int stage) {
     ofstream configFile ("../configs/config" + to_string(stage) + ".txt");
@@ -178,6 +178,8 @@ void makeConfigFile (StrongClassifier* sc, int stage) {
  * Runs cascade training and writes one config file per stage to output_dir.
  ******************************************************************************/
 int main(int argc, char** argv) {
+
+    // parse command line arguments
     if (argc != 5) {
         cerr << "Usage: " << argv[0]
              << " <face_dir> <nonface_dir> <num_stages> <output_dir>" << endl;
@@ -193,6 +195,7 @@ int main(int argc, char** argv) {
     cout << "Loading training images..." << endl;
     vector<vector<vector<int>>> face_training    = loadImages(faceDir);
     vector<vector<vector<int>>> nonface_training = loadImages(nonfaceDir);
+    vector<vector<vector<int>>> currentNegatives = nonface_training;
 
     if (face_training.empty() || nonface_training.empty()) {
         cerr << "Error: need at least one face and one non-face image." << endl;
@@ -203,15 +206,16 @@ int main(int argc, char** argv) {
     cout << "Generating candidate features..." << endl;
     vector<HaarFeature> features = generateFeatures();
 
-    //  Cascade training loop 
-    // nonface_training shrinks each stage: only false positives from the previous
-    // stage are passed to the next stage as negatives.
-    vector<vector<vector<int>>> currentNegatives = nonface_training;
 
+    // timer to determine performance/speed
     time_t overallStart = time(NULL);
 
+    // Cascade training loop 
     for (int stage = 0; stage < numStages; stage++) {
+
+        // timer start
         time_t start = time(NULL);
+
         cout << "\n=== Training stage " << stage + 1 << " / " << numStages
              << " ===" << endl;
         cout << "Positives: " << face_training.size()
@@ -228,6 +232,8 @@ int main(int argc, char** argv) {
         int rounds = stage + 1; // number of weak classifiers to use in this stage
         sc.train(features, face_training, currentNegatives, rounds);
 
+        // nonface_training shrinks each stage: only false positives from 
+        // the previous stage are passed to the next stage as negatives.
         for (size_t i = 0; i < currentNegatives.size(); i++) {
             if (!sc.classify(currentNegatives[i])) {
                 cout << "True Negative: " << i << endl;
@@ -235,6 +241,7 @@ int main(int argc, char** argv) {
             }
         }
 
+        // timer (one stage) finish
         time_t end = time(NULL);
         double elapsed = difftime(end, start);
         cout << "\nTraining time for stage " << stage + 1 << ": " << elapsed << " seconds." << endl;
@@ -243,10 +250,13 @@ int main(int argc, char** argv) {
         // write to config file
         makeConfigFile (&sc, stage);
     }
+
+    // timer (overall) finish
     time_t overallEnd = time(NULL);
     double overallElapsed = difftime(overallEnd, overallStart);
     cout << "\nTotal training time: " << overallElapsed << " seconds." << endl;
 
     cout << "\nTraining complete." << endl;
+    
     return 0;
 }

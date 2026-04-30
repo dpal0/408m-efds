@@ -1,0 +1,6 @@
+dirData="../../dataset/project-dataset/integral/training"
+dirConfig="../../configs/test1/"
+
+mkdir $dirConfigs
+
+./main.exe $dirData/face $dirData/non-face 1 $dirConfig

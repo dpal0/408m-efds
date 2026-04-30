@@ -1,0 +1,6 @@
+#!/usr/bin/env bash
+
+./haarFeatureDriver.exe
+
+rm haarFeatureDriver.o HaarFeature.o
+rm haarFeatureDriver.exe
