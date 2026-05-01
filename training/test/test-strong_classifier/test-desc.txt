@@ -1,0 +1,3 @@
+Tests StrongClassifier.h
+
+Creates 5 face and 5 nonface sample images. Trains the model on those images for 3 cascades of 2, 3, and 4 weak classifiers each. The iterative outputs of Positives and Negative are outputted.
