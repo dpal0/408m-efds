@@ -267,7 +267,7 @@ int main(int argc, char** argv) {
             }
         }
 
-        // timer (one stage) finish
+        // timer (one stage) elapsed
         time_t end = time(NULL);
         double elapsed = difftime(end, start);
         cout << "\nTraining time for stage " << stage + 1 << ": " << elapsed << " seconds." << endl;
@@ -277,7 +277,7 @@ int main(int argc, char** argv) {
         makeConfigFile(&sc, stage, outputDir);
     }
 
-    // timer (overall) finish
+    // timer (overall) elapsed
     time_t overallEnd = time(NULL);
     double overallElapsed = difftime(overallEnd, overallStart);
     cout << "\nTotal training time: " << overallElapsed << " seconds." << endl;
