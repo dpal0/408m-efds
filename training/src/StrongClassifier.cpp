@@ -1,5 +1,8 @@
 #include <iostream>
 #include <typeinfo>
+#include <thread>
+#include <mutex>
+#include <atomic>
 #include "StrongClassifier.h"
 using namespace std;
 
@@ -40,7 +43,7 @@ int StrongClassifier::classify(const std::vector<std::vector<int>> &integralImag
 }
 
 /** Training method, generates a linear combination of weak classifiers using AdaBoost algorithm and saves it in the strong classifier. */
-void StrongClassifier::train(std::vector<HaarFeature> features, std::vector<std::vector<std::vector<int>>> &positive_set, std::vector<std::vector<std::vector<int>>> &negative_set, int rounds)
+void StrongClassifier::train(std::vector<HaarFeature> features, std::vector<std::vector<std::vector<int>>> &positive_set, std::vector<std::vector<std::vector<int>>> &negative_set, int rounds, int stage, int stages)
 {
   int num_features = features.size();
   int num_positive = positive_set.size();
@@ -77,24 +80,69 @@ void StrongClassifier::train(std::vector<HaarFeature> features, std::vector<std:
     sample_weights[i] = 1.0 / (2 * num_negative);
   }
 
+  // Define number of threads, default to 4 if hardware_concurrency cannot determine
+  unsigned int num_threads = std::thread::hardware_concurrency();
+  if (num_threads == 0)
+  {
+    num_threads = 4;
+  }
+
+  cout << "Training strong classifier with " << rounds << " round(s) and " << num_threads << " threads for stage " << stage << endl;
+
   // Iterate through boosting rounds
   for (size_t t = 0; t < rounds; t++)
   {
-    cout << "Training round " << t + 1 << " / " << rounds << endl;
+    cout << "\nBegin training round " << t + 1 << " / " << rounds << " of stage " << stage << "/" << stages << endl;
+
     // Train weak classifiers using sample weights and record error for each
     std::vector<float> wc_errors(num_features);
     time_t start = time(NULL);
-    for (size_t i = 0; i < num_features; i++)
+
+    // Variables to manage multithreading of wc training
+    std::vector<std::thread> threads;
+    std::mutex log_mutex;
+    std::atomic<int> features_done{0};
+
+    // Divide features into chunks, one chunk per thread
+    auto worker = [&](int thread_id)
     {
-      wc_errors[i] = wc[i].train(images, labels, sample_weights);
-      if (i % 1000 == 0) {
-        time_t now = time(NULL);
-        cout <<  i << " Weak classifiers trained in " << difftime(now, start) << "s, round " << t + 1 << " is appx " << (i * 100.0 / num_features) << "\% complete" << endl;
+      int chunk = (num_features + num_threads - 1) / num_threads;
+      int begin = thread_id * chunk;
+      int end = std::min(begin + chunk, num_features);
+
+      for (int i = begin; i < end; i++)
+      {
+        wc_errors[i] = wc[i].train(images, labels, sample_weights);
+
+        if (wc_errors[i] == 0)
+        {
+          wc_errors[i] = 1e-10f;
+        }
+
+        // Log progress every ~2%
+        int divisor = (num_features / num_threads) / 50 + 1;
+        int done = features_done++;
+
+        if (thread_id == 0 && i % divisor == 0)
+        {
+          std::lock_guard<std::mutex> lock(log_mutex);
+          time_t now = time(NULL);
+          cout << done << " WC trained in " << difftime(now, start)
+               << "s, round " << t + 1 << "/" << rounds << " of stage " << stage << "/" << stages << " is ~" << ((done * 100.0) / num_features) << "\% complete" << endl;
+        }
       }
-      if (wc_errors[i] == 0) {
-        // Avoid division by zero in later calculations
-        wc_errors[i] = 1e-10; 
-      }
+    };
+
+    // Start worker threads for parallel training of weak classifiers
+    for (unsigned int i = 0; i < num_threads; i++)
+    {
+      threads.emplace_back(worker, i);
+    }
+
+    // Wait for all threads before proceeding
+    for (auto &th : threads)
+    {
+      th.join();
     }
 
     // Choose the best weak classifier (step 2 in AdaBoost algorithm)
@@ -136,7 +184,8 @@ void StrongClassifier::train(std::vector<HaarFeature> features, std::vector<std:
     // Calculate coefficient (alpha) for the chosen weak classifier, log base should be experimented with to find best performance
     float alpha = std::log(1 / beta);
 
-    cout << "Round " << t + 1 << ": Selected weak classifier " << best_index << " with error " << best_error << " and alpha " << alpha << endl;
+    cout << "Stage " << stage << "/" << stages << " Round " << t + 1 << "/" << rounds << ": Selected WC " << best_index << " w/ error " << best_error << " and alpha " << alpha << " in " << difftime(time(NULL), start) << "s" << endl;
+
     // Store the selected weak classifier and its coefficient in the strong classifier (final step in AdaBoost algorithm)
     this->weak_classifiers.push_back({wc[best_index], alpha});
     // Update threshold based on the error of the selected weak classifier, the constant 0.5 can be experimented with to find best performance

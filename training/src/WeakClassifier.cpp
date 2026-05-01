@@ -1,6 +1,8 @@
 #include <vector>
 #include <limits>
 #include <iostream>
+#include <algorithm>
+#include <numeric>
 #include "WeakClassifier.h"
 
 
@@ -31,40 +33,40 @@ float WeakClassifier::train(const std::vector<std::vector<std::vector<int>>> &im
     for(size_t i=0; i<lenImage; i++){
         featValArr[i]=feature.computeFeatureVal(images[i]);
     }
+
+    // sort indices of feature value array by feature value
+    std::vector<size_t> sortedIndices(lenImage);
+    std::iota(sortedIndices.begin(), sortedIndices.end(), 0);
+    std::sort(sortedIndices.begin(), sortedIndices.end(), [&](size_t a, size_t b) {
+        return featValArr[a] < featValArr[b];
+    });
+
+    // compute total weights for positive and negative samples
+    float totalPosWeight = 0.0f;
+    float totalNegWeight = 0.0f;
+    for (size_t i = 0; i < lenImage; i++) {
+        if (labels[i] == 1) {
+            totalPosWeight += weights[i];
+        } else {
+            totalNegWeight += weights[i];
+        }
+    }
+ 
+    // cumulative weights of positive/negative samples to the left/right of the threshold respectively
+    float leftPosWeight = 0.0f;
+    float leftNegWeight = 0.0f;
+
     //loop through images
     for(size_t i=0; i<lenImage; i++){
+        //get index of the image with the ith smallest feature value
+        size_t currInd = sortedIndices[i];
         //set current feature value to predict threshold.
-        int predictThreshold=featValArr[i];
+        int predictThreshold=featValArr[currInd];
         //initialize errors to see if polarity +1 errors are higher than
         // polarity -1 errors.
-        float errors1=0.0f; //errors for polarity +1
-        float errors2=0.0f; //errors for polarity -1
-        for(size_t j=0; j<lenImage; j++){ //check for polarity +1
-            int predict=0; //predict=face or no face
-            if(polarPlus*featValArr[j]<polarPlus*predictThreshold){
-                predict=1; //face
-            }else{
-                predict=0; //no face
-            }
-            if(predict!=labels[j]){ //when predict does not match expected
-                errors1 +=weights[j]; //increase weight.
-            }
-        }
-        for(size_t j=0; j<lenImage; j++){ //check for polarity -1
-            int predict=0;
-            if(polarMinus*featValArr[j]<polarMinus*predictThreshold){
-                predict=1;
-            }else{
-                predict=0;
-            }
-            if(predict!=labels[j]){
-                errors2 +=weights[j];
-            }
-        }
-        // std::cerr<<"Threshold predict: "<<predictThreshold<<std::endl;
-        // std::cerr<<"Threshold found: "<<foundThreshold<<std::endl;
-        // std::cerr<<"errors1: "<<errors1<<std::endl;
-        // std::cerr<<"errors2: "<<errors2<<std::endl;
+        float errors1 = leftNegWeight + (totalPosWeight - leftPosWeight); //errors for polarity +1
+        float errors2 = leftPosWeight + (totalNegWeight - leftNegWeight); //errors for polarity -1
+        
         if(errors1<=errors2 && errors1<lowestError){ //when errors1 has less than lowest error
             lowestError=errors1;
             foundPolar=polarPlus;
@@ -73,6 +75,13 @@ float WeakClassifier::train(const std::vector<std::vector<std::vector<int>>> &im
             lowestError=errors2;
             foundPolar=polarMinus;
             foundThreshold=predictThreshold;
+        }
+
+        // accumulate weights after evaulating threshold at this point
+        if (labels[currInd] == 1) {
+            leftPosWeight += weights[currInd];
+        } else {
+            leftNegWeight += weights[currInd];
         }
     }
     //set values after finding the best threshold, polarity, and lowest error.
@@ -91,6 +100,3 @@ int WeakClassifier::classify(const std::vector<std::vector<int>> &intImage){ //i
     }
     return 0; //not face
 }
-
-
-

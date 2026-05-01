@@ -18,3 +18,7 @@ cd ../../src
 
 
 ./main.exe $dirData/face $dirData/non-face $numCascades $dirConfig/$timestamp
+
+# Save model configs and exit if training on aws server
+# aws s3 cp $dirConfig/$timestamp s3://frank99123-dcs-mission/$timestamp --recursive
+# sudo shutdown -h now
