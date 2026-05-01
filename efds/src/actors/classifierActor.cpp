@@ -3,6 +3,8 @@
 #include <string>
 #include "classifierActor.h"
 #include "integral_image.h"
+#include <iostream>
+
 using namespace std;
 classifierActor::classifierActor(welt_c_fifo_pointer in,welt_c_fifo_pointer abort_out,
                                  welt_c_fifo_pointer cont_out, int stage){
@@ -45,7 +47,7 @@ void classifierActor::invoke(){
             ifstream configFile("config"+to_string(stage) + ".txt"); //opens config file with current stage
             if(!configFile.is_open()){ //when configFile can't be opened. 
                 std::cerr<<"config file error when open\n";
-                mode=FALSE_MOD;
+                //mode=FALSE_MOD; Lets not change to False when config fails -Diksha
                 break;
             }
             //used later to store values from config file. 
@@ -106,6 +108,7 @@ void classifierActor::invoke(){
             IIS *copyToken=new IIS(*this->currToken);
             welt_c_fifo_write(abort_out,&copyToken); //writes to abort output to send (I,K) as non-face. 
             mode=READ;
+            break; //Diksha added
         }
         default:
             break;

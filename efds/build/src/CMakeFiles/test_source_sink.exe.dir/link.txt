@@ -1,0 +1,1 @@
+/usr/bin/c++    -rdynamic CMakeFiles/test_source_sink.exe.dir/actors/test_source_sink.cpp.o  -o test_source_sink.exe  libefds.a /dept/enee/software/dspcad/common/welter/welter/lang/cpp/lib/libwelt_cpp.a /dept/enee/software/dspcad/common/welter/welter/lang/c/lib/libwelt_c.a 

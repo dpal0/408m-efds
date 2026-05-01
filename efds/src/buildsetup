@@ -1,0 +1,6 @@
+lxdir="build"
+cd ../
+rm -rf "$lxdir"
+mkdir "$lxdir"
+cd "$lxdir"
+cmake "../"

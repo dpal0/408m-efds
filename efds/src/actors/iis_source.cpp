@@ -1,87 +1,30 @@
-#include "iis_source.h"
-
+#include <iostream>
+#include <fstream>
 #include <algorithm>
 #include <dirent.h>
-#include <fstream>
-#include <iostream>
-#include <sstream>
+#include <sys/types.h>
+#include "iis_source.h"
 
 using namespace std;
 
-#define MAX_FIFO_COUNT 1
-
-iis_source::iis_source(welt_c_fifo_pointer out_fifo,
-                       const char* dataset_dir_in,
-                       int nRows_in, int nCols_in) {
-    this->out         = out_fifo;
-    this->dataset_dir = string(dataset_dir_in);
-    this->nRows       = nRows_in;
-    this->nCols       = nCols_in;
-    this->file_index  = 0;
-    this->grid_ptr    = nullptr;
-    this->mode        = IIS_SOURCE_MODE_READ;
-
-    this->actor_set_max_port_count(MAX_FIFO_COUNT);
-
-    /* Populate file_names from dataset_dir. */
-    scan_directory();
-
-    /* If the directory is empty, jump straight to INACTIVE so that
-       enable() returns false and the scheduler doesn't spin on us. */
-    if (file_names.empty()) {
-        cerr << "iis_source warning: no .txt files found in '"
-             << dataset_dir << "'" << endl;
-        mode = IIS_SOURCE_MODE_INACTIVE;
-    }
-}
-
-iis_source::~iis_source() {
-    if (grid_ptr != nullptr) {
-        delete grid_ptr;
-        grid_ptr = nullptr;
-    }
-}
-
-void iis_source::scan_directory() {
-    file_names.clear();
-
-    DIR* dir = opendir(dataset_dir.c_str());
-    if (dir == nullptr) {
-        cerr << "iis_source error: could not open directory '"
-             << dataset_dir << "'" << endl;
-        return;
-    }
-
-    struct dirent* entry;
-    while ((entry = readdir(dir)) != nullptr) {
-        string name(entry->d_name);
-        /* Skip "." and ".." */
-        if (name == "." || name == "..") continue;
-
-        /* Keep only .txt files. */
-        if (name.size() < 4) continue;
-        string ext = name.substr(name.size() - 4);
-        if (ext != ".txt") continue;
-
-        file_names.push_back(name);
-    }
-    closedir(dir);
-
-    /* Lexicographic order so k=1,2,... is deterministic. */
-    sort(file_names.begin(), file_names.end());
+iis_source::iis_source(welt_c_fifo_pointer out_fifo, const char *in_dir_name) {
+    out = out_fifo;
+    dir_name = in_dir_name;
+    next_index = 0;
+    next_k = 1;
+    reset();
 }
 
 bool iis_source::enable() {
     bool result = false;
     switch (mode) {
-        case IIS_SOURCE_MODE_READ:
-            /* Need room on the output FIFO and at least one file left. */
-            result = (welt_c_fifo_population(out) 
-                      welt_c_fifo_capacity(out)) &&
-                     (file_index < (int)file_names.size());
+        case IIS_SOURCE_MODE_PROCESS:
+            // We need space in the output FIFO to produce a token
+            result = (welt_c_fifo_population(out) < welt_c_fifo_capacity(out));
             break;
-        case IIS_SOURCE_MODE_INACTIVE:
-            result = false;
+        case IIS_SOURCE_MODE_COMPLETE:
+        case IIS_SOURCE_MODE_ERROR:
+            result = true;
             break;
         default:
             result = false;
@@ -92,102 +35,108 @@ bool iis_source::enable() {
 
 void iis_source::invoke() {
     switch (mode) {
-        case IIS_SOURCE_MODE_READ: {
-            /* Build full path to next file. */
-            string full_path = dataset_dir + "/" + file_names[file_index];
-
-            ifstream fin(full_path.c_str());
-            if (!fin.is_open()) {
-                cerr << "iis_source error: could not open file '"
-                     << full_path << "'" << endl;
-                file_index++;
-                /* If that was the last file, switch to INACTIVE. */
-                if (file_index >= (int)file_names.size()) {
-                    mode = IIS_SOURCE_MODE_INACTIVE;
-                }
+        case IIS_SOURCE_MODE_PROCESS: {
+            // Read the next file into a fresh PTIS
+            const string &path = file_list[next_index];
+            PTIS *p = load_ptis(path);
+            if (p == nullptr) {
+                cerr << "iis_source: failed to load " << path << endl;
+                mode = IIS_SOURCE_MODE_ERROR;
                 break;
             }
 
-            /* Parse the comma-separated text image into a 2D int grid. */
-            if (grid_ptr != nullptr) {
-                delete grid_ptr;
-                grid_ptr = nullptr;
-            }
-            grid_ptr = new vector<vector<int>>();
-            grid_ptr->reserve(nRows);
+            // Build the IIS token on the heap
+            IIS *token = new IIS();
+            token->I = p;
+            token->k = next_k;
 
-            string line;
-            while (getline(fin, line)) {
-                if (line.empty()) continue;
-                vector<int> row;
-                row.reserve(nCols);
-                stringstream ss(line);
-                string cell;
-                while (getline(ss, cell, ',')) {
-                    row.push_back(atoi(cell.c_str()));
-                }
-                grid_ptr->push_back(row);
-            }
-            fin.close();
-
-            /* Sanity-check dimensions. */
-            if ((int)grid_ptr->size() != nRows) {
-                cerr << "iis_source warning: file '" << full_path
-                     << "' has " << grid_ptr->size()
-                     << " rows, expected " << nRows << endl;
-            }
-
-            /* Build a cv::Mat from the parsed grid (CV_8U grayscale).
-               This is heap-allocated; downstream actors / sink are
-               responsible for delete-ing it. */
-            cv::Mat* img = new cv::Mat(nRows, nCols, CV_8UC1);
-            for (int r = 0; r < nRows && r < (int)grid_ptr->size(); r++) {
-                const vector<int>& row = (*grid_ptr)[r];
-                for (int c = 0; c < nCols && c < (int)row.size(); c++) {
-                    img->at<unsigned char>(r, c) =
-                        (unsigned char)row[c];
-                }
-            }
-
-            /* Wrap into an IIS with k = file_index + 1 (1-based). */
-            IIS* token = new IIS();
-            token->I = img;
-            token->k = file_index + 1;
-
-            /* Write the IIS pointer onto the output FIFO. */
+            // Write the pointer to the FIFO
             welt_c_fifo_write(out, &token);
 
-            /* Advance to next file. */
-            file_index++;
-            if (file_index >= (int)file_names.size()) {
-                mode = IIS_SOURCE_MODE_INACTIVE;
-            }
+            // Advance
+            next_index++;
+            next_k++;
 
-            /* Free the temp grid buffer; the cv::Mat holds the pixels now. */
-            delete grid_ptr;
-            grid_ptr = nullptr;
+            // If we just wrote the last file, transition to COMPLETE
+            if (next_index >= file_list.size()) {
+                mode = IIS_SOURCE_MODE_COMPLETE;
+            }
             break;
         }
-        case IIS_SOURCE_MODE_INACTIVE:
-            /* No-op. */
+        case IIS_SOURCE_MODE_COMPLETE:
+        case IIS_SOURCE_MODE_ERROR:
+            // Nothing to do, stay put
             break;
         default:
+            mode = IIS_SOURCE_MODE_ERROR;
             break;
     }
 }
 
 void iis_source::reset() {
-    file_index = 0;
-    if (grid_ptr != nullptr) {
-        delete grid_ptr;
-        grid_ptr = nullptr;
+    file_list.clear();
+    next_index = 0;
+    next_k = 1;
+
+    DIR *dir = opendir(dir_name.c_str());
+    if (dir == nullptr) {
+        cerr << "iis_source: could not open directory \"" << dir_name << "\"" << endl;
+        mode = IIS_SOURCE_MODE_ERROR;
+        return;
     }
-    mode = file_names.empty() ? IIS_SOURCE_MODE_INACTIVE
-                              : IIS_SOURCE_MODE_READ;
+
+    struct dirent *entry;
+    while ((entry = readdir(dir)) != nullptr) {
+        string name = entry->d_name;
+        // Skip "." and ".." and anything that isn't a .txt file
+        if (name == "." || name == "..") continue;
+        if (name.size() < 4) continue;
+        if (name.substr(name.size() - 4) != ".txt") continue;
+        file_list.push_back(dir_name + "/" + name);
+    }
+    closedir(dir);
+
+    // Sort for deterministic ordering across runs
+    sort(file_list.begin(), file_list.end());
+
+    if (file_list.empty()) {
+        cerr << "iis_source: no .txt files found in \"" << dir_name << "\"" << endl;
+        mode = IIS_SOURCE_MODE_COMPLETE;
+    } else {
+        mode = IIS_SOURCE_MODE_PROCESS;
+    }
 }
 
-void iis_source::connect(welt_cpp_graph* graph) {
-    int direction  = GRAPH_OUT_CONN_DIRECTION;
+iis_source::~iis_source() {
+    // file_list is a vector of std::string, cleans itself up.
+    // We don't own any tokens still in flight — sinks are responsible for those.
+}
+
+void iis_source::connect(welt_cpp_graph *graph) {
     int port_index = 0;
+    int direction = GRAPH_OUT_CONN_DIRECTION;
     graph->add_connection(this, port_index, direction);
+}
+
+PTIS *iis_source::load_ptis(const string &path) {
+    ifstream in_stream(path.c_str());
+    if (!in_stream.is_open()) {
+        return nullptr;
+    }
+
+    PTIS *p = new PTIS();  // constructor already sized to 24x24 zeros
+    for (int r = 0; r < 24; r++) {
+        for (int c = 0; c < 24; c++) {
+            int val;
+            if (!(in_stream >> val)) {
+                cerr << "iis_source: not enough values in " << path
+                     << " (got to r=" << r << " c=" << c << ")" << endl;
+                delete p;
+                return nullptr;
+            }
+            p->pix[r][c] = val;
+        }
+    }
+    in_stream.close();
+    return p;
 }
