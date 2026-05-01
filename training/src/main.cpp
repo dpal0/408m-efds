@@ -256,7 +256,7 @@ int main(int argc, char** argv) {
 
         // Construct and train the strong classifier
         StrongClassifier sc;
-        sc.train(features, face_training, currentNegatives, sc_rounds[stage]);
+        sc.train(features, face_training, currentNegatives, sc_rounds[stage], stage + 1, numStages);
 
         // nonface_training shrinks each stage: only false positives from the previous stage are passed to the next stage as negatives.
         for (size_t i = 0; i < currentNegatives.size(); i++)

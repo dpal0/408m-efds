@@ -27,7 +27,7 @@ int main() {
         // Construct and train the strong classifier
         StrongClassifier sc;
         int rounds = stage + 1; // number of weak classifiers to use in this stage
-        sc.train(features, face_training, currentNegatives, rounds);
+        sc.train(features, face_training, currentNegatives, rounds, stage + 1, numStages);
 
         // nonface_training shrinks each stage: only false positives from 
         // the previous stage are passed to the next stage as negatives.
