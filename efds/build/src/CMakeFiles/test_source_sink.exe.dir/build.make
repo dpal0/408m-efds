@@ -80,8 +80,6 @@ test_source_sink_exe_EXTERNAL_OBJECTS =
 src/test_source_sink.exe: src/CMakeFiles/test_source_sink.exe.dir/actors/test_source_sink.cpp.o
 src/test_source_sink.exe: src/CMakeFiles/test_source_sink.exe.dir/build.make
 src/test_source_sink.exe: src/libefds.a
-src/test_source_sink.exe: /dept/enee/software/dspcad/common/welter/welter/lang/cpp/lib/libwelt_cpp.a
-src/test_source_sink.exe: /dept/enee/software/dspcad/common/welter/welter/lang/c/lib/libwelt_c.a
 src/test_source_sink.exe: src/CMakeFiles/test_source_sink.exe.dir/link.txt
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/homes/d/p/dpal1/home/enee408m/project/efds/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Linking CXX executable test_source_sink.exe"
 	cd /homes/d/p/dpal1/home/enee408m/project/efds/build/src && $(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/test_source_sink.exe.dir/link.txt --verbose=$(VERBOSE)

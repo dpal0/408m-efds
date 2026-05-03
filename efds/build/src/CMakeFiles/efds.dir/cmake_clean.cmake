@@ -2,7 +2,6 @@ file(REMOVE_RECURSE
   "CMakeFiles/efds.dir/actors/iis_sink.cpp.o"
   "CMakeFiles/efds.dir/actors/iis_source.cpp.o"
   "CMakeFiles/efds.dir/actors/integral_image.cpp.o"
-  "CMakeFiles/efds.dir/actors/test_source_sink.cpp.o"
   "libefds.a"
   "libefds.pdb"
 )

@@ -50,25 +50,29 @@ file(INSTALL DESTINATION "/homes/d/p/dpal1/home/enee408m/project/efds" TYPE STAT
 endif()
 
 if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_COMPONENT)
-  if(EXISTS "$ENV{DESTDIR}/homes/d/p/dpal1/home/enee408m/project/efds/test_source_sink.exe" AND
-     NOT IS_SYMLINK "$ENV{DESTDIR}/homes/d/p/dpal1/home/enee408m/project/efds/test_source_sink.exe")
+  if(EXISTS "$ENV{DESTDIR}/homes/d/p/dpal1/home/enee408m/project/efds/tests/test_source_sink.exe" AND
+     NOT IS_SYMLINK "$ENV{DESTDIR}/homes/d/p/dpal1/home/enee408m/project/efds/tests/test_source_sink.exe")
     file(RPATH_CHECK
-         FILE "$ENV{DESTDIR}/homes/d/p/dpal1/home/enee408m/project/efds/test_source_sink.exe"
+         FILE "$ENV{DESTDIR}/homes/d/p/dpal1/home/enee408m/project/efds/tests/test_source_sink.exe"
          RPATH "")
   endif()
   list(APPEND CMAKE_ABSOLUTE_DESTINATION_FILES
-   "/homes/d/p/dpal1/home/enee408m/project/efds/test_source_sink.exe")
+   "/homes/d/p/dpal1/home/enee408m/project/efds/tests/test_source_sink.exe")
   if(CMAKE_WARN_ON_ABSOLUTE_INSTALL_DESTINATION)
     message(WARNING "ABSOLUTE path INSTALL DESTINATION : ${CMAKE_ABSOLUTE_DESTINATION_FILES}")
   endif()
   if(CMAKE_ERROR_ON_ABSOLUTE_INSTALL_DESTINATION)
     message(FATAL_ERROR "ABSOLUTE path INSTALL DESTINATION forbidden (by caller): ${CMAKE_ABSOLUTE_DESTINATION_FILES}")
   endif()
-file(INSTALL DESTINATION "/homes/d/p/dpal1/home/enee408m/project/efds" TYPE EXECUTABLE FILES "/homes/d/p/dpal1/home/enee408m/project/efds/build/src/test_source_sink.exe")
-  if(EXISTS "$ENV{DESTDIR}/homes/d/p/dpal1/home/enee408m/project/efds/test_source_sink.exe" AND
-     NOT IS_SYMLINK "$ENV{DESTDIR}/homes/d/p/dpal1/home/enee408m/project/efds/test_source_sink.exe")
+file(INSTALL DESTINATION "/homes/d/p/dpal1/home/enee408m/project/efds/tests" TYPE EXECUTABLE FILES "/homes/d/p/dpal1/home/enee408m/project/efds/build/src/test_source_sink.exe")
+  if(EXISTS "$ENV{DESTDIR}/homes/d/p/dpal1/home/enee408m/project/efds/tests/test_source_sink.exe" AND
+     NOT IS_SYMLINK "$ENV{DESTDIR}/homes/d/p/dpal1/home/enee408m/project/efds/tests/test_source_sink.exe")
+    file(RPATH_CHANGE
+         FILE "$ENV{DESTDIR}/homes/d/p/dpal1/home/enee408m/project/efds/tests/test_source_sink.exe"
+         OLD_RPATH "/dept/enee/software/dspcad/common/welter/weltergen:"
+         NEW_RPATH "")
     if(CMAKE_INSTALL_DO_STRIP)
-      execute_process(COMMAND "/usr/bin/strip" "$ENV{DESTDIR}/homes/d/p/dpal1/home/enee408m/project/efds/test_source_sink.exe")
+      execute_process(COMMAND "/usr/bin/strip" "$ENV{DESTDIR}/homes/d/p/dpal1/home/enee408m/project/efds/tests/test_source_sink.exe")
     endif()
   endif()
 endif()

@@ -1,11 +1,14 @@
 #include <iostream>
 #include <vector>
+extern "C" {
 #include "welt_c_fifo.h"
 #include "welt_cpp_graph.h"
 #include "welt_cpp_actor.h"
+}
 #include "iis.h"
 #include "iis_source.h"
 #include "iis_sink.h"
+
 
 using namespace std;
 

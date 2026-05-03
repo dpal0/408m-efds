@@ -57,22 +57,9 @@ include src/CMakeFiles/efds.dir/progress.make
 # Include the compile flags for this target's objects.
 include src/CMakeFiles/efds.dir/flags.make
 
-src/CMakeFiles/efds.dir/actors/integral_image.cpp.o: src/CMakeFiles/efds.dir/flags.make
-src/CMakeFiles/efds.dir/actors/integral_image.cpp.o: ../src/actors/integral_image.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/homes/d/p/dpal1/home/enee408m/project/efds/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object src/CMakeFiles/efds.dir/actors/integral_image.cpp.o"
-	cd /homes/d/p/dpal1/home/enee408m/project/efds/build/src && /usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/efds.dir/actors/integral_image.cpp.o -c /homes/d/p/dpal1/home/enee408m/project/efds/src/actors/integral_image.cpp
-
-src/CMakeFiles/efds.dir/actors/integral_image.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/efds.dir/actors/integral_image.cpp.i"
-	cd /homes/d/p/dpal1/home/enee408m/project/efds/build/src && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /homes/d/p/dpal1/home/enee408m/project/efds/src/actors/integral_image.cpp > CMakeFiles/efds.dir/actors/integral_image.cpp.i
-
-src/CMakeFiles/efds.dir/actors/integral_image.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/efds.dir/actors/integral_image.cpp.s"
-	cd /homes/d/p/dpal1/home/enee408m/project/efds/build/src && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /homes/d/p/dpal1/home/enee408m/project/efds/src/actors/integral_image.cpp -o CMakeFiles/efds.dir/actors/integral_image.cpp.s
-
 src/CMakeFiles/efds.dir/actors/iis_source.cpp.o: src/CMakeFiles/efds.dir/flags.make
 src/CMakeFiles/efds.dir/actors/iis_source.cpp.o: ../src/actors/iis_source.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/homes/d/p/dpal1/home/enee408m/project/efds/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object src/CMakeFiles/efds.dir/actors/iis_source.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/homes/d/p/dpal1/home/enee408m/project/efds/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object src/CMakeFiles/efds.dir/actors/iis_source.cpp.o"
 	cd /homes/d/p/dpal1/home/enee408m/project/efds/build/src && /usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/efds.dir/actors/iis_source.cpp.o -c /homes/d/p/dpal1/home/enee408m/project/efds/src/actors/iis_source.cpp
 
 src/CMakeFiles/efds.dir/actors/iis_source.cpp.i: cmake_force
@@ -85,7 +72,7 @@ src/CMakeFiles/efds.dir/actors/iis_source.cpp.s: cmake_force
 
 src/CMakeFiles/efds.dir/actors/iis_sink.cpp.o: src/CMakeFiles/efds.dir/flags.make
 src/CMakeFiles/efds.dir/actors/iis_sink.cpp.o: ../src/actors/iis_sink.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/homes/d/p/dpal1/home/enee408m/project/efds/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object src/CMakeFiles/efds.dir/actors/iis_sink.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/homes/d/p/dpal1/home/enee408m/project/efds/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object src/CMakeFiles/efds.dir/actors/iis_sink.cpp.o"
 	cd /homes/d/p/dpal1/home/enee408m/project/efds/build/src && /usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/efds.dir/actors/iis_sink.cpp.o -c /homes/d/p/dpal1/home/enee408m/project/efds/src/actors/iis_sink.cpp
 
 src/CMakeFiles/efds.dir/actors/iis_sink.cpp.i: cmake_force
@@ -96,36 +83,34 @@ src/CMakeFiles/efds.dir/actors/iis_sink.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/efds.dir/actors/iis_sink.cpp.s"
 	cd /homes/d/p/dpal1/home/enee408m/project/efds/build/src && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /homes/d/p/dpal1/home/enee408m/project/efds/src/actors/iis_sink.cpp -o CMakeFiles/efds.dir/actors/iis_sink.cpp.s
 
-src/CMakeFiles/efds.dir/actors/test_source_sink.cpp.o: src/CMakeFiles/efds.dir/flags.make
-src/CMakeFiles/efds.dir/actors/test_source_sink.cpp.o: ../src/actors/test_source_sink.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/homes/d/p/dpal1/home/enee408m/project/efds/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building CXX object src/CMakeFiles/efds.dir/actors/test_source_sink.cpp.o"
-	cd /homes/d/p/dpal1/home/enee408m/project/efds/build/src && /usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/efds.dir/actors/test_source_sink.cpp.o -c /homes/d/p/dpal1/home/enee408m/project/efds/src/actors/test_source_sink.cpp
+src/CMakeFiles/efds.dir/actors/integral_image.cpp.o: src/CMakeFiles/efds.dir/flags.make
+src/CMakeFiles/efds.dir/actors/integral_image.cpp.o: ../src/actors/integral_image.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/homes/d/p/dpal1/home/enee408m/project/efds/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object src/CMakeFiles/efds.dir/actors/integral_image.cpp.o"
+	cd /homes/d/p/dpal1/home/enee408m/project/efds/build/src && /usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/efds.dir/actors/integral_image.cpp.o -c /homes/d/p/dpal1/home/enee408m/project/efds/src/actors/integral_image.cpp
 
-src/CMakeFiles/efds.dir/actors/test_source_sink.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/efds.dir/actors/test_source_sink.cpp.i"
-	cd /homes/d/p/dpal1/home/enee408m/project/efds/build/src && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /homes/d/p/dpal1/home/enee408m/project/efds/src/actors/test_source_sink.cpp > CMakeFiles/efds.dir/actors/test_source_sink.cpp.i
+src/CMakeFiles/efds.dir/actors/integral_image.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/efds.dir/actors/integral_image.cpp.i"
+	cd /homes/d/p/dpal1/home/enee408m/project/efds/build/src && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /homes/d/p/dpal1/home/enee408m/project/efds/src/actors/integral_image.cpp > CMakeFiles/efds.dir/actors/integral_image.cpp.i
 
-src/CMakeFiles/efds.dir/actors/test_source_sink.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/efds.dir/actors/test_source_sink.cpp.s"
-	cd /homes/d/p/dpal1/home/enee408m/project/efds/build/src && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /homes/d/p/dpal1/home/enee408m/project/efds/src/actors/test_source_sink.cpp -o CMakeFiles/efds.dir/actors/test_source_sink.cpp.s
+src/CMakeFiles/efds.dir/actors/integral_image.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/efds.dir/actors/integral_image.cpp.s"
+	cd /homes/d/p/dpal1/home/enee408m/project/efds/build/src && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /homes/d/p/dpal1/home/enee408m/project/efds/src/actors/integral_image.cpp -o CMakeFiles/efds.dir/actors/integral_image.cpp.s
 
 # Object files for target efds
 efds_OBJECTS = \
-"CMakeFiles/efds.dir/actors/integral_image.cpp.o" \
 "CMakeFiles/efds.dir/actors/iis_source.cpp.o" \
 "CMakeFiles/efds.dir/actors/iis_sink.cpp.o" \
-"CMakeFiles/efds.dir/actors/test_source_sink.cpp.o"
+"CMakeFiles/efds.dir/actors/integral_image.cpp.o"
 
 # External object files for target efds
 efds_EXTERNAL_OBJECTS =
 
-src/libefds.a: src/CMakeFiles/efds.dir/actors/integral_image.cpp.o
 src/libefds.a: src/CMakeFiles/efds.dir/actors/iis_source.cpp.o
 src/libefds.a: src/CMakeFiles/efds.dir/actors/iis_sink.cpp.o
-src/libefds.a: src/CMakeFiles/efds.dir/actors/test_source_sink.cpp.o
+src/libefds.a: src/CMakeFiles/efds.dir/actors/integral_image.cpp.o
 src/libefds.a: src/CMakeFiles/efds.dir/build.make
 src/libefds.a: src/CMakeFiles/efds.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/homes/d/p/dpal1/home/enee408m/project/efds/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Linking CXX static library libefds.a"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/homes/d/p/dpal1/home/enee408m/project/efds/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Linking CXX static library libefds.a"
 	cd /homes/d/p/dpal1/home/enee408m/project/efds/build/src && $(CMAKE_COMMAND) -P CMakeFiles/efds.dir/cmake_clean_target.cmake
 	cd /homes/d/p/dpal1/home/enee408m/project/efds/build/src && $(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/efds.dir/link.txt --verbose=$(VERBOSE)
 

@@ -94,12 +94,12 @@ src/clean: src/CMakeFiles/efds.dir/clean
 src/CMakeFiles/test_source_sink.exe.dir/all: src/CMakeFiles/efds.dir/all
 	$(MAKE) -f src/CMakeFiles/test_source_sink.exe.dir/build.make src/CMakeFiles/test_source_sink.exe.dir/depend
 	$(MAKE) -f src/CMakeFiles/test_source_sink.exe.dir/build.make src/CMakeFiles/test_source_sink.exe.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/homes/d/p/dpal1/home/enee408m/project/efds/build/CMakeFiles --progress-num=6,7 "Built target test_source_sink.exe"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/homes/d/p/dpal1/home/enee408m/project/efds/build/CMakeFiles --progress-num=5,6 "Built target test_source_sink.exe"
 .PHONY : src/CMakeFiles/test_source_sink.exe.dir/all
 
 # Build rule for subdir invocation for target.
 src/CMakeFiles/test_source_sink.exe.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /homes/d/p/dpal1/home/enee408m/project/efds/build/CMakeFiles 7
+	$(CMAKE_COMMAND) -E cmake_progress_start /homes/d/p/dpal1/home/enee408m/project/efds/build/CMakeFiles 6
 	$(MAKE) -f CMakeFiles/Makefile2 src/CMakeFiles/test_source_sink.exe.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /homes/d/p/dpal1/home/enee408m/project/efds/build/CMakeFiles 0
 .PHONY : src/CMakeFiles/test_source_sink.exe.dir/rule
@@ -121,12 +121,12 @@ src/CMakeFiles/test_source_sink.exe.dir/clean:
 src/CMakeFiles/efds.dir/all:
 	$(MAKE) -f src/CMakeFiles/efds.dir/build.make src/CMakeFiles/efds.dir/depend
 	$(MAKE) -f src/CMakeFiles/efds.dir/build.make src/CMakeFiles/efds.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/homes/d/p/dpal1/home/enee408m/project/efds/build/CMakeFiles --progress-num=1,2,3,4,5 "Built target efds"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/homes/d/p/dpal1/home/enee408m/project/efds/build/CMakeFiles --progress-num=1,2,3,4 "Built target efds"
 .PHONY : src/CMakeFiles/efds.dir/all
 
 # Build rule for subdir invocation for target.
 src/CMakeFiles/efds.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /homes/d/p/dpal1/home/enee408m/project/efds/build/CMakeFiles 5
+	$(CMAKE_COMMAND) -E cmake_progress_start /homes/d/p/dpal1/home/enee408m/project/efds/build/CMakeFiles 4
 	$(MAKE) -f CMakeFiles/Makefile2 src/CMakeFiles/efds.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /homes/d/p/dpal1/home/enee408m/project/efds/build/CMakeFiles 0
 .PHONY : src/CMakeFiles/efds.dir/rule

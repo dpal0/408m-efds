@@ -209,9 +209,6 @@ CMAKE_STRIP:FILEPATH=/usr/bin/strip
 // Studio IDE projects all commands are done without /nologo.
 CMAKE_VERBOSE_MAKEFILE:BOOL=FALSE
 
-//Dependencies for the target
-efds_LIB_DEPENDS:STATIC=general;/dept/enee/software/dspcad/common/welter/welter/lang/cpp/lib/libwelt_cpp.a;general;/dept/enee/software/dspcad/common/welter/welter/lang/c/lib/libwelt_c.a;
-
 //Value Computed by CMake
 efds_project_BINARY_DIR:STATIC=/homes/d/p/dpal1/home/enee408m/project/efds/build
 

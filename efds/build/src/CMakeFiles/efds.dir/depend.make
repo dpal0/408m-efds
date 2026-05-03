@@ -22,13 +22,3 @@ src/CMakeFiles/efds.dir/actors/iis_source.cpp.o: ../src/actors/iis_source.h
 src/CMakeFiles/efds.dir/actors/integral_image.cpp.o: ../src/actors/integral_image.cpp
 src/CMakeFiles/efds.dir/actors/integral_image.cpp.o: ../src/actors/integral_image.h
 
-src/CMakeFiles/efds.dir/actors/test_source_sink.cpp.o: ../src/iis.h
-src/CMakeFiles/efds.dir/actors/test_source_sink.cpp.o: ../src/ptis.h
-src/CMakeFiles/efds.dir/actors/test_source_sink.cpp.o: /dept/enee/software/dspcad/common/welter/welter/lang/c/src/gems/edges/welt_c_fifo.h
-src/CMakeFiles/efds.dir/actors/test_source_sink.cpp.o: /dept/enee/software/dspcad/common/welter/welter/lang/c/src/gems/edges/welt_c_fifo_type_common.h
-src/CMakeFiles/efds.dir/actors/test_source_sink.cpp.o: /dept/enee/software/dspcad/common/welter/welter/lang/cpp/src/gems/actors/common/welt_cpp_actor.h
-src/CMakeFiles/efds.dir/actors/test_source_sink.cpp.o: /dept/enee/software/dspcad/common/welter/welter/lang/cpp/src/tools/graph/welt_cpp_graph.h
-src/CMakeFiles/efds.dir/actors/test_source_sink.cpp.o: ../src/actors/iis_sink.h
-src/CMakeFiles/efds.dir/actors/test_source_sink.cpp.o: ../src/actors/iis_source.h
-src/CMakeFiles/efds.dir/actors/test_source_sink.cpp.o: ../src/actors/test_source_sink.cpp
-

@@ -1,2 +1,2 @@
-/usr/bin/ar qc libefds.a  CMakeFiles/efds.dir/actors/integral_image.cpp.o CMakeFiles/efds.dir/actors/iis_source.cpp.o CMakeFiles/efds.dir/actors/iis_sink.cpp.o CMakeFiles/efds.dir/actors/test_source_sink.cpp.o
+/usr/bin/ar qc libefds.a  CMakeFiles/efds.dir/actors/iis_source.cpp.o CMakeFiles/efds.dir/actors/iis_sink.cpp.o CMakeFiles/efds.dir/actors/integral_image.cpp.o
 /usr/bin/ranlib libefds.a
