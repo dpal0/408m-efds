@@ -1,0 +1,12 @@
+Tests started on:
+Sun 03 May 2026 06:28:25 PM EDT
+-----------------------------------------------------
+Test result for:
+/homes/d/p/dpal1/home/enee408m/project/efds/tests/test01
+Files ../correct-output.txt and output.txt differ
+-----------------------------------------------------
+Error comparison result for: 
+/homes/d/p/dpal1/home/enee408m/project/efds/tests/test01
+Files ../expected-errors.txt and error_output.txt differ
+Tests completed on:
+Sun 03 May 2026 06:28:25 PM EDT

@@ -1,57 +1,70 @@
-
+#include <iostream>
+#include <typeinfo>
 #include "StrongClassifier.h"
+using namespace std;
 
 /** Constructor for training */
-StrongClassifier::StrongClassifier() {
+StrongClassifier::StrongClassifier()
+{
   this->threshold = 0.0;
 }
 
 /** Constructor for classification with selected weak classifiers and weights, no threshold given */
-StrongClassifier::StrongClassifier(std::vector<WeakClassifier*> wc, float *weight) {
-  this->wc = wc;
+StrongClassifier::StrongClassifier(std::vector<wc_weight_pair> wc)
+{
+  this->weak_classifiers = wc;
   this->threshold = 0.0;
-  for (int i=0; i<wc.size(); i++) this->weight.push_back(weight[i]);
 }
 
 /** Constructor for classification with selected weak classifiers, weights, and threshold */
-StrongClassifier::StrongClassifier(std::vector<WeakClassifier*> wc, float *weight, float threshold) {
-  for (int i=0; i<wc.size(); i++) {
-    this->weak_classifiers.push_back({wc[i], weight[i]});
-  }
+StrongClassifier::StrongClassifier(std::vector<wc_weight_pair> wc, float threshold)
+{
+  this->weak_classifiers = wc;
   this->threshold = threshold;
 }
 
 /** Classify method, takes in an integral image and returns 1 if it is a face and 0 if it is not */
-int StrongClassifier::classify(const std::vector<std::vector<int>> &integralImage) const
+int StrongClassifier::classify(const std::vector<std::vector<int>> &integralImage)
 {
   float sum = 0.0;
 
-  // Sum the weighted outputs of each weak classifier, assuming Erica has classify method returning 0 or 1
+  // Sum the weighted outputs of each weak classifier
   for (size_t i = 0; i < this->weak_classifiers.size(); i++)
   {
     int h = this->weak_classifiers[i].wc->classify(integralImage);
+
     sum += this->weak_classifiers[i].weight * h;
   }
 
   return (sum >= threshold) ? 1 : 0;
 }
 
-/** Training method, generates a linear combination of weak classifiers using AdaBoost algorithm 
+/** Training method, generates a linear combination of weak classifiers using AdaBoost algorithm
   and saves it in the strong classifier. */
-void StrongClassifier::train(std::vector<HaarFeature *> features, std::vector<std::vector<int>> &positive_set, std::vector<std::vector<int>> &negative_set, int rounds)
+void StrongClassifier::train(std::vector<HaarFeature> features, std::vector<std::vector<std::vector<int>>> &positive_set, std::vector<std::vector<std::vector<int>>> &negative_set, int rounds)
 {
   int num_features = features.size();
   int num_positive = positive_set.size();
   int num_negative = negative_set.size();
 
+  // Concatenate positive and negative sets for weak classifier training
+  vector<vector<vector<int>>> images = positive_set;
+  images.insert(images.end(), negative_set.begin(), negative_set.end());
+
+  vector<int> labels(num_positive, 1);
+  vector<int> neg_labels(num_negative, 0);
+  labels.insert(labels.end(), neg_labels.begin(), neg_labels.end());
+
   // Initialize weak classifiers from the given features
-  std::vector<WeakClassifier*> wc;
-  for (int i = 0; i < features.size(); i++) {
-    wc.push_back(new WeakClassifier(features[i]));
+  std::vector<WeakClassifier> wc;
+  for (int i = 0; i < features.size(); i++)
+  {
+    wc.push_back(WeakClassifier(features[i]));
   }
 
   // Initialize strong classifier with empty weak classifiers and weights
-  this->weak_classifiers = std::vector<wc_weight_pair>(rounds);
+  this->weak_classifiers.clear();
+  this->weak_classifiers.reserve(rounds);
   this->threshold = 0.0;
 
   // Initialize sample weights
@@ -69,10 +82,20 @@ void StrongClassifier::train(std::vector<HaarFeature *> features, std::vector<st
   for (size_t t = 0; t < rounds; t++)
   {
     // Train weak classifiers using sample weights and record error for each, assuming Erica has train method returning error rate
-    std::vector<float> wc_errors(num_classifiers);
-    for (size_t i = 0; i < num_classifiers; i++)
+    std::vector<float> wc_errors(num_features);
+    cout << "Number of features: " << num_features << endl;
+    for (size_t i = 0; i < num_features; i++)
     {
-      wc_errors[i] = wc_given[i]->train(positive_set, negative_set, sample_weights);
+      time_t start = time(NULL);
+      wc_errors[i] = wc[i].train(images, labels, sample_weights);
+      if (i % 1000 == 0) {
+        time_t now = time(NULL);
+        cout << "Trained weak classifier " << i << " with error " << wc_errors[i] << " time elapsed: " << difftime(now, start) << " seconds" << endl;
+        start = time(NULL);
+      }
+      if (wc_errors[i] == 0) {
+        cout << "Weak Classifier " << i << ": Error = " << wc_errors[i] << endl;
+      }
     }
 
     // Step 2: Choose the best weak classifier
@@ -83,7 +106,7 @@ void StrongClassifier::train(std::vector<HaarFeature *> features, std::vector<st
     // Step 4: Update sample weights for the next round
     for (size_t i = 0; i < num_positive; i++)
     {
-      if (wc_given[best_index]->classify(positive_set[i]) == 1)
+      if (wc[best_index].classify(positive_set[i]) == 1)
       {
         sample_weights[i] *= std::pow(beta, 1);
       }
@@ -94,7 +117,7 @@ void StrongClassifier::train(std::vector<HaarFeature *> features, std::vector<st
     }
     for (size_t i = num_positive; i < (num_positive + num_negative); i++)
     {
-      if (wc_given[best_index]->classify(negative_set[i - num_positive]) == 0)
+      if (wc[best_index].classify(negative_set[i - num_positive]) == 0)
       {
         sample_weights[i] *= std::pow(beta, 1);
       }
@@ -114,7 +137,10 @@ void StrongClassifier::train(std::vector<HaarFeature *> features, std::vector<st
     // Calculate coefficient (alpha) for the chosen weak classifier, log base should be experimented with to find best performance
     float alpha = std::log(1 / beta);
 
+    cout << "Round " << t + 1 << ": Selected weak classifier " << best_index << " with error " << best_error << " and alpha " << alpha << endl;
     // Final step: Store the selected weak classifier and its coefficient in the strong classifier
-    this->weak_classifiers.push_back({wc_given[best_index], alpha});
+    WeakClassifier *wc_ptr=new WeakClassifier(wc[best_index]);
+    this->weak_classifiers.push_back({wc_ptr,alpha});
+    this->threshold += 0.5 * std::log(1 / beta); // Update threshold based on the error of the selected weak classifier
   }
 }

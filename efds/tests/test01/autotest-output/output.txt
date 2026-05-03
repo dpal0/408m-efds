@@ -1,0 +1,8 @@
+test_source_sink: done. Check ./results.txt
+--- ./results.txt ---
+1 passthrough
+2 passthrough
+3 passthrough
+--- end ---
+expected 3 tokens, got 3 lines in log
+PASS

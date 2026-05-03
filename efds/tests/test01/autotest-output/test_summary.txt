@@ -1,0 +1,5 @@
+Test count: 1; test failures: 1; error output mismatches: 1
+Test failures: 
+/homes/d/p/dpal1/home/enee408m/project/efds/tests/test01
+Error comparison failures: 
+/homes/d/p/dpal1/home/enee408m/project/efds/tests/test01
