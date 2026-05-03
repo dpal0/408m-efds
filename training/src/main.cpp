@@ -192,13 +192,36 @@ void makeConfigFile(StrongClassifier *sc, int stage, const string &dir)
 }
 
 /*******************************************************************************
+ * makeTrainingReport
+ * Generates a brief training report after all stages are complete, writing it to a file in the output directory. The report includes the number of stages, stage configurations, and total training time.
+ ******************************************************************************/
+void makeTrainingReport(const string &dir, int numStages, double elapsed, int sc_rounds[])
+{
+    ofstream reportFile(dir + "/training_report.txt");
+
+    reportFile << "Training Report" << endl;
+    reportFile << "=================" << endl;
+    reportFile << "Number of Stages: " << numStages << endl;
+    reportFile << "Total Training Time: " << elapsed << " seconds" << endl;
+    reportFile << "\nStage Configurations:" << endl;
+
+    for (int stage = 0; stage < numStages; stage++)
+    {
+        reportFile << "Stage " << stage + 1 << ": " << sc_rounds[stage] << " weak classifiers" << endl;
+    }
+
+    reportFile.close();
+}
+
+/*******************************************************************************
  * main
  * Usage: ./train <face_dir> <nonface_dir> <num_stages> <output_dir>
  *
  * Runs cascade training and writes one config file per stage to output_dir.
  ******************************************************************************/
- #ifndef UNIT_TESTING
-int main(int argc, char** argv) {
+#ifndef UNIT_TESTING
+int main(int argc, char **argv)
+{
 
     // parse command line arguments
     if (argc != 5)
@@ -210,8 +233,25 @@ int main(int argc, char** argv) {
 
     string faceDir = argv[1];
     string nonfaceDir = argv[2];
-    int numStages = stoi(argv[3]);
+    string stageConfig = argv[3];
     string outputDir = argv[4];
+
+    int numStages;
+    ifstream stageConfigFile(stageConfig);
+    if (!stageConfigFile.is_open())
+    {
+        cerr << "Error: Could not open stage config file: " << stageConfig << endl;
+        return 1;
+    }
+    stageConfigFile >> numStages;
+    int sc_rounds[numStages];
+    for (int i = 0; i < numStages; i++)
+    {
+        int rounds;
+        stageConfigFile >> rounds;
+        sc_rounds[i] = rounds;
+    }
+    stageConfigFile.close();
 
     // Load images
     cout << "Loading training images..." << endl;
@@ -231,9 +271,6 @@ int main(int argc, char** argv) {
 
     // Timer to determine performance/speed
     time_t overallStart = time(NULL);
-
-    // Define array for number of weak classifiers per stage, can be experimented with to find best performance
-    int sc_rounds[] = {1, 5, 10, 25, 25, 50, 100, 200, 500, 1000};
 
     // Cascade training loop
     for (int stage = 0; stage < numStages; stage++)
@@ -287,6 +324,7 @@ int main(int argc, char** argv) {
     cout << "\nTraining complete." << endl
          << endl;
 
+    makeTrainingReport(outputDir, numStages, overallElapsed, sc_rounds);
     return 0;
 }
 #endif

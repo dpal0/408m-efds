@@ -119,8 +119,8 @@ void StrongClassifier::train(std::vector<HaarFeature> features, std::vector<std:
           wc_errors[i] = 1e-10f;
         }
 
-        // Log progress every ~2%
-        int divisor = (num_features / num_threads) / 50 + 1;
+        // Log progress every ~10%
+        int divisor = ((num_features / num_threads) / 10) + 1;
         int done = features_done++;
 
         if (thread_id == 0 && i % divisor == 0)

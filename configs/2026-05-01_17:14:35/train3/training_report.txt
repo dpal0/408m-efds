@@ -1,0 +1,16 @@
+Training Report
+=================
+Number of Stages: 10
+Total Training Time: 53171 seconds
+
+Stage Configurations:
+Stage 1: 3 weak classifiers
+Stage 2: 7 weak classifiers
+Stage 3: 15 weak classifiers
+Stage 4: 26 weak classifiers
+Stage 5: 41 weak classifiers
+Stage 6: 58 weak classifiers
+Stage 7: 79 weak classifiers
+Stage 8: 102 weak classifiers
+Stage 9: 129 weak classifiers
+Stage 10: 140 weak classifiers

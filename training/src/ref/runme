@@ -1,0 +1,24 @@
+numCascades=1 # edit this line with number of strong classifiers
+
+timestamp=$(date +"%Y-%m-%d_%H:%M:%S")
+
+# Data for training, comment out when testing/benchmarking
+# dirData="../../dataset/project-dataset/integral/training"
+# dirConfig="../../configs"
+# cd $dirConfig
+# mkdir $timestamp
+# cd ../training/src
+
+# Data for testing/benchmarking, comment out when training
+dirData="../test/testing-data-md"
+dirConfig="../test/config-outputs"
+cd $dirConfig
+mkdir $timestamp
+cd ../../src
+
+
+./main.exe $dirData/face $dirData/non-face $numCascades $dirConfig/$timestamp
+
+# Save model configs and exit if training on aws server
+# aws s3 cp $dirConfig/$timestamp s3://frank99123-dcs-mission/$timestamp --recursive
+# sudo shutdown -h now
