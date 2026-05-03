@@ -1,8 +1,8 @@
 #ifndef CLASSIFIER_ACTOR_H
 #define CLASSIFIER_ACTOR_H
 extern "C"{
-#include "welt_c_fifo.h"
 #include "welt_c_util.h"
+#include "welt_c_fifo.h"
 }
 #include "welt_cpp_actor.h"
 #include "welt_cpp_graph.h"

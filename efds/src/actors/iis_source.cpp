@@ -1,8 +1,17 @@
+
 #include <iostream>
 #include <fstream>
+#include <vector>
 #include <algorithm>
 #include <dirent.h>
 #include <sys/types.h>
+extern "C" {
+#include "welt_c_fifo.h"
+#include "welt_cpp_graph.h"
+#include "welt_cpp_actor.h"
+}
+#include "iis.h"
+#include "iis_sink.h"
 #include "iis_source.h"
 
 using namespace std;

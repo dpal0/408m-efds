@@ -1,10 +1,9 @@
 #include <fstream>
 #include <vector>
 #include <string>
+#include <iostream>
 #include "classifierActor.h"
 #include "integral_image.h"
-#include <iostream>
-
 using namespace std;
 classifierActor::classifierActor(welt_c_fifo_pointer in,welt_c_fifo_pointer abort_out,
                                  welt_c_fifo_pointer cont_out, int stage){
@@ -44,12 +43,14 @@ bool classifierActor::enable(){
 void classifierActor::invoke(){
     switch(mode){
         case CONFIGURE: { //load in data from config file to create strong classifier
-            ifstream configFile("config"+to_string(stage) + ".txt"); //opens config file with current stage
+            cout<<"Mode: "<< mode <<endl;
+            ifstream configFile("../../../../training/test/config"+to_string(stage) + ".txt"); //opens config file with current stage
             if(!configFile.is_open()){ //when configFile can't be opened. 
                 std::cerr<<"config file error when open\n";
-                //mode=FALSE_MOD; Lets not change to False when config fails -Diksha
-                break;
+                mode=FALSE_MOD;
+                return;
             }
+            cout<<"config file opened"<<endl;
             //used later to store values from config file. 
             float sc_threshold,weight,wc_threshold,error;
             //weight= one weak classifier weight
@@ -59,38 +60,60 @@ void classifierActor::invoke(){
             //polarity=polarity of the weak classifier after training it. 
             //x,y = top and left shows rectangle location
             // w,h=width and height shows size of the haar feature.
-            vector<wc_weight_pair> wc_vector; //store all weak classifier for current stage
+            vector<StrongClassifier::wc_weight_pair> wc_vector; //store all weak classifier for current stage
             configFile >>sc_threshold; //reads the strong classifier threshold store into sc_threshold. 
             while(configFile>>x>>y>>w>>h>>type_int>>wc_threshold>>polarity>>error>>weight){
                 // iterate through configFile to store each weak classifier trained values 
+                cout<<"x: "<<x<<endl;
+                cout<<"y: "<<y<<endl;
+                cout<<"w: "<<w<<endl;
                 Feature type=(Feature) type_int; //converts int into Feature enum. 
                 HaarFeature hf(x,y,w,h,type); //values from configFile used to create haarfeature.
                 WeakClassifier *wc=new WeakClassifier(hf,wc_threshold,polarity,error); // used created hf and values from config to create weakclassifier.
-                wc_weight_pair pair; //pair object contain weak classifer and weight
-                pair.wc=wc; //weak classifier object
-                pair.weight=weight; //weight of weak classifier
+                StrongClassifier::wc_weight_pair pair={wc,weight}; //pair object contain weak classifer and weight
                 wc_vector.push_back(pair); //put pair of weak classifier into weak classifier vector/list.
+                cout<<"wc in vector"<<endl;
             }
             configFile.close(); 
             sc=new StrongClassifier(wc_vector,sc_threshold); //create StrongClassifier with list of weak classifier and strong classifier threshold
+            cout<<"strong classifier created"<<endl;
             mode=READ; 
             break;
         }
-        case READ: { //read input 
-            IIS *token; //used to store input token pair (I image window,K image index)
+        case READ: { //read input
+            cout<<"Mode: "<< mode <<endl;
+            IIS *token=nullptr; //used to store input token pair (I image window,K image index)
             welt_c_fifo_read(in,&token); //store input token pair in currToken pair
+            if(token==nullptr){
+                cout<<"error in read null token"<<endl;
+                return;
+            }
             this->currToken=token; //put into private currToken, used later in Classify function
             mode=CLASSIFY; 
             break;
         }
         case CLASSIFY:{ //classify as face or non-face
+            cout<<"Mode: "<< mode <<endl;
+            if(this->currToken==nullptr){
+                cout<<"error: currtoken is null"<<endl;
+                return;
+            }
+            cout<<"currToken ok"<<endl;
             PTIS *imgI=this->currToken->I; //get img from token
+            if(imgI==nullptr){
+                cout<<"imgI null"<<endl;
+                return;
+            }
+            cout<<"imgI ok"<<endl;
             IntegralImage ii(imgI->pix); //calls integral image function to convert image to integral image
+            cout<<"integral image created"<<endl;
             if(sc==nullptr){
                 mode=FALSE_MOD;
                 break;
             }
+            cout<<"before classify"<<endl;
             bool face=sc->classify(ii.getImage()); //created intImg used to classify face or non face. 
+            cout<<"after classify"<<endl;
             if(face){ //face==1 is found mode=true
                 mode=TRUE_MOD;
             }else{ //non face is found, mode=false
@@ -99,16 +122,32 @@ void classifierActor::invoke(){
             break;
         }
         case TRUE_MOD:{
-            IIS *copyToken=new IIS(*this->currToken);
-            welt_c_fifo_write(cont_out, &copyToken); //writes the (I,K) token and send it to the next actor
+            cout<<"Mode: "<< mode <<endl;
+            if(this->currToken==nullptr){
+                cout<<"error: currtoken is null"<<endl;
+                return;
+            }
+            IIS *copyToken=new IIS();
+            copyToken->k=this->currToken->k;
+            copyToken->I=new PTIS();
+            copyToken->I->pix=this->currToken->I->pix;
+            welt_c_fifo_write(cont_out,&copyToken); //writes the (I,K) token and send it to the next actor
             mode=READ;
             break;
         }
         case FALSE_MOD:{
-            IIS *copyToken=new IIS(*this->currToken);
+            cout<<"Mode: "<< mode <<endl;
+            if(this->currToken==nullptr){
+                cout<<"error: currtoken is null"<<endl;
+                return;
+            }
+            IIS *copyToken=new IIS();
+            copyToken->k=this->currToken->k;
+            copyToken->I=new PTIS();
+            copyToken->I->pix=this->currToken->I->pix;
             welt_c_fifo_write(abort_out,&copyToken); //writes to abort output to send (I,K) as non-face. 
             mode=READ;
-            break; //Diksha added
+            break;
         }
         default:
             break;
