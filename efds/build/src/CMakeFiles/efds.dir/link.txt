@@ -1,2 +1,2 @@
-/usr/bin/ar qc libefds.a  CMakeFiles/efds.dir/actors/iis_source.cpp.o CMakeFiles/efds.dir/actors/iis_sink.cpp.o CMakeFiles/efds.dir/actors/integral_image.cpp.o
+/usr/bin/ar qc libefds.a  CMakeFiles/efds.dir/actors/iis_source.cpp.o CMakeFiles/efds.dir/actors/iis_sink.cpp.o CMakeFiles/efds.dir/actors/integral_image.cpp.o CMakeFiles/efds.dir/actors/classifierActor.cpp.o CMakeFiles/efds.dir/homes/d/p/dpal1/home/enee408m/project/training/src/HaarFeature.cpp.o CMakeFiles/efds.dir/homes/d/p/dpal1/home/enee408m/project/training/src/WeakClassifier.cpp.o CMakeFiles/efds.dir/homes/d/p/dpal1/home/enee408m/project/training/src/StrongClassifier.cpp.o
 /usr/bin/ranlib libefds.a

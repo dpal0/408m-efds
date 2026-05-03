@@ -186,6 +186,33 @@ efds/fast:
 	cd /homes/d/p/dpal1/home/enee408m/project/efds/build && $(MAKE) -f src/CMakeFiles/efds.dir/build.make src/CMakeFiles/efds.dir/build
 .PHONY : efds/fast
 
+actors/classifierActor.o: actors/classifierActor.cpp.o
+
+.PHONY : actors/classifierActor.o
+
+# target to build an object file
+actors/classifierActor.cpp.o:
+	cd /homes/d/p/dpal1/home/enee408m/project/efds/build && $(MAKE) -f src/CMakeFiles/efds.dir/build.make src/CMakeFiles/efds.dir/actors/classifierActor.cpp.o
+.PHONY : actors/classifierActor.cpp.o
+
+actors/classifierActor.i: actors/classifierActor.cpp.i
+
+.PHONY : actors/classifierActor.i
+
+# target to preprocess a source file
+actors/classifierActor.cpp.i:
+	cd /homes/d/p/dpal1/home/enee408m/project/efds/build && $(MAKE) -f src/CMakeFiles/efds.dir/build.make src/CMakeFiles/efds.dir/actors/classifierActor.cpp.i
+.PHONY : actors/classifierActor.cpp.i
+
+actors/classifierActor.s: actors/classifierActor.cpp.s
+
+.PHONY : actors/classifierActor.s
+
+# target to generate assembly for a file
+actors/classifierActor.cpp.s:
+	cd /homes/d/p/dpal1/home/enee408m/project/efds/build && $(MAKE) -f src/CMakeFiles/efds.dir/build.make src/CMakeFiles/efds.dir/actors/classifierActor.cpp.s
+.PHONY : actors/classifierActor.cpp.s
+
 actors/iis_sink.o: actors/iis_sink.cpp.o
 
 .PHONY : actors/iis_sink.o
@@ -294,6 +321,87 @@ actors/test_source_sink.cpp.s:
 	cd /homes/d/p/dpal1/home/enee408m/project/efds/build && $(MAKE) -f src/CMakeFiles/test_source_sink.exe.dir/build.make src/CMakeFiles/test_source_sink.exe.dir/actors/test_source_sink.cpp.s
 .PHONY : actors/test_source_sink.cpp.s
 
+homes/d/p/dpal1/home/enee408m/project/training/src/HaarFeature.o: homes/d/p/dpal1/home/enee408m/project/training/src/HaarFeature.cpp.o
+
+.PHONY : homes/d/p/dpal1/home/enee408m/project/training/src/HaarFeature.o
+
+# target to build an object file
+homes/d/p/dpal1/home/enee408m/project/training/src/HaarFeature.cpp.o:
+	cd /homes/d/p/dpal1/home/enee408m/project/efds/build && $(MAKE) -f src/CMakeFiles/efds.dir/build.make src/CMakeFiles/efds.dir/homes/d/p/dpal1/home/enee408m/project/training/src/HaarFeature.cpp.o
+.PHONY : homes/d/p/dpal1/home/enee408m/project/training/src/HaarFeature.cpp.o
+
+homes/d/p/dpal1/home/enee408m/project/training/src/HaarFeature.i: homes/d/p/dpal1/home/enee408m/project/training/src/HaarFeature.cpp.i
+
+.PHONY : homes/d/p/dpal1/home/enee408m/project/training/src/HaarFeature.i
+
+# target to preprocess a source file
+homes/d/p/dpal1/home/enee408m/project/training/src/HaarFeature.cpp.i:
+	cd /homes/d/p/dpal1/home/enee408m/project/efds/build && $(MAKE) -f src/CMakeFiles/efds.dir/build.make src/CMakeFiles/efds.dir/homes/d/p/dpal1/home/enee408m/project/training/src/HaarFeature.cpp.i
+.PHONY : homes/d/p/dpal1/home/enee408m/project/training/src/HaarFeature.cpp.i
+
+homes/d/p/dpal1/home/enee408m/project/training/src/HaarFeature.s: homes/d/p/dpal1/home/enee408m/project/training/src/HaarFeature.cpp.s
+
+.PHONY : homes/d/p/dpal1/home/enee408m/project/training/src/HaarFeature.s
+
+# target to generate assembly for a file
+homes/d/p/dpal1/home/enee408m/project/training/src/HaarFeature.cpp.s:
+	cd /homes/d/p/dpal1/home/enee408m/project/efds/build && $(MAKE) -f src/CMakeFiles/efds.dir/build.make src/CMakeFiles/efds.dir/homes/d/p/dpal1/home/enee408m/project/training/src/HaarFeature.cpp.s
+.PHONY : homes/d/p/dpal1/home/enee408m/project/training/src/HaarFeature.cpp.s
+
+homes/d/p/dpal1/home/enee408m/project/training/src/StrongClassifier.o: homes/d/p/dpal1/home/enee408m/project/training/src/StrongClassifier.cpp.o
+
+.PHONY : homes/d/p/dpal1/home/enee408m/project/training/src/StrongClassifier.o
+
+# target to build an object file
+homes/d/p/dpal1/home/enee408m/project/training/src/StrongClassifier.cpp.o:
+	cd /homes/d/p/dpal1/home/enee408m/project/efds/build && $(MAKE) -f src/CMakeFiles/efds.dir/build.make src/CMakeFiles/efds.dir/homes/d/p/dpal1/home/enee408m/project/training/src/StrongClassifier.cpp.o
+.PHONY : homes/d/p/dpal1/home/enee408m/project/training/src/StrongClassifier.cpp.o
+
+homes/d/p/dpal1/home/enee408m/project/training/src/StrongClassifier.i: homes/d/p/dpal1/home/enee408m/project/training/src/StrongClassifier.cpp.i
+
+.PHONY : homes/d/p/dpal1/home/enee408m/project/training/src/StrongClassifier.i
+
+# target to preprocess a source file
+homes/d/p/dpal1/home/enee408m/project/training/src/StrongClassifier.cpp.i:
+	cd /homes/d/p/dpal1/home/enee408m/project/efds/build && $(MAKE) -f src/CMakeFiles/efds.dir/build.make src/CMakeFiles/efds.dir/homes/d/p/dpal1/home/enee408m/project/training/src/StrongClassifier.cpp.i
+.PHONY : homes/d/p/dpal1/home/enee408m/project/training/src/StrongClassifier.cpp.i
+
+homes/d/p/dpal1/home/enee408m/project/training/src/StrongClassifier.s: homes/d/p/dpal1/home/enee408m/project/training/src/StrongClassifier.cpp.s
+
+.PHONY : homes/d/p/dpal1/home/enee408m/project/training/src/StrongClassifier.s
+
+# target to generate assembly for a file
+homes/d/p/dpal1/home/enee408m/project/training/src/StrongClassifier.cpp.s:
+	cd /homes/d/p/dpal1/home/enee408m/project/efds/build && $(MAKE) -f src/CMakeFiles/efds.dir/build.make src/CMakeFiles/efds.dir/homes/d/p/dpal1/home/enee408m/project/training/src/StrongClassifier.cpp.s
+.PHONY : homes/d/p/dpal1/home/enee408m/project/training/src/StrongClassifier.cpp.s
+
+homes/d/p/dpal1/home/enee408m/project/training/src/WeakClassifier.o: homes/d/p/dpal1/home/enee408m/project/training/src/WeakClassifier.cpp.o
+
+.PHONY : homes/d/p/dpal1/home/enee408m/project/training/src/WeakClassifier.o
+
+# target to build an object file
+homes/d/p/dpal1/home/enee408m/project/training/src/WeakClassifier.cpp.o:
+	cd /homes/d/p/dpal1/home/enee408m/project/efds/build && $(MAKE) -f src/CMakeFiles/efds.dir/build.make src/CMakeFiles/efds.dir/homes/d/p/dpal1/home/enee408m/project/training/src/WeakClassifier.cpp.o
+.PHONY : homes/d/p/dpal1/home/enee408m/project/training/src/WeakClassifier.cpp.o
+
+homes/d/p/dpal1/home/enee408m/project/training/src/WeakClassifier.i: homes/d/p/dpal1/home/enee408m/project/training/src/WeakClassifier.cpp.i
+
+.PHONY : homes/d/p/dpal1/home/enee408m/project/training/src/WeakClassifier.i
+
+# target to preprocess a source file
+homes/d/p/dpal1/home/enee408m/project/training/src/WeakClassifier.cpp.i:
+	cd /homes/d/p/dpal1/home/enee408m/project/efds/build && $(MAKE) -f src/CMakeFiles/efds.dir/build.make src/CMakeFiles/efds.dir/homes/d/p/dpal1/home/enee408m/project/training/src/WeakClassifier.cpp.i
+.PHONY : homes/d/p/dpal1/home/enee408m/project/training/src/WeakClassifier.cpp.i
+
+homes/d/p/dpal1/home/enee408m/project/training/src/WeakClassifier.s: homes/d/p/dpal1/home/enee408m/project/training/src/WeakClassifier.cpp.s
+
+.PHONY : homes/d/p/dpal1/home/enee408m/project/training/src/WeakClassifier.s
+
+# target to generate assembly for a file
+homes/d/p/dpal1/home/enee408m/project/training/src/WeakClassifier.cpp.s:
+	cd /homes/d/p/dpal1/home/enee408m/project/efds/build && $(MAKE) -f src/CMakeFiles/efds.dir/build.make src/CMakeFiles/efds.dir/homes/d/p/dpal1/home/enee408m/project/training/src/WeakClassifier.cpp.s
+.PHONY : homes/d/p/dpal1/home/enee408m/project/training/src/WeakClassifier.cpp.s
+
 # Help Target
 help:
 	@echo "The following are some of the valid targets for this Makefile:"
@@ -308,6 +416,9 @@ help:
 	@echo "... rebuild_cache"
 	@echo "... test_source_sink.exe"
 	@echo "... efds"
+	@echo "... actors/classifierActor.o"
+	@echo "... actors/classifierActor.i"
+	@echo "... actors/classifierActor.s"
 	@echo "... actors/iis_sink.o"
 	@echo "... actors/iis_sink.i"
 	@echo "... actors/iis_sink.s"
@@ -320,6 +431,15 @@ help:
 	@echo "... actors/test_source_sink.o"
 	@echo "... actors/test_source_sink.i"
 	@echo "... actors/test_source_sink.s"
+	@echo "... homes/d/p/dpal1/home/enee408m/project/training/src/HaarFeature.o"
+	@echo "... homes/d/p/dpal1/home/enee408m/project/training/src/HaarFeature.i"
+	@echo "... homes/d/p/dpal1/home/enee408m/project/training/src/HaarFeature.s"
+	@echo "... homes/d/p/dpal1/home/enee408m/project/training/src/StrongClassifier.o"
+	@echo "... homes/d/p/dpal1/home/enee408m/project/training/src/StrongClassifier.i"
+	@echo "... homes/d/p/dpal1/home/enee408m/project/training/src/StrongClassifier.s"
+	@echo "... homes/d/p/dpal1/home/enee408m/project/training/src/WeakClassifier.o"
+	@echo "... homes/d/p/dpal1/home/enee408m/project/training/src/WeakClassifier.i"
+	@echo "... homes/d/p/dpal1/home/enee408m/project/training/src/WeakClassifier.s"
 .PHONY : help
 
 

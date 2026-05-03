@@ -12,11 +12,11 @@ set(EFDS_SRCS
     ${EFDS_ACTORS}/iis_source.cpp
     ${EFDS_ACTORS}/iis_sink.cpp
     ${EFDS_ACTORS}/integral_image.cpp
-#    ${EFDS_ACTORS}/classifierActor.cpp
+    ${EFDS_ACTORS}/classifierActor.cpp
 #    ${EFDS_GRAPH}/efds_graph.cpp
-#    ${TRAINING_SRC}/HaarFeature.cpp
-#    ${TRAINING_SRC}/WeakClassifier.cpp
-#    ${TRAINING_SRC}/StrongClassifier.cpp
+    ${TRAINING_SRC}/HaarFeature.cpp
+    ${TRAINING_SRC}/WeakClassifier.cpp
+    ${TRAINING_SRC}/StrongClassifier.cpp
 )
 
 # Build the efds static library (this produces libefds.a, like libcount_bright_pixels_src.a)

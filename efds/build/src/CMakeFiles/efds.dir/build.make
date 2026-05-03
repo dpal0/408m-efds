@@ -96,11 +96,67 @@ src/CMakeFiles/efds.dir/actors/integral_image.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/efds.dir/actors/integral_image.cpp.s"
 	cd /homes/d/p/dpal1/home/enee408m/project/efds/build/src && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /homes/d/p/dpal1/home/enee408m/project/efds/src/actors/integral_image.cpp -o CMakeFiles/efds.dir/actors/integral_image.cpp.s
 
+src/CMakeFiles/efds.dir/actors/classifierActor.cpp.o: src/CMakeFiles/efds.dir/flags.make
+src/CMakeFiles/efds.dir/actors/classifierActor.cpp.o: ../src/actors/classifierActor.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/homes/d/p/dpal1/home/enee408m/project/efds/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building CXX object src/CMakeFiles/efds.dir/actors/classifierActor.cpp.o"
+	cd /homes/d/p/dpal1/home/enee408m/project/efds/build/src && /usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/efds.dir/actors/classifierActor.cpp.o -c /homes/d/p/dpal1/home/enee408m/project/efds/src/actors/classifierActor.cpp
+
+src/CMakeFiles/efds.dir/actors/classifierActor.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/efds.dir/actors/classifierActor.cpp.i"
+	cd /homes/d/p/dpal1/home/enee408m/project/efds/build/src && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /homes/d/p/dpal1/home/enee408m/project/efds/src/actors/classifierActor.cpp > CMakeFiles/efds.dir/actors/classifierActor.cpp.i
+
+src/CMakeFiles/efds.dir/actors/classifierActor.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/efds.dir/actors/classifierActor.cpp.s"
+	cd /homes/d/p/dpal1/home/enee408m/project/efds/build/src && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /homes/d/p/dpal1/home/enee408m/project/efds/src/actors/classifierActor.cpp -o CMakeFiles/efds.dir/actors/classifierActor.cpp.s
+
+src/CMakeFiles/efds.dir/homes/d/p/dpal1/home/enee408m/project/training/src/HaarFeature.cpp.o: src/CMakeFiles/efds.dir/flags.make
+src/CMakeFiles/efds.dir/homes/d/p/dpal1/home/enee408m/project/training/src/HaarFeature.cpp.o: /homes/d/p/dpal1/home/enee408m/project/training/src/HaarFeature.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/homes/d/p/dpal1/home/enee408m/project/efds/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Building CXX object src/CMakeFiles/efds.dir/homes/d/p/dpal1/home/enee408m/project/training/src/HaarFeature.cpp.o"
+	cd /homes/d/p/dpal1/home/enee408m/project/efds/build/src && /usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/efds.dir/homes/d/p/dpal1/home/enee408m/project/training/src/HaarFeature.cpp.o -c /homes/d/p/dpal1/home/enee408m/project/training/src/HaarFeature.cpp
+
+src/CMakeFiles/efds.dir/homes/d/p/dpal1/home/enee408m/project/training/src/HaarFeature.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/efds.dir/homes/d/p/dpal1/home/enee408m/project/training/src/HaarFeature.cpp.i"
+	cd /homes/d/p/dpal1/home/enee408m/project/efds/build/src && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /homes/d/p/dpal1/home/enee408m/project/training/src/HaarFeature.cpp > CMakeFiles/efds.dir/homes/d/p/dpal1/home/enee408m/project/training/src/HaarFeature.cpp.i
+
+src/CMakeFiles/efds.dir/homes/d/p/dpal1/home/enee408m/project/training/src/HaarFeature.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/efds.dir/homes/d/p/dpal1/home/enee408m/project/training/src/HaarFeature.cpp.s"
+	cd /homes/d/p/dpal1/home/enee408m/project/efds/build/src && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /homes/d/p/dpal1/home/enee408m/project/training/src/HaarFeature.cpp -o CMakeFiles/efds.dir/homes/d/p/dpal1/home/enee408m/project/training/src/HaarFeature.cpp.s
+
+src/CMakeFiles/efds.dir/homes/d/p/dpal1/home/enee408m/project/training/src/WeakClassifier.cpp.o: src/CMakeFiles/efds.dir/flags.make
+src/CMakeFiles/efds.dir/homes/d/p/dpal1/home/enee408m/project/training/src/WeakClassifier.cpp.o: /homes/d/p/dpal1/home/enee408m/project/training/src/WeakClassifier.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/homes/d/p/dpal1/home/enee408m/project/efds/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Building CXX object src/CMakeFiles/efds.dir/homes/d/p/dpal1/home/enee408m/project/training/src/WeakClassifier.cpp.o"
+	cd /homes/d/p/dpal1/home/enee408m/project/efds/build/src && /usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/efds.dir/homes/d/p/dpal1/home/enee408m/project/training/src/WeakClassifier.cpp.o -c /homes/d/p/dpal1/home/enee408m/project/training/src/WeakClassifier.cpp
+
+src/CMakeFiles/efds.dir/homes/d/p/dpal1/home/enee408m/project/training/src/WeakClassifier.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/efds.dir/homes/d/p/dpal1/home/enee408m/project/training/src/WeakClassifier.cpp.i"
+	cd /homes/d/p/dpal1/home/enee408m/project/efds/build/src && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /homes/d/p/dpal1/home/enee408m/project/training/src/WeakClassifier.cpp > CMakeFiles/efds.dir/homes/d/p/dpal1/home/enee408m/project/training/src/WeakClassifier.cpp.i
+
+src/CMakeFiles/efds.dir/homes/d/p/dpal1/home/enee408m/project/training/src/WeakClassifier.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/efds.dir/homes/d/p/dpal1/home/enee408m/project/training/src/WeakClassifier.cpp.s"
+	cd /homes/d/p/dpal1/home/enee408m/project/efds/build/src && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /homes/d/p/dpal1/home/enee408m/project/training/src/WeakClassifier.cpp -o CMakeFiles/efds.dir/homes/d/p/dpal1/home/enee408m/project/training/src/WeakClassifier.cpp.s
+
+src/CMakeFiles/efds.dir/homes/d/p/dpal1/home/enee408m/project/training/src/StrongClassifier.cpp.o: src/CMakeFiles/efds.dir/flags.make
+src/CMakeFiles/efds.dir/homes/d/p/dpal1/home/enee408m/project/training/src/StrongClassifier.cpp.o: /homes/d/p/dpal1/home/enee408m/project/training/src/StrongClassifier.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/homes/d/p/dpal1/home/enee408m/project/efds/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_7) "Building CXX object src/CMakeFiles/efds.dir/homes/d/p/dpal1/home/enee408m/project/training/src/StrongClassifier.cpp.o"
+	cd /homes/d/p/dpal1/home/enee408m/project/efds/build/src && /usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/efds.dir/homes/d/p/dpal1/home/enee408m/project/training/src/StrongClassifier.cpp.o -c /homes/d/p/dpal1/home/enee408m/project/training/src/StrongClassifier.cpp
+
+src/CMakeFiles/efds.dir/homes/d/p/dpal1/home/enee408m/project/training/src/StrongClassifier.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/efds.dir/homes/d/p/dpal1/home/enee408m/project/training/src/StrongClassifier.cpp.i"
+	cd /homes/d/p/dpal1/home/enee408m/project/efds/build/src && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /homes/d/p/dpal1/home/enee408m/project/training/src/StrongClassifier.cpp > CMakeFiles/efds.dir/homes/d/p/dpal1/home/enee408m/project/training/src/StrongClassifier.cpp.i
+
+src/CMakeFiles/efds.dir/homes/d/p/dpal1/home/enee408m/project/training/src/StrongClassifier.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/efds.dir/homes/d/p/dpal1/home/enee408m/project/training/src/StrongClassifier.cpp.s"
+	cd /homes/d/p/dpal1/home/enee408m/project/efds/build/src && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /homes/d/p/dpal1/home/enee408m/project/training/src/StrongClassifier.cpp -o CMakeFiles/efds.dir/homes/d/p/dpal1/home/enee408m/project/training/src/StrongClassifier.cpp.s
+
 # Object files for target efds
 efds_OBJECTS = \
 "CMakeFiles/efds.dir/actors/iis_source.cpp.o" \
 "CMakeFiles/efds.dir/actors/iis_sink.cpp.o" \
-"CMakeFiles/efds.dir/actors/integral_image.cpp.o"
+"CMakeFiles/efds.dir/actors/integral_image.cpp.o" \
+"CMakeFiles/efds.dir/actors/classifierActor.cpp.o" \
+"CMakeFiles/efds.dir/homes/d/p/dpal1/home/enee408m/project/training/src/HaarFeature.cpp.o" \
+"CMakeFiles/efds.dir/homes/d/p/dpal1/home/enee408m/project/training/src/WeakClassifier.cpp.o" \
+"CMakeFiles/efds.dir/homes/d/p/dpal1/home/enee408m/project/training/src/StrongClassifier.cpp.o"
 
 # External object files for target efds
 efds_EXTERNAL_OBJECTS =
@@ -108,9 +164,13 @@ efds_EXTERNAL_OBJECTS =
 src/libefds.a: src/CMakeFiles/efds.dir/actors/iis_source.cpp.o
 src/libefds.a: src/CMakeFiles/efds.dir/actors/iis_sink.cpp.o
 src/libefds.a: src/CMakeFiles/efds.dir/actors/integral_image.cpp.o
+src/libefds.a: src/CMakeFiles/efds.dir/actors/classifierActor.cpp.o
+src/libefds.a: src/CMakeFiles/efds.dir/homes/d/p/dpal1/home/enee408m/project/training/src/HaarFeature.cpp.o
+src/libefds.a: src/CMakeFiles/efds.dir/homes/d/p/dpal1/home/enee408m/project/training/src/WeakClassifier.cpp.o
+src/libefds.a: src/CMakeFiles/efds.dir/homes/d/p/dpal1/home/enee408m/project/training/src/StrongClassifier.cpp.o
 src/libefds.a: src/CMakeFiles/efds.dir/build.make
 src/libefds.a: src/CMakeFiles/efds.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/homes/d/p/dpal1/home/enee408m/project/efds/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Linking CXX static library libefds.a"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/homes/d/p/dpal1/home/enee408m/project/efds/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_8) "Linking CXX static library libefds.a"
 	cd /homes/d/p/dpal1/home/enee408m/project/efds/build/src && $(CMAKE_COMMAND) -P CMakeFiles/efds.dir/cmake_clean_target.cmake
 	cd /homes/d/p/dpal1/home/enee408m/project/efds/build/src && $(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/efds.dir/link.txt --verbose=$(VERBOSE)
 
