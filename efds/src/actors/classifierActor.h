@@ -7,19 +7,22 @@ extern "C"{
 #include "welt_cpp_actor.h"
 #include "welt_cpp_graph.h"
 #include "StrongClassifier.h"
+#include "iis.h"
+#include "ptis.h"
 #define CONFIGURE 1
 #define READ 2
 #define CLASSIFY 3
 #define TRUE_MOD 4
 #define FALSE_MOD 5
-struct PTIS{
-   std::vector<std::vector<int>> pix;
-   PTIS() : pix(24,std::vector<int>(24,0)){}
-};
-struct IIS{
-    PTIS *I; //image window
-    int k; //image index
-};
+
+// struct PTIS{
+//    std::vector<std::vector<int>> pix;
+//    PTIS() : pix(24,std::vector<int>(24,0)){}
+// };
+// struct IIS{
+//     PTIS *I; //image window
+//     int k; //image index
+// }; Diksha commented it out because I defined it as seperate files already to include in other code as well.
 class classifierActor: public welt_cpp_actor{
 public: 
     classifierActor(welt_c_fifo_pointer in,welt_c_fifo_pointer abort_out, welt_c_fifo_pointer cont_out, int stage);

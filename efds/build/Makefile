@@ -157,6 +157,19 @@ depend:
 .PHONY : depend
 
 #=============================================================================
+# Target rules for targets named efds_graph_driver.exe
+
+# Build rule for target.
+efds_graph_driver.exe: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 efds_graph_driver.exe
+.PHONY : efds_graph_driver.exe
+
+# fast build rule for target.
+efds_graph_driver.exe/fast:
+	$(MAKE) -f src/CMakeFiles/efds_graph_driver.exe.dir/build.make src/CMakeFiles/efds_graph_driver.exe.dir/build
+.PHONY : efds_graph_driver.exe/fast
+
+#=============================================================================
 # Target rules for targets named test_source_sink.exe
 
 # Build rule for target.
@@ -194,6 +207,7 @@ help:
 	@echo "... list_install_components"
 	@echo "... rebuild_cache"
 	@echo "... edit_cache"
+	@echo "... efds_graph_driver.exe"
 	@echo "... test_source_sink.exe"
 	@echo "... efds"
 .PHONY : help

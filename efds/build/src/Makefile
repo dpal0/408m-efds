@@ -157,6 +157,21 @@ depend:
 .PHONY : depend
 
 # Convenience name for target.
+src/CMakeFiles/efds_graph_driver.exe.dir/rule:
+	cd /homes/d/p/dpal1/home/enee408m/project/efds/build && $(MAKE) -f CMakeFiles/Makefile2 src/CMakeFiles/efds_graph_driver.exe.dir/rule
+.PHONY : src/CMakeFiles/efds_graph_driver.exe.dir/rule
+
+# Convenience name for target.
+efds_graph_driver.exe: src/CMakeFiles/efds_graph_driver.exe.dir/rule
+
+.PHONY : efds_graph_driver.exe
+
+# fast build rule for target.
+efds_graph_driver.exe/fast:
+	cd /homes/d/p/dpal1/home/enee408m/project/efds/build && $(MAKE) -f src/CMakeFiles/efds_graph_driver.exe.dir/build.make src/CMakeFiles/efds_graph_driver.exe.dir/build
+.PHONY : efds_graph_driver.exe/fast
+
+# Convenience name for target.
 src/CMakeFiles/test_source_sink.exe.dir/rule:
 	cd /homes/d/p/dpal1/home/enee408m/project/efds/build && $(MAKE) -f CMakeFiles/Makefile2 src/CMakeFiles/test_source_sink.exe.dir/rule
 .PHONY : src/CMakeFiles/test_source_sink.exe.dir/rule
@@ -321,6 +336,60 @@ actors/test_source_sink.cpp.s:
 	cd /homes/d/p/dpal1/home/enee408m/project/efds/build && $(MAKE) -f src/CMakeFiles/test_source_sink.exe.dir/build.make src/CMakeFiles/test_source_sink.exe.dir/actors/test_source_sink.cpp.s
 .PHONY : actors/test_source_sink.cpp.s
 
+graph/efds_graph.o: graph/efds_graph.cpp.o
+
+.PHONY : graph/efds_graph.o
+
+# target to build an object file
+graph/efds_graph.cpp.o:
+	cd /homes/d/p/dpal1/home/enee408m/project/efds/build && $(MAKE) -f src/CMakeFiles/efds.dir/build.make src/CMakeFiles/efds.dir/graph/efds_graph.cpp.o
+.PHONY : graph/efds_graph.cpp.o
+
+graph/efds_graph.i: graph/efds_graph.cpp.i
+
+.PHONY : graph/efds_graph.i
+
+# target to preprocess a source file
+graph/efds_graph.cpp.i:
+	cd /homes/d/p/dpal1/home/enee408m/project/efds/build && $(MAKE) -f src/CMakeFiles/efds.dir/build.make src/CMakeFiles/efds.dir/graph/efds_graph.cpp.i
+.PHONY : graph/efds_graph.cpp.i
+
+graph/efds_graph.s: graph/efds_graph.cpp.s
+
+.PHONY : graph/efds_graph.s
+
+# target to generate assembly for a file
+graph/efds_graph.cpp.s:
+	cd /homes/d/p/dpal1/home/enee408m/project/efds/build && $(MAKE) -f src/CMakeFiles/efds.dir/build.make src/CMakeFiles/efds.dir/graph/efds_graph.cpp.s
+.PHONY : graph/efds_graph.cpp.s
+
+graph/efds_graph_driver.o: graph/efds_graph_driver.cpp.o
+
+.PHONY : graph/efds_graph_driver.o
+
+# target to build an object file
+graph/efds_graph_driver.cpp.o:
+	cd /homes/d/p/dpal1/home/enee408m/project/efds/build && $(MAKE) -f src/CMakeFiles/efds_graph_driver.exe.dir/build.make src/CMakeFiles/efds_graph_driver.exe.dir/graph/efds_graph_driver.cpp.o
+.PHONY : graph/efds_graph_driver.cpp.o
+
+graph/efds_graph_driver.i: graph/efds_graph_driver.cpp.i
+
+.PHONY : graph/efds_graph_driver.i
+
+# target to preprocess a source file
+graph/efds_graph_driver.cpp.i:
+	cd /homes/d/p/dpal1/home/enee408m/project/efds/build && $(MAKE) -f src/CMakeFiles/efds_graph_driver.exe.dir/build.make src/CMakeFiles/efds_graph_driver.exe.dir/graph/efds_graph_driver.cpp.i
+.PHONY : graph/efds_graph_driver.cpp.i
+
+graph/efds_graph_driver.s: graph/efds_graph_driver.cpp.s
+
+.PHONY : graph/efds_graph_driver.s
+
+# target to generate assembly for a file
+graph/efds_graph_driver.cpp.s:
+	cd /homes/d/p/dpal1/home/enee408m/project/efds/build && $(MAKE) -f src/CMakeFiles/efds_graph_driver.exe.dir/build.make src/CMakeFiles/efds_graph_driver.exe.dir/graph/efds_graph_driver.cpp.s
+.PHONY : graph/efds_graph_driver.cpp.s
+
 homes/d/p/dpal1/home/enee408m/project/training/src/HaarFeature.o: homes/d/p/dpal1/home/enee408m/project/training/src/HaarFeature.cpp.o
 
 .PHONY : homes/d/p/dpal1/home/enee408m/project/training/src/HaarFeature.o
@@ -411,6 +480,7 @@ help:
 	@echo "... install/strip"
 	@echo "... install/local"
 	@echo "... edit_cache"
+	@echo "... efds_graph_driver.exe"
 	@echo "... install"
 	@echo "... list_install_components"
 	@echo "... rebuild_cache"
@@ -431,6 +501,12 @@ help:
 	@echo "... actors/test_source_sink.o"
 	@echo "... actors/test_source_sink.i"
 	@echo "... actors/test_source_sink.s"
+	@echo "... graph/efds_graph.o"
+	@echo "... graph/efds_graph.i"
+	@echo "... graph/efds_graph.s"
+	@echo "... graph/efds_graph_driver.o"
+	@echo "... graph/efds_graph_driver.i"
+	@echo "... graph/efds_graph_driver.s"
 	@echo "... homes/d/p/dpal1/home/enee408m/project/training/src/HaarFeature.o"
 	@echo "... homes/d/p/dpal1/home/enee408m/project/training/src/HaarFeature.i"
 	@echo "... homes/d/p/dpal1/home/enee408m/project/training/src/HaarFeature.s"

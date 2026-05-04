@@ -1,104 +1,126 @@
-#include "efds_graph.h"
-
-#include <cstdio>
-#include <cstring>
-
-efds_graph::efds_graph(int num_stages, const char* dataset_dir, const char* output_dir, int nRows, int nCols): num_stages(num_stages)
-{
-    /* 1. Allocate FIFOs
-       One input FIFO per classifier stage, plus one for the face sink,
-       plus one abort FIFO per stage. */
-    chain_fifos.resize(num_stages);
-    abort_fifos.resize(num_stages);
-
-    for (int i = 0; i < num_stages; i++) {
-        chain_fifos[i] = welt_c_fifo_new(EFDS_FIFO_CAPACITY,
-                                         EFDS_TOKEN_SIZE, i);
-        abort_fifos[i] = welt_c_fifo_new(EFDS_FIFO_CAPACITY,
-                                         EFDS_TOKEN_SIZE,
-                                         num_stages + i);
-    }
-    face_fifo = welt_c_fifo_new(EFDS_FIFO_CAPACITY,
-                                EFDS_TOKEN_SIZE, 2 * num_stages);
-
-    /* 2. Construct the source actor 
-       The source produces IIS* tokens onto chain_fifos[0]. */
-    source = new iis_source(chain_fifos[0], dataset_dir, nRows, nCols);
-
-    /* 3. Construct the classifier actors 
-       Stage i:  reads from chain_fifos[i]
-                 writes abort to abort_fifos[i]
-                 writes continue to chain_fifos[i+1]   (or face_fifo if last) */
-    classifiers.resize(num_stages);
-    for (int i = 0; i < num_stages; i++) {
-        welt_c_fifo_pointer cont_out;
-
-        if (i == num_stages - 1) {
-            cont_out = face_fifo;
-        } else {
-            cont_out = chain_fifos[i + 1];
-        }
-
-        classifiers[i] = new classifierActor(
-        chain_fifos[i],
-        abort_fifos[i],
-        cont_out,
-        );
-    }
-
-    /* 4. Construct the sinks 
-       One nonface sink per stage; one face sink at the end. */
-    nonface_sinks.resize(num_stages);
-    char path_buf[512];
-    for (int i = 0; i < num_stages; i++) {
-        std::snprintf(path_buf, sizeof(path_buf),
-                      "%s/stage%d_nonface.txt", output_dir, i);
-        nonface_sinks[i] = new iis_sink(abort_fifos[i],
-                                        path_buf,
-                                        /*is_face=*/false);
-    }
-    printf(path_buf, sizeof(path_buf), "%s/face.txt", output_dir);
-    face_sink = new iis_sink(face_fifo, path_buf, /*is_face=*/true);
-
-    /* 5. Register actors with the graph 
-       The order doesn't affect correctness for a self-timed scheduler,
-       but listing source first and sinks last is conventional. */
-    actors.push_back(source);
-    for (int i = 0; i < num_stages; i++) {
-        actors.push_back(classifiers[i]);
-    }
-    for (int i = 0; i < num_stages; i++) {
-        actors.push_back(nonface_sinks[i]);
-    }
-    actors.push_back(face_sink);
+#include <iostream>
+#include <string>
+extern "C" {
+#include "welt_c_fifo.h"
 }
+#include "welt_cpp_graph.h"
+#include "efds_graph.h"
+#include "iis_source.h"
+#include "iis_sink.h"
+#include "classifierActor.h"
 
-efds_graph::~efds_graph() {
-    /* Delete actors. The base class may also do this depending on
-       the Welter version; if it does, drop these deletes. */
-    delete source;
-    for (auto* c : classifiers) delete c;
-    for (auto* s : nonface_sinks) delete s;
-    delete face_sink;
+using namespace std;
 
-    /* Free FIFOs. */
-    for (auto& f : chain_fifos) welt_c_fifo_free(f);
-    for (auto& f : abort_fifos) welt_c_fifo_free(f);
-    welt_c_fifo_free(face_fifo);
+efds_graph::efds_graph(const char *input_dir,
+                       const char *face_out_file,
+                       int num_stages)
+    : num_stages(num_stages)
+{
+    /* ---- FIFOs ---------------------------------------------------- */
+    /* cont_fifos has num_stages+1 entries:
+     *   cont_fifos[0]           : source output -> classifier[0] input
+     *   cont_fifos[i] (i>0)     : classifier[i-1] cont_out -> classifier[i] input
+     *   cont_fifos[num_stages]  : classifier[num_stages-1] cont_out -> face_sink
+     *
+     * abort_fifos has num_stages entries:
+     *   abort_fifos[i] : classifier[i] abort_out -> nonface_sink[i]
+     */
+    int token_size = sizeof(IIS *);
+
+    for (int i = 0; i <= num_stages; i++) {
+        cont_fifos.push_back(
+            welt_c_fifo_new(EFDS_FIFO_CAPACITY, token_size, 0));
+    }
+    for (int i = 0; i < num_stages; i++) {
+        abort_fifos.push_back(
+            welt_c_fifo_new(EFDS_FIFO_CAPACITY, token_size, 0));
+    }
+
+    /* ---- Source ---------------------------------------------------- */
+    src = new iis_source(cont_fifos[0], input_dir);
+
+    /* ---- Classifiers ----------------------------------------------- */
+    for (int i = 0; i < num_stages; i++) {
+        /* stage i: reads from cont_fifos[i],
+         *          abort -> abort_fifos[i],
+         *          cont  -> cont_fifos[i+1]           */
+        classifiers.push_back(
+            new classifierActor(cont_fifos[i],
+                                abort_fifos[i],
+                                cont_fifos[i + 1],
+                                i));
+    }
+
+    /* ---- Face sink ------------------------------------------------- */
+    face_sink = new iis_sink(cont_fifos[num_stages], face_out_file, "face");
+
+    /* ---- Non-face sinks (one per stage) ---------------------------- */
+    for (int i = 0; i < num_stages; i++) {
+        string out_name = "nonface_stage" + to_string(i) + ".txt";
+        nonface_sinks.push_back(
+            new iis_sink(abort_fifos[i], out_name.c_str(), "nonface"));
+    }
 }
 
 void efds_graph::scheduler() {
-    /* Self-timed scheduler: keep firing any enabled actor until none
-       are enabled. For a linear cascade with a finite source, this
-       drains everything once the source goes inactive. */
+    /* Drive execution until the source is exhausted and all FIFOs
+     * are drained.  We fire each actor whenever it is enabled,
+     * sweeping through source -> classifiers -> sinks in order.
+     * The outer loop keeps iterating as long as at least one actor
+     * fired during a full sweep (progress check), so we stop cleanly
+     * once everything is drained.
+     */
     bool progress = true;
     while (progress) {
         progress = false;
-        for (auto* a : actors) {
-            if (a->enable()) {
-                a->invoke();
+
+        /* Source */
+        if (src->enable()) {
+            src->invoke();
+            progress = true;
+        }
+
+        /* Classifiers in pipeline order */
+        for (int i = 0; i < num_stages; i++) {
+            if (classifiers[i]->enable()) {
+                classifiers[i]->invoke();
                 progress = true;
             }
         }
+
+        /* Face sink */
+        if (face_sink->enable()) {
+            face_sink->invoke();
+            progress = true;
+        }
+
+        /* Non-face sinks */
+        for (int i = 0; i < num_stages; i++) {
+            if (nonface_sinks[i]->enable()) {
+                nonface_sinks[i]->invoke();
+                progress = true;
+            }
+        }
+    }
+}
+
+efds_graph::~efds_graph() {
+    delete src;
+
+    for (int i = 0; i < num_stages; i++) {
+        delete classifiers[i];
+    }
+
+    delete face_sink;
+
+    for (int i = 0; i < num_stages; i++) {
+        delete nonface_sinks[i];
+    }
+
+    for (int i = 0; i <= num_stages; i++) {
+        welt_c_fifo_free(cont_fifos[i]);
+    }
+    for (int i = 0; i < num_stages; i++) {
+        welt_c_fifo_free(abort_fifos[i]);
     }
 }

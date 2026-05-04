@@ -25,9 +25,5 @@ ENHANCEMENTS, OR MODIFICATIONS.
 FIXME: Enter a brief description of the test here
 
 @author Diksha Pal.
-
-This validates that the iis_source actor correctly reads all .txt files from 
-the face validation dataset directory and passes each as an IIS token to the 
-iis_sink actor. The test passes if the number of lines logged by the sink 
-matches the number of .txt files in the input directory (487).
+This tests whether source actor properly handles empty directory
 

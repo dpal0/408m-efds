@@ -33,7 +33,8 @@ bool iis_source::enable() {
             break;
         case IIS_SOURCE_MODE_COMPLETE:
         case IIS_SOURCE_MODE_ERROR:
-            result = true;
+            result = false;
+            //cerr << "Error mode in iss_source actor" <<endl;
             break;
         default:
             result = false;
@@ -75,6 +76,7 @@ void iis_source::invoke() {
         case IIS_SOURCE_MODE_COMPLETE:
         case IIS_SOURCE_MODE_ERROR:
             // Nothing to do, stay put
+           // mode = WELT_CPP_ACTOR_MODE_ERROR;
             break;
         default:
             mode = IIS_SOURCE_MODE_ERROR;
@@ -107,6 +109,12 @@ void iis_source::reset() {
 
     // Sort for deterministic ordering across runs
     sort(file_list.begin(), file_list.end());
+
+     // Debug: report how many .txt files were found
+    //cerr << "iis_source: found " << file_list.size() << " .txt file(s) in \""  << dir_name << "\"" << endl;
+    // for (size_t i = 0; i < file_list.size(); i++) {
+    //     cerr << "  [" << i << "] " << file_list[i] << endl;
+    // }
 
     if (file_list.empty()) {
         cerr << "iis_source: no .txt files found in \"" << dir_name << "\"" << endl;
@@ -144,6 +152,10 @@ PTIS *iis_source::load_ptis(const string &path) {
                 return nullptr;
             }
             p->pix[r][c] = val;
+            if (c < 23) {
+               char comma;
+               in_stream >> comma; // consume the ','
+            }
         }
     }
     in_stream.close();
