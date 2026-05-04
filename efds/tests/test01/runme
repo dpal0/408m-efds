@@ -35,7 +35,7 @@ set -e
 
 cd "$(dirname "$0")"
 
-INPUT_DIR="./test_subwindows"
+INPUT_DIR="../../data/validation/face"
 OUTPUT_LOG="./results.txt"
 
 if [ ! -d "$INPUT_DIR" ]; then
@@ -45,9 +45,9 @@ fi
 
 ../test_source_sink.exe "$INPUT_DIR" "$OUTPUT_LOG"
 
-echo "--- $OUTPUT_LOG ---"
-cat "$OUTPUT_LOG"
-echo "--- end ---"
+# echo "--- $OUTPUT_LOG ---"
+# cat "$OUTPUT_LOG"
+# echo "--- end ---"
 
 expected=$(ls "$INPUT_DIR"/*.txt 2>/dev/null | wc -l)
 actual=$(wc -l < "$OUTPUT_LOG")

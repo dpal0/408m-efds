@@ -1,3 +1,3 @@
-1 passthrough
-2 passthrough
-3 passthrough
+test_source_sink: done. Check ./results.txt
+expected 487 tokens, got 487 lines in log
+PASS
