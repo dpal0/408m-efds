@@ -199,7 +199,7 @@ void makeTrainingReport(const string &dir, int numStages, double elapsed, int sc
 {
     ofstream reportFile(dir + "/training_report.txt");
 
-    reportFile << "Training Report" << endl;
+    reportFile << "Training Report for run " << dir << endl;
     reportFile << "=================" << endl;
     reportFile << "Number of Stages: " << numStages << endl;
     reportFile << "Total Training Time: " << elapsed << " seconds" << endl;
