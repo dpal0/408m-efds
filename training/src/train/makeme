@@ -1,2 +1,2 @@
-g++ -c main.cpp HaarFeature.cpp StrongClassifier.cpp WeakClassifier.cpp
+g++ -c main.cpp ../HaarFeature.cpp ../StrongClassifier.cpp ../WeakClassifier.cpp
 g++ -o main.exe main.o HaarFeature.o StrongClassifier.o WeakClassifier.o -lpthread
