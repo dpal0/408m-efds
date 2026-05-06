@@ -123,7 +123,13 @@ StrongClassifier readConfigFile (int stage, const string &dir) {
 /*******************************************************************************
  * makeEvalReport
  * Generates a brief evaluation report, writing it to a file in the config directory.
- * The report includes the number of stages, stage configurations, and total training time.
+ * Each line of the report is one cascade/strong classifier.
+ * Each line follows the format:
+    TP FP TN FN TPR FPR precision recall f1 elapsed_time
+ * where TP = true positive (int), FP = false positive (int), TN = tue negative (int)
+ * FN = false negative (int), TPR = true positive rate (double), FPR = false positive
+ * rate (double), precision (double), recall (double), f1 score (double), 
+ * time elapsed (double)
  ******************************************************************************/
 vector<double> makeEvalReport (const string &dir, double TPR, double FPR, int TP, int FP, int TN, int FN, double elapsed) {
     std::ofstream evalFile;

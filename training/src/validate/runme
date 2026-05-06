@@ -1,7 +1,23 @@
+#!/usr/bin/env bash
+
 dirData="../../../dataset/project-dataset/integral/validation"
-dirConfig="../../../configs/train4"
+dirConfig="../../../configs"
 
-rm $dirConfig/eval_report.txt
-./main.exe $dirData/face $dirData/non-face 12 $dirConfig
+# run validation on every trained configuration
+for trial in "$dirConfig"/*; do
+    if [ -d "$trial" ]; then
 
-# modify dirConfig address (line 2) and number of strong classifiers (line 5)
+        # housekeeping print message
+        echo "********************************************************"
+        echo "Running trial: $trial"
+        echo ""
+        # clean up directory from previous validation runs
+        rm $trial/eval_report.txt
+
+        # calculate number of cascades in the trial
+        numCascades=$(ls $trial | wc -l)
+        ((numCascades--))
+
+        ./main.exe $dirData/face $dirData/non-face $numCascades $trial
+    fi
+done
