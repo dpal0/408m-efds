@@ -121,8 +121,9 @@ StrongClassifier readConfigFile (int stage, const string &dir) {
 
 
 /*******************************************************************************
- * makeTrainingReport
- * Generates a brief training report after all stages are complete, writing it to a file in the output directory. The report includes the number of stages, stage configurations, and total training time.
+ * makeEvalReport
+ * Generates a brief evaluation report, writing it to a file in the config directory.
+ * The report includes the number of stages, stage configurations, and total training time.
  ******************************************************************************/
 vector<double> makeEvalReport (const string &dir, double TPR, double FPR, int TP, int FP, int TN, int FN, double elapsed) {
     std::ofstream evalFile;

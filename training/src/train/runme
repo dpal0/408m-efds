@@ -1,59 +1,28 @@
-timestamp=$(date+"%Y-%m-%d_%H:%M:%S")
+timestamp=$(date +"%Y-%m-%d_%H:%M:%S")
 
 # Data for training, comment out when testing/benchmarking
-# dirData="../../dataset/dataset/project-dataset/integral/training"
-# dirConfig="../../configs"
-# cd $dirConfig
-# mkdir train0
+dirData="../../../dataset/project-dataset/integral/training"
+dirConfig="../../../configs"
+cd $dirConfig
+mkdir $timestamp
+cd $timestamp
+mkdir train0
 # mkdir train1
 # mkdir train2
 # mkdir train3
 # mkdir train4
-# mkdir train5
-# mkdir train6
-# mkdir train7
-# mkdir train8
-# mkdir train9
-# cd ../training/src
+cd ../../training/src/train
 
-# Data for testing/benchmarking, comment out when training
-dirData="../test/testing-data-sm"
-dirConfig="../test/config-outputs/$timestamp"
-cd $dirConfig
-mkdir train0
-mkdir train1
-mkdir train2
-mkdir train3
-mkdir train4
-mkdir train5
-mkdir train6
-mkdir train7
-mkdir train8
-mkdir train9
-cd ../../src
-
-./main.exe $dirData/face $dirData/non-face ../cascade_configs/train0.txt $dirConfig/train0
-./main.exe $dirData/face $dirData/non-face ../cascade_configs/train1.txt $dirConfig/train1
-./main.exe $dirData/face $dirData/non-face ../cascade_configs/train2.txt $dirConfig/train2
-./main.exe $dirData/face $dirData/non-face ../cascade_configs/train3.txt $dirConfig/train3
-./main.exe $dirData/face $dirData/non-face ../cascade_configs/train4.txt $dirConfig/train4
-./main.exe $dirData/face $dirData/non-face ../cascade_configs/train5.txt $dirConfig/train5
-./main.exe $dirData/face $dirData/non-face ../cascade_configs/train6.txt $dirConfig/train6
-./main.exe $dirData/face $dirData/non-face ../cascade_configs/train7.txt $dirConfig/train7
-./main.exe $dirData/face $dirData/non-face ../cascade_configs/train8.txt $dirConfig/train8
-./main.exe $dirData/face $dirData/non-face ../cascade_configs/train9.txt $dirConfig/train9
+./main.exe $dirData/face $dirData/non-face ../../cascade_configs/train0.txt $dirConfig/$timestamp/train0
+# ./main.exe $dirData/face $dirData/non-face ../../cascade_configs/train1.txt $dirConfig/$timestamp/train1
+# ./main.exe $dirData/face $dirData/non-face ../../cascade_configs/train2.txt $dirConfig/$timestamp/train2
+# ./main.exe $dirData/face $dirData/non-face ../../cascade_configs/train3.txt $dirConfig/$timestamp/train3
+# ./main.exe $dirData/face $dirData/non-face ../../cascade_configs/train4.txt $dirConfig/$timestamp/train4
 
 # Save model configs and exit if training on aws server
-# aws s3 cp $dirConfig/train0 s3://frank99123-dcs-mission/train0--recursive
-# aws s3 cp $dirConfig/train1 s3://frank99123-dcs-mission/train1--recursive
-# aws s3 cp $dirConfig/train2 s3://frank99123-dcs-mission/train2--recursive
-# aws s3 cp $dirConfig/train3 s3://frank99123-dcs-mission/train3--recursive
-# aws s3 cp $dirConfig/train4 s3://frank99123-dcs-mission/train4--recursive
-# aws s3 cp $dirConfig/train5 s3://frank99123-dcs-mission/train5--recursive
-# aws s3 cp $dirConfig/train6 s3://frank99123-dcs-mission/train6--recursive
-# aws s3 cp $dirConfig/train7 s3://frank99123-dcs-mission/train7--recursive
-# aws s3 cp $dirConfig/train8 s3://frank99123-dcs-mission/train8--recursive
-# aws s3 cp $dirConfig/train9 s3://frank99123-dcs-mission/train9--recursive
-
-# aws s3 cp $dirConfig/$timestamp s3://frank99123-dcs-mission/$timestamp --recursive
+# aws s3 cp $dirConfig/$timestamp/train0 s3://frank99123-dcs-mission/$timestamp/train0 --recursive
+# aws s3 cp $dirConfig/$timestamp/train1 s3://frank99123-dcs-mission/$timestamp/train1 --recursive
+# aws s3 cp $dirConfig/$timestamp/train2 s3://frank99123-dcs-mission/$timestamp/train2 --recursive
+# aws s3 cp $dirConfig/$timestamp/train3 s3://frank99123-dcs-mission/$timestamp/train3 --recursive
+# aws s3 cp $dirConfig/$timestamp/train4 s3://frank99123-dcs-mission/$timestamp/train4 --recursive
 # sudo shutdown -h now
