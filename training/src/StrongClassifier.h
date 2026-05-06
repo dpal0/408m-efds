@@ -12,6 +12,10 @@ public:
     {
         WeakClassifier wc;
         float weight;
+
+        wc_weight_pair(WeakClassifier wc_, float weight_)
+        : wc(wc_), weight(weight_) {}
+
     };
 
     // constructors
