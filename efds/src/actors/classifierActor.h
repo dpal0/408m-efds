@@ -25,7 +25,7 @@ extern "C"{
 // }; Diksha commented it out because I defined it as seperate files already to include in other code as well.
 class classifierActor: public welt_cpp_actor{
 public: 
-    classifierActor(welt_c_fifo_pointer in,welt_c_fifo_pointer abort_out, welt_c_fifo_pointer cont_out, int stage);
+    classifierActor(welt_c_fifo_pointer in,welt_c_fifo_pointer abort_out, welt_c_fifo_pointer cont_out, std::string configFilePath);
     bool enable();
     void invoke();
     void reset();
@@ -36,7 +36,7 @@ private:
                             // Format: (image window pointer I,image index k)
     welt_c_fifo_pointer cont_out; //output to next classifier actor
     welt_c_fifo_pointer abort_out; //when in false mode
-    int stage; //stage num
+    std::string configFilePath;
     StrongClassifier *sc; //strong classifier object
     int mode; //actor mode. 
     IIS *currToken; //current input token (I,K)

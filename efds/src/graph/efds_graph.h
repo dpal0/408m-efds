@@ -18,7 +18,7 @@ class efds_graph : public welt_cpp_graph {
 public:
     efds_graph(const char *input_dir,
                const char *face_out_file,
-               int num_stages);
+               const char *config_dir); //diksha
 
     void scheduler();
     ~efds_graph();

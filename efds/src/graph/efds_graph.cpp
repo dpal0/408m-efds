@@ -1,5 +1,8 @@
 #include <iostream>
 #include <string>
+#include <dirent.h>
+#include <algorithm>
+#include <stdexcept> //diksha
 extern "C" {
 #include "welt_c_fifo.h"
 }
@@ -9,13 +12,31 @@ extern "C" {
 #include "iis_sink.h"
 #include "classifierActor.h"
 
+
 using namespace std;
 
 efds_graph::efds_graph(const char *input_dir,
                        const char *face_out_file,
-                       int num_stages)
-    : num_stages(num_stages)
+                       const char *config_dir) //diksha
 {
+    /* Scan config_dir for .txt files; sort so order is deterministic */ //diksha
+    vector<string> config_files;
+    DIR *dir = opendir(config_dir); //diksha
+    if (dir) {
+        struct dirent *entry;
+        while ((entry = readdir(dir)) != nullptr) { //diksha
+            string name = entry->d_name;
+            if (name.size() > 4 && name.substr(name.size() - 4) == ".txt") {
+                config_files.push_back(string(config_dir) + "/" + name); //diksha
+            }
+        }
+        closedir(dir); //diksha
+    } else { //diksha
+        throw std::runtime_error(string("efds_graph: cannot open config directory: ") + config_dir); //diksha
+    } //diksha
+    sort(config_files.begin(), config_files.end());
+    num_stages = (int)config_files.size();
+
     /* ---- FIFOs ---------------------------------------------------- */
     /* cont_fifos has num_stages+1 entries:
      *   cont_fifos[0]           : source output -> classifier[0] input
@@ -39,16 +60,13 @@ efds_graph::efds_graph(const char *input_dir,
     /* ---- Source ---------------------------------------------------- */
     src = new iis_source(cont_fifos[0], input_dir);
 
-    /* ---- Classifiers ----------------------------------------------- */
+    /* ---- Classifiers (one per .txt file found in config_dir) ------- */
     for (int i = 0; i < num_stages; i++) {
-        /* stage i: reads from cont_fifos[i],
-         *          abort -> abort_fifos[i],
-         *          cont  -> cont_fifos[i+1]           */
         classifiers.push_back(
             new classifierActor(cont_fifos[i],
                                 abort_fifos[i],
                                 cont_fifos[i + 1],
-                                i));
+                                config_files[i])); //diksha
     }
 
     /* ---- Face sink ------------------------------------------------- */

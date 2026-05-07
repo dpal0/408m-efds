@@ -5,12 +5,24 @@
 #include "classifierActor.h"
 #include "integral_image.h"
 using namespace std;
+
+//for debugging - diksha 5/5/202 2:38 pm
+static string modeName(int m) {
+    switch(m) {
+        case CONFIGURE: return "CONFIGURE";
+        case READ:      return "READ";
+        case CLASSIFY:  return "CLASSIFY";
+        case TRUE_MOD:  return "TRUE_MOD";
+        case FALSE_MOD: return "FALSE_MOD";
+        default:        return "UNKNOWN";
+    }
+}
 classifierActor::classifierActor(welt_c_fifo_pointer in,welt_c_fifo_pointer abort_out,
-                                 welt_c_fifo_pointer cont_out, int stage){
+                                 welt_c_fifo_pointer cont_out, string configFilePath){ //diksha
     this->in=in;
     this->abort_out=abort_out;
     this->cont_out=cont_out;
-    this->stage=stage;
+    this->configFilePath=configFilePath;
     this->mode=CONFIGURE;
     this->sc=nullptr;
     this->currToken=nullptr;
@@ -44,9 +56,9 @@ void classifierActor::invoke(){
     switch(mode){
         case CONFIGURE: { //load in data from config file to create strong classifier
             cout<<"Mode: "<< mode <<endl;
-            ifstream configFile("../../../../training/test/config"+to_string(stage) + ".txt"); //opens config file with current stage
-            if(!configFile.is_open()){ //when configFile can't be opened. 
-                std::cerr<<"config file error when open\n";
+            ifstream configFile(this->configFilePath); //diksha
+            if(!configFile.is_open()){ //when configFile can't be opened.
+                std::cerr<<"Error in mode "<<modeName(mode)<<": config file failed to open\n"; //diksha 5/5
                 mode=FALSE_MOD;
                 return;
             }
@@ -85,7 +97,7 @@ void classifierActor::invoke(){
             IIS *token=nullptr; //used to store input token pair (I image window,K image index)
             welt_c_fifo_read(in,&token); //store input token pair in currToken pair
             if(token==nullptr){
-                cout<<"error in read null token"<<endl;
+                cerr<<"Error in mode "<<modeName(mode)<<": null token read from input"<<endl; //diksha 
                 return;
             }
             this->currToken=token; //put into private currToken, used later in Classify function
@@ -95,19 +107,20 @@ void classifierActor::invoke(){
         case CLASSIFY:{ //classify as face or non-face
             cout<<"Mode: "<< mode <<endl;
             if(this->currToken==nullptr){
-                cout<<"error: currtoken is null"<<endl;
+                cerr<<"Error in mode "<<modeName(mode)<<": currToken is null"<<endl;
                 return;
             }
             cout<<"currToken ok"<<endl;
             PTIS *imgI=this->currToken->I; //get img from token
             if(imgI==nullptr){
-                cout<<"imgI null"<<endl;
+                cerr<<"Error in mode "<<modeName(mode)<<": imgI (image window) is null"<<endl;
                 return;
             }
             cout<<"imgI ok"<<endl;
             IntegralImage ii(imgI->pix); //calls integral image function to convert image to integral image
             cout<<"integral image created"<<endl;
             if(sc==nullptr){
+                cerr<<"Error in mode "<<modeName(mode)<<": strong classifier is null"<<endl;
                 mode=FALSE_MOD;
                 break;
             }
@@ -124,7 +137,7 @@ void classifierActor::invoke(){
         case TRUE_MOD:{
             cout<<"Mode: "<< mode <<endl;
             if(this->currToken==nullptr){
-                cout<<"error: currtoken is null"<<endl;
+                cerr<<"Error in mode "<<modeName(mode)<<": currToken is null"<<endl;
                 return;
             }
             IIS *copyToken=new IIS();
@@ -138,7 +151,7 @@ void classifierActor::invoke(){
         case FALSE_MOD:{
             cout<<"Mode: "<< mode <<endl;
             if(this->currToken==nullptr){
-                cout<<"error: currtoken is null"<<endl;
+                cerr<<"Error in mode "<<modeName(mode)<<": currToken is null"<<endl;
                 return;
             }
             IIS *copyToken=new IIS();
