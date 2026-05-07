@@ -1,10 +1,30 @@
 Tests started on:
-Sun 03 May 2026 07:32:37 PM EDT
+Thu 07 May 2026 01:56:07 AM EDT
 -----------------------------------------------------
 Test result for:
 /homes/d/p/dpal1/home/enee408m/project/efds/tests/test01
 -----------------------------------------------------
 Error comparison result for: 
 /homes/d/p/dpal1/home/enee408m/project/efds/tests/test01
+-----------------------------------------------------
+Test result for:
+/homes/d/p/dpal1/home/enee408m/project/efds/tests/test02
+-----------------------------------------------------
+Error comparison result for: 
+/homes/d/p/dpal1/home/enee408m/project/efds/tests/test02
+-----------------------------------------------------
+Test result for:
+/homes/d/p/dpal1/home/enee408m/project/efds/tests/test03
+-----------------------------------------------------
+Error comparison result for: 
+/homes/d/p/dpal1/home/enee408m/project/efds/tests/test03
+-----------------------------------------------------
+Test result for:
+/homes/d/p/dpal1/home/enee408m/project/efds/tests/test04
+Files ../correct-output.txt and output.txt differ
+-----------------------------------------------------
+Error comparison result for: 
+/homes/d/p/dpal1/home/enee408m/project/efds/tests/test04
+Files ../expected-errors.txt and error_output.txt differ
 Tests completed on:
-Sun 03 May 2026 07:32:37 PM EDT
+Thu 07 May 2026 01:56:09 AM EDT

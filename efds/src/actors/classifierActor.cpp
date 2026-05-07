@@ -55,7 +55,7 @@ bool classifierActor::enable(){
 void classifierActor::invoke(){
     switch(mode){
         case CONFIGURE: { //load in data from config file to create strong classifier
-            cout<<"Mode: "<< mode <<endl;
+            cout<<"classifierActor is in \""<<modeName(mode)<<"\" mode"<<endl;
             ifstream configFile(this->configFilePath); //diksha
             if(!configFile.is_open()){ //when configFile can't be opened.
                 std::cerr<<"Error in mode "<<modeName(mode)<<": config file failed to open\n"; //diksha 5/5
@@ -93,7 +93,7 @@ void classifierActor::invoke(){
             break;
         }
         case READ: { //read input
-            cout<<"Mode: "<< mode <<endl;
+            cout<<"classifierActor is in \""<<modeName(mode)<<"\" mode"<<endl;
             IIS *token=nullptr; //used to store input token pair (I image window,K image index)
             welt_c_fifo_read(in,&token); //store input token pair in currToken pair
             if(token==nullptr){
@@ -105,7 +105,7 @@ void classifierActor::invoke(){
             break;
         }
         case CLASSIFY:{ //classify as face or non-face
-            cout<<"Mode: "<< mode <<endl;
+            cout<<"classifierActor is in \""<<modeName(mode)<<"\" mode"<<endl;
             if(this->currToken==nullptr){
                 cerr<<"Error in mode "<<modeName(mode)<<": currToken is null"<<endl;
                 return;
@@ -135,7 +135,7 @@ void classifierActor::invoke(){
             break;
         }
         case TRUE_MOD:{
-            cout<<"Mode: "<< mode <<endl;
+            cout<<"classifierActor is in \""<<modeName(mode)<<"\" mode"<<endl;
             if(this->currToken==nullptr){
                 cerr<<"Error in mode "<<modeName(mode)<<": currToken is null"<<endl;
                 return;
@@ -149,7 +149,7 @@ void classifierActor::invoke(){
             break;
         }
         case FALSE_MOD:{
-            cout<<"Mode: "<< mode <<endl;
+            cout<<"classifierActor is in \""<<modeName(mode)<<"\" mode"<<endl;
             if(this->currToken==nullptr){
                 cerr<<"Error in mode "<<modeName(mode)<<": currToken is null"<<endl;
                 return;

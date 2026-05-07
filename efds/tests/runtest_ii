@@ -1,5 +1,0 @@
-g++ -c ii.cpp
-g++ -c ii_driver.cpp
-g++ -o ii_driver.exe ii_driver.o ii.o
-rm ii_driver.o ii.o
-./ii_driver.exe 

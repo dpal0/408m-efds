@@ -26,7 +26,7 @@ efds_graph::efds_graph(const char *input_dir,
         struct dirent *entry;
         while ((entry = readdir(dir)) != nullptr) { //diksha
             string name = entry->d_name;
-            if (name.size() > 4 && name.substr(name.size() - 4) == ".txt") {
+            if (name.size() > 4 && name.substr(name.size() - 4) == ".txt" && name.substr(0, 6) == "config") {
                 config_files.push_back(string(config_dir) + "/" + name); //diksha
             }
         }

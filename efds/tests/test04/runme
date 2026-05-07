@@ -32,4 +32,6 @@
 #!/bin/bash
 # runme - sanity check for iis_source and iis_sink
 #!/bin/bash
-../efds_graph_driver.exe ../../data/validation/face/ face.txt 3
+#../efds_graph_driver.exe ../../data/validation/face/ face.txt ../../../training/src/config
+#for the actual config files in the project: ../../../configs/train0 etc...
+../efds_graph_driver.exe ./test_subwindows face.txt ../../../training/src/config

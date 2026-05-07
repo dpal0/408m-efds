@@ -25,5 +25,20 @@ ENHANCEMENTS, OR MODIFICATIONS.
 FIXME: Enter a brief description of the test here
 
 @author Diksha Pal.
-This is a baisc test end to end 3 stage for the graph.
+
+This test runs the full EFDS dataflow graph end-to-end with a small set of 24x24 image inputs. 
+The source, classifier chain, and sink actors were each tested individually beforehand;
+this test verifies that they work together correctly as a complete graph.
+
+It takes an input directory of sub-window .txt files, an output file for face detections, and 
+a config directory containing one .txt classifier config per cascade stage. The number of 
+classifier stages is determined automatically from however many files with prefix config are 
+in the config directory.
+
+Each classifier stage routes rejected sub-windows to its own nonface_stage<n>.txt abort output. 
+Sub-windows that pass all stages are written to face.txt as face detections.
+
+Small input directory is (test_subwindows) with a handful of images to verify correct flow. 
+Future tests will use larger and more varied input directories to evaluate detection accuracy 
+across different training configurations.
 
