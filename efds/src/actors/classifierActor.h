@@ -6,7 +6,7 @@ extern "C"{
 }
 #include "welt_cpp_actor.h"
 #include "welt_cpp_graph.h"
-#include "StrongClassifier.h"
+#include "../../../training/src/StrongClassifier.h"
 #include "iis.h"
 #include "ptis.h"
 #define CONFIGURE 1

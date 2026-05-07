@@ -11,6 +11,7 @@ for trial in "$dirConfig"/*; do
         echo "********************************************************"
         echo "Running trial: $trial"
         echo ""
+        
         # clean up directory from previous validation runs
         rm $trial/eval_report.txt
 

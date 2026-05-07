@@ -1,4 +1,4 @@
-# Install script for directory: /homes/c/m/cmneu/home/enee408m/c-wharff/team4/efds/src
+# Install script for directory: /homes/s/r/srod26/home/team4/efds/src
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
@@ -39,68 +39,68 @@ endif()
 
 if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_COMPONENT)
   list(APPEND CMAKE_ABSOLUTE_DESTINATION_FILES
-   "/homes/c/m/cmneu/home/enee408m/c-wharff/team4/efds/libefds.a")
+   "/homes/s/r/srod26/home/team4/efds/libefds.a")
   if(CMAKE_WARN_ON_ABSOLUTE_INSTALL_DESTINATION)
     message(WARNING "ABSOLUTE path INSTALL DESTINATION : ${CMAKE_ABSOLUTE_DESTINATION_FILES}")
   endif()
   if(CMAKE_ERROR_ON_ABSOLUTE_INSTALL_DESTINATION)
     message(FATAL_ERROR "ABSOLUTE path INSTALL DESTINATION forbidden (by caller): ${CMAKE_ABSOLUTE_DESTINATION_FILES}")
   endif()
-file(INSTALL DESTINATION "/homes/c/m/cmneu/home/enee408m/c-wharff/team4/efds" TYPE STATIC_LIBRARY FILES "/homes/c/m/cmneu/home/enee408m/c-wharff/team4/efds/build/src/libefds.a")
+file(INSTALL DESTINATION "/homes/s/r/srod26/home/team4/efds" TYPE STATIC_LIBRARY FILES "/homes/s/r/srod26/home/team4/efds/build/src/libefds.a")
 endif()
 
 if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_COMPONENT)
-  if(EXISTS "$ENV{DESTDIR}/homes/c/m/cmneu/home/enee408m/c-wharff/team4/efds/tests/test_source_sink.exe" AND
-     NOT IS_SYMLINK "$ENV{DESTDIR}/homes/c/m/cmneu/home/enee408m/c-wharff/team4/efds/tests/test_source_sink.exe")
+  if(EXISTS "$ENV{DESTDIR}/homes/s/r/srod26/home/team4/efds/tests/test_source_sink.exe" AND
+     NOT IS_SYMLINK "$ENV{DESTDIR}/homes/s/r/srod26/home/team4/efds/tests/test_source_sink.exe")
     file(RPATH_CHECK
-         FILE "$ENV{DESTDIR}/homes/c/m/cmneu/home/enee408m/c-wharff/team4/efds/tests/test_source_sink.exe"
+         FILE "$ENV{DESTDIR}/homes/s/r/srod26/home/team4/efds/tests/test_source_sink.exe"
          RPATH "")
   endif()
   list(APPEND CMAKE_ABSOLUTE_DESTINATION_FILES
-   "/homes/c/m/cmneu/home/enee408m/c-wharff/team4/efds/tests/test_source_sink.exe")
+   "/homes/s/r/srod26/home/team4/efds/tests/test_source_sink.exe")
   if(CMAKE_WARN_ON_ABSOLUTE_INSTALL_DESTINATION)
     message(WARNING "ABSOLUTE path INSTALL DESTINATION : ${CMAKE_ABSOLUTE_DESTINATION_FILES}")
   endif()
   if(CMAKE_ERROR_ON_ABSOLUTE_INSTALL_DESTINATION)
     message(FATAL_ERROR "ABSOLUTE path INSTALL DESTINATION forbidden (by caller): ${CMAKE_ABSOLUTE_DESTINATION_FILES}")
   endif()
-file(INSTALL DESTINATION "/homes/c/m/cmneu/home/enee408m/c-wharff/team4/efds/tests" TYPE EXECUTABLE FILES "/homes/c/m/cmneu/home/enee408m/c-wharff/team4/efds/build/src/test_source_sink.exe")
-  if(EXISTS "$ENV{DESTDIR}/homes/c/m/cmneu/home/enee408m/c-wharff/team4/efds/tests/test_source_sink.exe" AND
-     NOT IS_SYMLINK "$ENV{DESTDIR}/homes/c/m/cmneu/home/enee408m/c-wharff/team4/efds/tests/test_source_sink.exe")
+file(INSTALL DESTINATION "/homes/s/r/srod26/home/team4/efds/tests" TYPE EXECUTABLE FILES "/homes/s/r/srod26/home/team4/efds/build/src/test_source_sink.exe")
+  if(EXISTS "$ENV{DESTDIR}/homes/s/r/srod26/home/team4/efds/tests/test_source_sink.exe" AND
+     NOT IS_SYMLINK "$ENV{DESTDIR}/homes/s/r/srod26/home/team4/efds/tests/test_source_sink.exe")
     file(RPATH_CHANGE
-         FILE "$ENV{DESTDIR}/homes/c/m/cmneu/home/enee408m/c-wharff/team4/efds/tests/test_source_sink.exe"
+         FILE "$ENV{DESTDIR}/homes/s/r/srod26/home/team4/efds/tests/test_source_sink.exe"
          OLD_RPATH "/dept/enee/software/dspcad/common/welter/weltergen:"
          NEW_RPATH "")
     if(CMAKE_INSTALL_DO_STRIP)
-      execute_process(COMMAND "/usr/bin/strip" "$ENV{DESTDIR}/homes/c/m/cmneu/home/enee408m/c-wharff/team4/efds/tests/test_source_sink.exe")
+      execute_process(COMMAND "/usr/bin/strip" "$ENV{DESTDIR}/homes/s/r/srod26/home/team4/efds/tests/test_source_sink.exe")
     endif()
   endif()
 endif()
 
 if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_COMPONENT)
-  if(EXISTS "$ENV{DESTDIR}/homes/c/m/cmneu/home/enee408m/c-wharff/team4/efds/tests/efds_graph_driver.exe" AND
-     NOT IS_SYMLINK "$ENV{DESTDIR}/homes/c/m/cmneu/home/enee408m/c-wharff/team4/efds/tests/efds_graph_driver.exe")
+  if(EXISTS "$ENV{DESTDIR}/homes/s/r/srod26/home/team4/efds/tests/efds_graph_driver.exe" AND
+     NOT IS_SYMLINK "$ENV{DESTDIR}/homes/s/r/srod26/home/team4/efds/tests/efds_graph_driver.exe")
     file(RPATH_CHECK
-         FILE "$ENV{DESTDIR}/homes/c/m/cmneu/home/enee408m/c-wharff/team4/efds/tests/efds_graph_driver.exe"
+         FILE "$ENV{DESTDIR}/homes/s/r/srod26/home/team4/efds/tests/efds_graph_driver.exe"
          RPATH "")
   endif()
   list(APPEND CMAKE_ABSOLUTE_DESTINATION_FILES
-   "/homes/c/m/cmneu/home/enee408m/c-wharff/team4/efds/tests/efds_graph_driver.exe")
+   "/homes/s/r/srod26/home/team4/efds/tests/efds_graph_driver.exe")
   if(CMAKE_WARN_ON_ABSOLUTE_INSTALL_DESTINATION)
     message(WARNING "ABSOLUTE path INSTALL DESTINATION : ${CMAKE_ABSOLUTE_DESTINATION_FILES}")
   endif()
   if(CMAKE_ERROR_ON_ABSOLUTE_INSTALL_DESTINATION)
     message(FATAL_ERROR "ABSOLUTE path INSTALL DESTINATION forbidden (by caller): ${CMAKE_ABSOLUTE_DESTINATION_FILES}")
   endif()
-file(INSTALL DESTINATION "/homes/c/m/cmneu/home/enee408m/c-wharff/team4/efds/tests" TYPE EXECUTABLE FILES "/homes/c/m/cmneu/home/enee408m/c-wharff/team4/efds/build/src/efds_graph_driver.exe")
-  if(EXISTS "$ENV{DESTDIR}/homes/c/m/cmneu/home/enee408m/c-wharff/team4/efds/tests/efds_graph_driver.exe" AND
-     NOT IS_SYMLINK "$ENV{DESTDIR}/homes/c/m/cmneu/home/enee408m/c-wharff/team4/efds/tests/efds_graph_driver.exe")
+file(INSTALL DESTINATION "/homes/s/r/srod26/home/team4/efds/tests" TYPE EXECUTABLE FILES "/homes/s/r/srod26/home/team4/efds/build/src/efds_graph_driver.exe")
+  if(EXISTS "$ENV{DESTDIR}/homes/s/r/srod26/home/team4/efds/tests/efds_graph_driver.exe" AND
+     NOT IS_SYMLINK "$ENV{DESTDIR}/homes/s/r/srod26/home/team4/efds/tests/efds_graph_driver.exe")
     file(RPATH_CHANGE
-         FILE "$ENV{DESTDIR}/homes/c/m/cmneu/home/enee408m/c-wharff/team4/efds/tests/efds_graph_driver.exe"
+         FILE "$ENV{DESTDIR}/homes/s/r/srod26/home/team4/efds/tests/efds_graph_driver.exe"
          OLD_RPATH "/dept/enee/software/dspcad/common/welter/weltergen:"
          NEW_RPATH "")
     if(CMAKE_INSTALL_DO_STRIP)
-      execute_process(COMMAND "/usr/bin/strip" "$ENV{DESTDIR}/homes/c/m/cmneu/home/enee408m/c-wharff/team4/efds/tests/efds_graph_driver.exe")
+      execute_process(COMMAND "/usr/bin/strip" "$ENV{DESTDIR}/homes/s/r/srod26/home/team4/efds/tests/efds_graph_driver.exe")
     endif()
   endif()
 endif()

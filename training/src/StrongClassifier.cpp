@@ -43,6 +43,7 @@ int StrongClassifier::classify(const std::vector<std::vector<int>> &integralImag
 }
 
 /** Training method, generates a linear combination of weak classifiers using AdaBoost algorithm and saves it in the strong classifier. */
+#ifdef TRAINING
 void StrongClassifier::train(std::vector<HaarFeature> features, std::vector<std::vector<std::vector<int>>> &positive_set, std::vector<std::vector<std::vector<int>>> &negative_set, int rounds, int stage, int stages, float targetTPR)
 {
   int num_features = features.size();
@@ -210,4 +211,4 @@ void StrongClassifier::train(std::vector<HaarFeature> features, std::vector<std:
     this->threshold -= 0.005f;
   }
 }
-
+#endif
