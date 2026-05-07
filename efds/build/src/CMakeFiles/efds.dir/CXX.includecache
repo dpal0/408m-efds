@@ -6,41 +6,11 @@
 
 #IncludeRegexTransform: 
 
-/homes/s/r/srod26/home/team4/training/src/HaarFeature.h
+/homes/s/r/srod26/home/team4/efds/src/actors/integral_image.cpp
+integral_image.h
+/homes/s/r/srod26/home/team4/efds/src/actors/integral_image.h
+
+/homes/s/r/srod26/home/team4/efds/src/actors/integral_image.h
 vector
 -
-
-/homes/s/r/srod26/home/team4/training/src/StrongClassifier.cpp
-iostream
--
-typeinfo
--
-thread
--
-mutex
--
-atomic
--
-StrongClassifier.h
-/homes/s/r/srod26/home/team4/training/src/StrongClassifier.h
-
-/homes/s/r/srod26/home/team4/training/src/StrongClassifier.h
-WeakClassifier.h
-/homes/s/r/srod26/home/team4/training/src/WeakClassifier.h
-vector
--
-cmath
--
-algorithm
--
-numeric
--
-iostream
--
-
-/homes/s/r/srod26/home/team4/training/src/WeakClassifier.h
-vector
--
-HaarFeature.h
-/homes/s/r/srod26/home/team4/training/src/HaarFeature.h
 
