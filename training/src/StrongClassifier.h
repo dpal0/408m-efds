@@ -32,7 +32,7 @@ public:
     void set_weak_classifiers(std::vector<wc_weight_pair> weak_classifiers) { this->weak_classifiers = weak_classifiers; }
 
     int classify(const std::vector<std::vector<int>> &integralImage);
-    void train(std::vector<HaarFeature> features, std::vector<std::vector<std::vector<int>>> &positive_set, std::vector<std::vector<std::vector<int>>> &negative_set, int rounds, int stage, int stages);
+    void train(std::vector<HaarFeature> features, std::vector<std::vector<std::vector<int>>> &positive_set, std::vector<std::vector<std::vector<int>>> &negative_set, int rounds, int stage, int stages, float targetTPR);
 
 protected:
     std::vector<wc_weight_pair> weak_classifiers;

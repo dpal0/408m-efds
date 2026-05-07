@@ -43,7 +43,7 @@ int StrongClassifier::classify(const std::vector<std::vector<int>> &integralImag
 }
 
 /** Training method, generates a linear combination of weak classifiers using AdaBoost algorithm and saves it in the strong classifier. */
-void StrongClassifier::train(std::vector<HaarFeature> features, std::vector<std::vector<std::vector<int>>> &positive_set, std::vector<std::vector<std::vector<int>>> &negative_set, int rounds, int stage, int stages)
+void StrongClassifier::train(std::vector<HaarFeature> features, std::vector<std::vector<std::vector<int>>> &positive_set, std::vector<std::vector<std::vector<int>>> &negative_set, int rounds, int stage, int stages, float targetTPR)
 {
   int num_features = features.size();
   int num_positive = positive_set.size();
@@ -190,5 +190,23 @@ void StrongClassifier::train(std::vector<HaarFeature> features, std::vector<std:
     this->weak_classifiers.push_back({wc[best_index], alpha});
     // Update threshold based on the error of the selected weak classifier, the constant 0.5 can be experimented with to find best performance
     this->threshold += 0.5 * std::log(1 / beta);
+  }
+  // Sweep threshold down until target TPR is met
+  while (true)
+  {
+    int tp = 0;
+    for (vector<vector<int>> img : positive_set)
+    {
+      if (this->classify(img) == 1)
+      {
+        tp++;
+      }
+    }
+
+    float tpr = (float)tp / num_positive;
+    if (tpr >= targetTPR)
+      break;
+
+    this->threshold -= 0.005f;
   }
 }
