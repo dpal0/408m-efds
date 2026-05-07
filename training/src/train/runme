@@ -2,6 +2,7 @@ timestamp=$(date +"%Y-%m-%d_%H:%M:%S")
 
 # Data for training, comment out when testing/benchmarking
 dirData="../../../dataset/project-dataset/integral/training"
+# dirData="../../test/testing-data-sm"
 dirConfig="../../../configs"
 cd $dirConfig
 mkdir $timestamp

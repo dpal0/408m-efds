@@ -10,15 +10,9 @@
 vector
 -
 
-../../training/src/WeakClassifier.h
-vector
--
-HaarFeature.h
-../../training/src/HaarFeature.h
-
-../src/actors/StrongClassifier.h
+../../training/src/StrongClassifier.h
 WeakClassifier.h
-../src/actors/WeakClassifier.h
+../../training/src/WeakClassifier.h
 vector
 -
 cmath
@@ -30,6 +24,12 @@ numeric
 iostream
 -
 
+../../training/src/WeakClassifier.h
+vector
+-
+HaarFeature.h
+../../training/src/HaarFeature.h
+
 ../src/actors/classifierActor.h
 welt_c_util.h
 ../src/actors/welt_c_util.h
@@ -39,8 +39,8 @@ welt_cpp_actor.h
 ../src/actors/welt_cpp_actor.h
 welt_cpp_graph.h
 ../src/actors/welt_cpp_graph.h
-StrongClassifier.h
-../src/actors/StrongClassifier.h
+../../../training/src/StrongClassifier.h
+../../training/src/StrongClassifier.h
 iis.h
 ../src/actors/iis.h
 ptis.h
@@ -132,27 +132,27 @@ vector
 welt_c_fifo.h
 /dept/enee/software/dspcad/common/welter/welter/lang/cpp/src/tools/graph/welt_c_fifo.h
 
-/homes/c/m/cmneu/home/enee408m/c-wharff/team4/efds/src/graph/efds_graph.h
+/homes/s/r/srod26/home/team4/efds/src/graph/efds_graph.h
 vector
 -
 string
 -
 welt_c_fifo.h
-/homes/c/m/cmneu/home/enee408m/c-wharff/team4/efds/src/graph/welt_c_fifo.h
+/homes/s/r/srod26/home/team4/efds/src/graph/welt_c_fifo.h
 welt_cpp_graph.h
-/homes/c/m/cmneu/home/enee408m/c-wharff/team4/efds/src/graph/welt_cpp_graph.h
+/homes/s/r/srod26/home/team4/efds/src/graph/welt_cpp_graph.h
 iis_source.h
-/homes/c/m/cmneu/home/enee408m/c-wharff/team4/efds/src/graph/iis_source.h
+/homes/s/r/srod26/home/team4/efds/src/graph/iis_source.h
 iis_sink.h
-/homes/c/m/cmneu/home/enee408m/c-wharff/team4/efds/src/graph/iis_sink.h
+/homes/s/r/srod26/home/team4/efds/src/graph/iis_sink.h
 classifierActor.h
-/homes/c/m/cmneu/home/enee408m/c-wharff/team4/efds/src/graph/classifierActor.h
+/homes/s/r/srod26/home/team4/efds/src/graph/classifierActor.h
 
-/homes/c/m/cmneu/home/enee408m/c-wharff/team4/efds/src/graph/efds_graph_driver.cpp
+/homes/s/r/srod26/home/team4/efds/src/graph/efds_graph_driver.cpp
 iostream
 -
 welt_c_fifo.h
-/homes/c/m/cmneu/home/enee408m/c-wharff/team4/efds/src/graph/welt_c_fifo.h
+/homes/s/r/srod26/home/team4/efds/src/graph/welt_c_fifo.h
 efds_graph.h
-/homes/c/m/cmneu/home/enee408m/c-wharff/team4/efds/src/graph/efds_graph.h
+/homes/s/r/srod26/home/team4/efds/src/graph/efds_graph.h
 

@@ -296,11 +296,15 @@ int main(int argc, char **argv)
         sc.train(features, face_training, currentNegatives, sc_rounds[stage], stage + 1, numStages, 0.99f);
 
         // nonface_training shrinks each stage: only false positives from the previous stage are passed to the next stage as negatives.
-        for (size_t i = 0; i < currentNegatives.size(); i++)
+        for (size_t i = 0; i < currentNegatives.size(); )
         {
             if (!sc.classify(currentNegatives[i]))
             {
                 currentNegatives.erase(currentNegatives.begin() + i);
+            }
+            else
+            {
+                i++;
             }
         }
 

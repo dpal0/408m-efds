@@ -219,14 +219,18 @@ int main(int argc, char **argv)
         StrongClassifier sc = readConfigFile (stage, configDir); 
 
         // nonface_training shrinks each stage: only false positives from the previous stage are passed to the next stage as negatives.
-        for (size_t i = 0; i < currentPositives.size(); i++) {
+        for (size_t i = 0; i < currentPositives.size(); ) {
             if (!sc.classify(currentPositives[i]))
                 currentPositives.erase(currentPositives.begin() + i);
+            else
+                i++;
         }
-
-        for (size_t i = 0; i < currentNegatives.size(); i++) {
+        
+        for (size_t i = 0; i < currentNegatives.size(); ) {
             if (!sc.classify(currentNegatives[i]))
                 currentNegatives.erase(currentNegatives.begin() + i);
+            else
+                i++;
         }
 
         // timer (one stage) elapsed

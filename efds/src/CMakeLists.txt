@@ -16,7 +16,7 @@ set(EFDS_SRCS
     ${EFDS_GRAPH}/efds_graph.cpp
     ${TRAINING_SRC}/HaarFeature.cpp
     ${TRAINING_SRC}/WeakClassifier.cpp
-    ${EFDS_ACTORS}/StrongClassifier.cpp
+    ${TRAINING_SRC}/StrongClassifier.cpp
 )
 
 # Build the efds static library (this produces libefds.a, like libcount_bright_pixels_src.a)

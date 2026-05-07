@@ -1,8 +1,0 @@
-Training Report for run ../../../configs/2026-05-07_11:49:32/train8
-=================
-Number of Stages: 2
-Total Training Time: 14 seconds
-
-Stage Configurations:
-Stage 1: 1 weak classifiers
-Stage 2: 1 weak classifiers
