@@ -1,0 +1,10 @@
+Tests started on:
+Tue 05 May 2026 02:21:06 PM EDT
+-----------------------------------------------------
+Test result for:
+/homes/d/p/dpal1/home/enee408m/project/efds/tests/test01
+-----------------------------------------------------
+Error comparison result for: 
+/homes/d/p/dpal1/home/enee408m/project/efds/tests/test01
+Tests completed on:
+Tue 05 May 2026 02:21:07 PM EDT

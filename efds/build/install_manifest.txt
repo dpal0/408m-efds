@@ -1,0 +1,3 @@
+/homes/d/p/dpal1/home/enee408m/project/efds/libefds.a
+/homes/d/p/dpal1/home/enee408m/project/efds/tests/test_source_sink.exe
+/homes/d/p/dpal1/home/enee408m/project/efds/tests/efds_graph_driver.exe

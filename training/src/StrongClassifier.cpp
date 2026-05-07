@@ -34,7 +34,7 @@ int StrongClassifier::classify(const std::vector<std::vector<int>> &integralImag
   // Sum the weighted outputs of each weak classifier
   for (size_t i = 0; i < this->weak_classifiers.size(); i++)
   {
-    int h = this->weak_classifiers[i].wc.classify(integralImage);
+    int h = this->weak_classifiers[i].wc->classify(integralImage);
 
     sum += this->weak_classifiers[i].weight * h;
   }
@@ -96,6 +96,7 @@ void StrongClassifier::train(std::vector<HaarFeature> features, std::vector<std:
 
     // Train weak classifiers using sample weights and record error for each
     std::vector<float> wc_errors(num_features);
+
     time_t start = time(NULL);
 
     // Variables to manage multithreading of wc training
@@ -137,6 +138,22 @@ void StrongClassifier::train(std::vector<HaarFeature> features, std::vector<std:
     for (unsigned int i = 0; i < num_threads; i++)
     {
       threads.emplace_back(worker, i);
+/* INCOMING CHANGES FROM dpal START
+    cout << "Number of features: " << num_features << endl;
+    for (size_t i = 0; i < num_features; i++)
+    {
+      time_t start = time(NULL);
+      wc_errors[i] = wc[i].train(images, labels, sample_weights);
+      if (i % 1000 == 0) {
+        time_t now = time(NULL);
+        cout << "Trained weak classifier " << i << " with error " << wc_errors[i] << " time elapsed: " << difftime(now, start) << " seconds" << endl;
+        start = time(NULL);
+      }
+      if (wc_errors[i] == 0) {
+        cout << "Weak Classifier " << i << ": Error = " << wc_errors[i] << endl;
+      }
+INCOMING CHANGES FROM dpal END
+*/
     }
 
     // Wait for all threads before proceeding
@@ -208,5 +225,13 @@ void StrongClassifier::train(std::vector<HaarFeature> features, std::vector<std:
       break;
 
     this->threshold -= 0.005f;
+/*INCOMGING CHANGES FROM dpal START
+    cout << "Round " << t + 1 << ": Selected weak classifier " << best_index << " with error " << best_error << " and alpha " << alpha << endl;
+    // Final step: Store the selected weak classifier and its coefficient in the strong classifier
+    WeakClassifier *wc_ptr=new WeakClassifier(wc[best_index]);
+    this->weak_classifiers.push_back({wc_ptr,alpha});
+    this->threshold += 0.5 * std::log(1 / beta); // Update threshold based on the error of the selected weak classifier
+INCOMING CHANGES FROM dpal END
+*/
   }
 }

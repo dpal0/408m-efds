@@ -4,13 +4,14 @@
 #include <cmath>
 #include <algorithm>
 #include <numeric>
+#include <iostream>
 
 class StrongClassifier
 {
 public:
     struct wc_weight_pair
     {
-        WeakClassifier wc;
+        WeakClassifier *wc;
         float weight;
 
         wc_weight_pair(WeakClassifier wc_, float weight_)
@@ -25,7 +26,9 @@ public:
 
     // accessors
     std::vector<wc_weight_pair> getWeakClassifiers() { return weak_classifiers; }
-    float getThreshold() { return threshold; }
+    float getThreshold() { 
+        cout << "Threshold: " << threshold << endl;
+        return threshold; }
 
     // mutators
     void set_threshold(float threshold) { this->threshold = threshold; }
