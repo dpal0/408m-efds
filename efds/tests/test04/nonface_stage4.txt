@@ -1,10 +1,2 @@
-10 nonface
-24 nonface
-25 nonface
-64 nonface
-79 nonface
-99 nonface
-164 nonface
-169 nonface
-264 nonface
-339 nonface
+107 nonface
+358 nonface

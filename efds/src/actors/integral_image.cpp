@@ -7,12 +7,17 @@ IntegralImage::IntegralImage(const vector<vector<int>> &img) {
 
     for (int r = 0; r < nRows; r++) {
         for (int c = 0; c < nCols; c++) {
-            int above = (r > 0) ? ii[r-1][c] : 0;
-            int left  = (c > 0) ? ii[r][c-1] : 0;
-            int diag  = (r > 0 && c > 0) ? ii[r-1][c-1] : 0;
-            ii[r][c] = img[r][c] + above + left - diag;
+            if (r == 0 && c == 0) 
+                ii[r][c] = img[r][c];
+            else if (r == 0)
+                ii[r][c] = img[r][c] + ii[r][c-1];
+            else if (c == 0)
+                ii[r][c] = img[r][c] + ii[r-1][c];
+            else 
+                ii[r][c] = img[r][c] - img[r-1][c-1] + img[r-1][c] + img[r][c-1];
         }
     }
+    
 }
 
 int IntegralImage::rectangleSum(int r, int c, int h, int w) const {
