@@ -6,14 +6,14 @@ dirConfig="../../../configs"
 cd $dirConfig
 mkdir $timestamp
 cd $timestamp
-mkdir train0
+mkdir train8
 # mkdir train1
 # mkdir train2
 # mkdir train3
 # mkdir train4
 cd ../../training/src/train
 
-./main.exe $dirData/face $dirData/non-face ../../cascade_configs/train0.txt $dirConfig/$timestamp/train0
+./main.exe $dirData/face $dirData/non-face ../../cascade_configs/train8.txt $dirConfig/$timestamp/train8
 # ./main.exe $dirData/face $dirData/non-face ../../cascade_configs/train1.txt $dirConfig/$timestamp/train1
 # ./main.exe $dirData/face $dirData/non-face ../../cascade_configs/train2.txt $dirConfig/$timestamp/train2
 # ./main.exe $dirData/face $dirData/non-face ../../cascade_configs/train3.txt $dirConfig/$timestamp/train3

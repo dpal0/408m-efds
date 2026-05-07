@@ -1,4 +1,4 @@
-# Install script for directory: /homes/d/p/dpal1/home/enee408m/project/efds
+# Install script for directory: /homes/c/m/cmneu/home/enee408m/c-wharff/team4/efds
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
@@ -39,7 +39,7 @@ endif()
 
 if(NOT CMAKE_INSTALL_LOCAL_ONLY)
   # Include the install script for each subdirectory.
-  include("/homes/d/p/dpal1/home/enee408m/project/efds/build/src/cmake_install.cmake")
+  include("/homes/c/m/cmneu/home/enee408m/c-wharff/team4/efds/build/src/cmake_install.cmake")
 
 endif()
 
@@ -51,5 +51,5 @@ endif()
 
 string(REPLACE ";" "\n" CMAKE_INSTALL_MANIFEST_CONTENT
        "${CMAKE_INSTALL_MANIFEST_FILES}")
-file(WRITE "/homes/d/p/dpal1/home/enee408m/project/efds/build/${CMAKE_INSTALL_MANIFEST}"
+file(WRITE "/homes/c/m/cmneu/home/enee408m/c-wharff/team4/efds/build/${CMAKE_INSTALL_MANIFEST}"
      "${CMAKE_INSTALL_MANIFEST_CONTENT}")

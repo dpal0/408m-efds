@@ -11,7 +11,7 @@ class StrongClassifier
 public:
     struct wc_weight_pair
     {
-        WeakClassifier *wc;
+        WeakClassifier wc;
         float weight;
 
         wc_weight_pair(WeakClassifier wc_, float weight_)

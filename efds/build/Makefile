@@ -48,10 +48,10 @@ RM = /usr/bin/cmake -E remove -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /homes/d/p/dpal1/home/enee408m/project/efds
+CMAKE_SOURCE_DIR = /homes/c/m/cmneu/home/enee408m/c-wharff/team4/efds
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /homes/d/p/dpal1/home/enee408m/project/efds/build
+CMAKE_BINARY_DIR = /homes/c/m/cmneu/home/enee408m/c-wharff/team4/efds/build
 
 #=============================================================================
 # Targets provided globally by CMake.
@@ -126,9 +126,9 @@ edit_cache/fast: edit_cache
 
 # The main all target
 all: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /homes/d/p/dpal1/home/enee408m/project/efds/build/CMakeFiles /homes/d/p/dpal1/home/enee408m/project/efds/build/CMakeFiles/progress.marks
+	$(CMAKE_COMMAND) -E cmake_progress_start /homes/c/m/cmneu/home/enee408m/c-wharff/team4/efds/build/CMakeFiles /homes/c/m/cmneu/home/enee408m/c-wharff/team4/efds/build/CMakeFiles/progress.marks
 	$(MAKE) -f CMakeFiles/Makefile2 all
-	$(CMAKE_COMMAND) -E cmake_progress_start /homes/d/p/dpal1/home/enee408m/project/efds/build/CMakeFiles 0
+	$(CMAKE_COMMAND) -E cmake_progress_start /homes/c/m/cmneu/home/enee408m/c-wharff/team4/efds/build/CMakeFiles 0
 .PHONY : all
 
 # The main clean target
