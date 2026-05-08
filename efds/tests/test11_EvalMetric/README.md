@@ -23,7 +23,7 @@ ENHANCEMENTS, OR MODIFICATIONS.
 
 @author Erica Zhang
 
-#evalMetric_driver
+# evalMetric_driver
 This driver tests the EvalMetrics.cpp with multiple edge cases using the test#.txt files shown in the tests/test11_EvalMetric/ directory. EvalMetric's calculateCascade() function takes in an output.txt file which is the file that is generated from the cascade graph after multiple images are classfied. Output.txt file looks something like this:
 ```txt
 1 F
