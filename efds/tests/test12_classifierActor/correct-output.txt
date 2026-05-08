@@ -1,0 +1,52 @@
+-- Configuring done
+-- Generating done
+-- Build files have been written to: /homes/e/z/ezhang21/home/enee408m/project/team4/efds/tests/test12_classifierActor/build
+[100%] Built target classActor_driver
+_________Test Config0____________
+Face 1 detected as Face
+Face 2 detected as Face
+Face 3 detected as Face
+Face 4 detected as Face
+NonFace 1 detected as NonFace
+NonFace 2 detected as Face
+NonFace 3 detected as Face
+NonFace 4 detected as NonFace
+Config 0  ____Summary____
+all faces passed
+number of nonfaces failed: 2
+_________Test Config1____________
+Face 1 detected as Face
+Face 2 detected as Face
+Face 3 detected as Face
+Face 4 detected as Face
+NonFace 1 detected as Face
+NonFace 2 detected as Face
+NonFace 3 detected as Face
+NonFace 4 detected as Face
+Config 1  ____Summary____
+all faces passed
+number of nonfaces failed: 4
+_________Test Config2____________
+Face 1 detected as Face
+Face 2 detected as Face
+Face 3 detected as Face
+Face 4 detected as Face
+NonFace 1 detected as NonFace
+NonFace 2 detected as Face
+NonFace 3 detected as Face
+NonFace 4 detected as Face
+Config 2  ____Summary____
+all faces passed
+number of nonfaces failed: 3
+_________Test Config3____________
+Face 1 detected as Face
+Face 2 detected as Face
+Face 3 detected as Face
+Face 4 detected as Face
+NonFace 1 detected as NonFace
+NonFace 2 detected as NonFace
+NonFace 3 detected as Face
+NonFace 4 detected as Face
+Config 3  ____Summary____
+all faces passed
+number of nonfaces failed: 2

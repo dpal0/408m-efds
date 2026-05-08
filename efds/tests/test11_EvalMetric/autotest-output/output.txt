@@ -1,0 +1,83 @@
+_____test normal output_____
+TP: 2
+FP: 1
+TN: 2
+FN: 1
+FPR: 0.333333
+TPR/Recall: 0.666667
+Precision: 0.666667
+F1-Score: 0.666667
+_____test correct output_____
+TP: 3
+FP: 0
+TN: 3
+FN: 0
+FPR: 0
+TPR/Recall: 1
+Precision: 1
+F1-Score: 1
+_____test none correct output_____
+TP: 0
+FP: 3
+TN: 0
+FN: 3
+FPR: 1
+TPR/Recall: 0
+Precision: 0
+F1-Score: 0
+_____test incorrect order output_____
+TP: 2
+FP: 1
+TN: 2
+FN: 1
+FPR: 0.333333
+TPR/Recall: 0.666667
+Precision: 0.666667
+F1-Score: 0.666667
+_____test incorrect classification outputs_____
+invalid classification
+invalid classification
+TP: 2
+FP: 1
+TN: 1
+FN: 0
+FPR: 0.5
+TPR/Recall: 1
+Precision: 0.666667
+F1-Score: 0.8
+_____test missing outputs_____
+TP: 2
+FP: 1
+TN: 0
+FN: 1
+FPR: 1
+TPR/Recall: 0.666667
+Precision: 0.666667
+F1-Score: 0.666667
+_____test duplicate outputs_____
+TP: 2
+FP: 1
+TN: 2
+FN: 1
+FPR: 0.333333
+TPR/Recall: 0.666667
+Precision: 0.666667
+F1-Score: 0.666667
+_____test all true output_____
+TP: 3
+FP: 0
+TN: 0
+FN: 1
+FPR: 0
+TPR/Recall: 0.75
+Precision: 1
+F1-Score: 0.857143
+_____test all false output_____
+TP: 0
+FP: 3
+TN: 1
+FN: 0
+FPR: 0.75
+TPR/Recall: 0
+Precision: 0
+F1-Score: 0

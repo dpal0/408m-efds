@@ -27,7 +27,6 @@ classifierActor::classifierActor(welt_c_fifo_pointer in,welt_c_fifo_pointer abor
     this->mode=CONFIGURE;
     this->sc=nullptr;
     this->currToken=nullptr;
-    cout << configFilePath << endl;
 }
 
 bool classifierActor::enable() {
@@ -61,7 +60,7 @@ void classifierActor::invoke() {
     switch(mode){
 
         case CONFIGURE: { 
-            cout<<"classifierActor is in \""<<modeName(mode)<<"\" mode"<<endl;
+            //cout<<"classifierActor is in \""<<modeName(mode)<<"\" //mode"<<endl;
 
             ifstream configFile(configFilePath);
 
@@ -91,7 +90,7 @@ void classifierActor::invoke() {
         }
 
         case READ: { 
-            cout<<"classifierActor is in \""<<modeName(mode)<<"\" mode"<<endl;
+            //cout<<"classifierActor is in \""<<modeName(mode)<<"\" mode"<<endl;
 
             IIS *token=nullptr; //used to store input token pair (I image window,K image index)
             welt_c_fifo_read(in,&token); //store input token pair in currToken pair
@@ -107,7 +106,7 @@ void classifierActor::invoke() {
             break;
         }
         case CLASSIFY:{ //classify as face or non-face
-            cout<<"classifierActor is in \""<<modeName(mode)<<"\" mode"<<endl;
+           //cout<<"classifierActor is in \""<<modeName(mode)<<"\" mode"<<endl;
 
             if(this->currToken==nullptr){
                 cerr<<"Error in mode "<<modeName(mode)<<": currToken is null"<<endl;
@@ -141,7 +140,7 @@ void classifierActor::invoke() {
             break;
         }
         case TRUE_MOD:{
-            cout<<"classifierActor is in \""<<modeName(mode)<<"\" mode"<<endl;
+            //cout<<"classifierActor is in \""<<modeName(mode)<<"\" mode"<<endl;
             if(this->currToken==nullptr){
                 cerr<<"Error in mode "<<modeName(mode)<<": currToken is null"<<endl;
                 return;
@@ -155,7 +154,7 @@ void classifierActor::invoke() {
             break;
         }
         case FALSE_MOD:{
-            cout<<"classifierActor is in \""<<modeName(mode)<<"\" mode"<<endl;
+            //cout<<"classifierActor is in \""<<modeName(mode)<<"\" mode"<<endl;
             if(this->currToken==nullptr){
                 cerr<<"Error in mode "<<modeName(mode)<<": currToken is null"<<endl;
                 return;
