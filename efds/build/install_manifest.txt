@@ -1,3 +1,0 @@
-/homes/s/r/srod26/home/team4/efds/libefds.a
-/homes/s/r/srod26/home/team4/efds/tests/test_source_sink.exe
-/homes/s/r/srod26/home/team4/efds/tests/efds_graph_driver.exe
