@@ -36,6 +36,7 @@ efds_graph::efds_graph(const char *input_dir,
     } //diksha
     sort(config_files.begin(), config_files.end());
     num_stages = (int)config_files.size();
+    face_count = 0;
 
     /* ---- FIFOs ---------------------------------------------------- */
     /* cont_fifos has num_stages+1 entries:
@@ -109,6 +110,7 @@ void efds_graph::scheduler() {
         /* Face sink */
         if (face_sink->enable()) {
             face_sink->invoke();
+            face_count++; //For time performance
             progress = true;
         }
 
@@ -142,3 +144,4 @@ efds_graph::~efds_graph() {
         welt_c_fifo_free(abort_fifos[i]);
     }
 }
+

@@ -22,6 +22,7 @@ public:
 
     void scheduler();
     ~efds_graph();
+    int get_face_count() { return face_count; }
 
 private:
     /* Actors */
@@ -38,6 +39,7 @@ private:
     std::vector<welt_c_fifo_pointer> abort_fifos; // num_stages entries
 
     int num_stages;
+    int face_count;
 };
 
 #endif /* EFDS_GRAPH_H */

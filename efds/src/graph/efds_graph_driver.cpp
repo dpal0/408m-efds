@@ -3,8 +3,10 @@ extern "C" {
 #include "welt_c_fifo.h"
 }
 #include "efds_graph.h"
+#include <chrono>
 
 using namespace std;
+using namespace std::chrono;
 
 /* Usage: efds_driver.exe <input_dir> <face_out_file> <config_dir>
  *
@@ -27,8 +29,22 @@ int main(int argc, char **argv) {
     const char *config_dir    = argv[3]; //diksha
 
     efds_graph *graph = new efds_graph(input_dir, face_out_file, config_dir);
-    graph->scheduler();
-    delete graph;
+    //graph->scheduler();
 
+     auto start = high_resolution_clock::now();
+    graph->scheduler();
+    auto end = high_resolution_clock::now();
+
+    double tpos_ms = duration_cast<microseconds>(end - start).count() / 1000.0;
+    int npos = graph->get_face_count();
+
+    cout << "Tpos (total time):   " << tpos_ms << " ms" << endl;
+    cout << "Npos (face count):   " << npos << endl;
+    if (npos > 0)
+        cout << "Avg latency/face:    " << tpos_ms / npos << " ms" << endl;
+    else
+        cout << "No positive detections." << endl;
+
+    delete graph;
     return 0;
 }
