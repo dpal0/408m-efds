@@ -11,3 +11,9 @@ This directory contains the source code for the training module. It includes:
 (5) makeme: Builds the cpp files into an executable.
 
 (6) runme: Runs the training module. Arguments are specified within the runme script and should be modified depending on the desired inputs.
+
+It also has two sub-directories 
+
+(1) train: This directory contains scripts to train the classifiers. It was used to created multiple config files quickly.
+
+(2) validate : This directory contains scripts to check the accuracy of the classifiers on given dataset.
