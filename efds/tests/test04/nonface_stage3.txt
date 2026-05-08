@@ -1,6 +1,0 @@
-112 nonface
-147 nonface
-327 nonface
-429 nonface
-431 nonface
-445 nonface
