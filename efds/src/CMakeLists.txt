@@ -2,7 +2,7 @@
 set(EFDS_ACTORS ${CMAKE_CURRENT_SOURCE_DIR}/actors)
 set(EFDS_GRAPH  ${CMAKE_CURRENT_SOURCE_DIR}/graph)
 set(TRAINING_SRC ${CMAKE_CURRENT_SOURCE_DIR}/../../training/src)
-
+set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11")
 # Tell the linker where the Welter .a files live
 LINK_DIRECTORIES($ENV{WELTERGEN})
 
@@ -76,4 +76,4 @@ target_link_libraries(efds_graph_driver.exe
 # Install both to the project root (so libefds.a appears next to src/, like the welter example)
 INSTALL(TARGETS efds DESTINATION ${PROJECT_SOURCE_DIR})
 INSTALL(TARGETS test_source_sink.exe DESTINATION ${PROJECT_SOURCE_DIR}/tests)
-INSTALL(TARGETS efds_graph_driver.exe DESTINATION ${PROJECT_SOURCE_DIR}/tests)
+INSTALL(TARGETS efds_graph_driver.exe DESTINATION ${PROJECT_SOURCE_DIR}/src/graph)

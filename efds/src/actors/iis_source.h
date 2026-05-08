@@ -7,6 +7,7 @@
 #include "welt_c_fifo.h"
 #include "welt_cpp_graph.h"
 #include "iis.h"
+#include <cstddef>
 
 #define IIS_SOURCE_MODE_PROCESS  0
 #define IIS_SOURCE_MODE_COMPLETE 1
