@@ -12,73 +12,58 @@ EvalMetrics::~EvalMetrics () {
     delete[] truth;
 }
 
-void EvalMetrics::calculateCascade (char* out_filename) {
+void EvalMetrics::calculateCascade (const char* out_filename) {
     
     // vars used within the loop
-    ifstream real;
-    ofstream out(out_filename);
+    ifstream real(out_filename);
     int TP = 0, FP = 0, TN = 0, FN = 0;
-    double TPR, FPR, overall_TPR = 1, overall_FPR = 1;
+    double TPR, FPR;
     int ind;
-    char classification;
-
-    for (int iter = 1; iter <= cascades; iter++) {
-
-        // open current cascade's real data
-        real.open("out" + to_string(iter) + ".txt");
-
-        // count TP, FP, TN, FN for current cascade
-        while (real >> ind) {
-
-            real >> classification;
-
-            if (classification == 'F') {
-                if (truth[ind-1]) {
-                    TP++;
-                } else {
-                    FP++;
-                }
-            } else {
-                if (truth[ind-1]) {
-                    FN++;
-                } else {
-                    TN++;
-                }
-                real >> classification;
-            }
-        }
-
-        // calculate TPR & FPR
-        TPR = (double)TP / (TP + FN);
-        FPR = (double)FP / (FP + TN);
-        overall_TPR *= TPR;
-        overall_FPR *= FPR;
-
-        // write the current cascade's evaluation metrics to the output file
-        out << "(cascade " << iter << ") TP: " << TP << ", FP: " 
-            << FP << ", TN: " << TN << ", FN: " << FN 
-            << ", TPR: " << TPR << ", FPR: " << FPR <<'\n'; 
-
-        // reset variables for next iteration
-        TP = 0;
-        FP = 0;
-        TN = 0;
-        FN = 0;
-
-        // close ifstream
-        real.close();
+    string classification;
+    if(!real.is_open()){
+        cout<<"could not open file" <<endl;
+        return;
     }
-
-    // write overall evaluation metrics to the output file
-    out << "\nOverall TPR = " << overall_TPR 
-        << ", Overall FPR = " << overall_FPR << endl; 
-    
-    out.close();
+    while (real >>ind >>classification) {
+        if(ind<=0 || ind>faces+nonfaces){
+            cout<<"invalid idx: " <<ind<<endl;
+            continue;
+        }
+        if (classification == "F") {
+            if (truth[ind-1]) {
+                TP++;
+            } else {
+                FP++;
+            }
+        } else if (classification=="NF"){
+            if (truth[ind-1]) {
+                FN++;
+            } else {
+                TN++;
+            }
+        }else{
+            cout<<"invalid classification"<<endl;
+        }
+    }
+    // calculate TPR & FPR
+    TPR = (TP+FN==0)? 0 : (double)TP / (TP + FN);
+    FPR = (FP+TN==0)? 0 :(double)FP / (FP + TN);
+    double precision=(TP+FP==0)? 0: (double)TP/(TP+FP);
+    double F1=(precision+TPR==0)? 0: 2*((precision*TPR)/(precision+TPR));
+    cout<<"TP: "<<TP<<endl;
+    cout<<"FP: "<<FP<<endl;
+    cout<<"TN: "<<TN<<endl;
+    cout<<"FN: "<<FN<<endl;
+    cout<<"FPR: "<<FPR<<endl;
+    cout<<"TPR/Recall: "<<TPR<<endl;
+    cout<<"Precision: "<<precision<<endl;
+    cout<<"F1-Score: "<<F1<<endl;
+    real.close();
 
 }
 
 void EvalMetrics::groundTruth () {
     truth = new bool[faces + nonfaces];
     fill(truth, truth + faces, true);
-    fill(truth + faces + 1, truth + faces + nonfaces, false);
+    fill(truth + faces, truth + faces + nonfaces, false);
 }
