@@ -2,3 +2,8 @@ dataset/project-dataset
 dataset/
 .vscode/
 build/
+# Ignore compiled static libraries
+*.a
+
+# Ignore executable binaries
+*.exe
