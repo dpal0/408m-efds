@@ -75,9 +75,9 @@ efds_graph::efds_graph(const char *input_dir,
 
     /* ---- Non-face sinks (one per stage) ---------------------------- */
     for (int i = 0; i < num_stages; i++) {
-        //string out_name = "nonface_stage" + to_string(i) + ".txt";
+        string nf_name = "nf_stage" + to_string(i) + ".txt"; + ".txt";
         nonface_sinks.push_back(
-            new iis_sink(abort_fifos[i],face_out_file, "NF"));
+             new iis_sink(abort_fifos[i], nf_name.c_str(), "NF"));
     }
 }
 

@@ -1,4 +1,4 @@
 #!/usr/bin/env bash
-rm -f face.txt face.txt.nf*.txt
+rm -f face.txt nf_stage*.txt 
 ./efds_graph_driver.exe ./test_data_mixed face.txt ../../configs/train6 > performance.txt
 cat face.txt nf_stage*.txt | sort -n > results.txt
