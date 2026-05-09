@@ -22,12 +22,25 @@
 # MARYLAND HAS NO OBLIGATION TO PROVIDE MAINTENANCE, SUPPORT, UPDATES,
 # ENHANCEMENTS, OR MODIFICATIONS.
 #
-rm face.txt
-rm non-face.txt
-../efds_graph_driver.exe ../../../dataset/project-dataset/gray/testing/face/ face.txt ../../../configs/train3
-sort -n face.txt -o face.txt
-../efds_graph_driver.exe ../../../dataset/project-dataset/gray/testing/non-face/ non-face.txt ../../../configs/train3
-sort -n non-face.txt -o non-face.txt
+#!/bin/bash
 
+# --- Configuration ---
+INPUT_DIR="../../../dataset/project-dataset/gray/testing"
+CONFIG="../../../configs/train3"
+# INPUT_DIR="../../demo/test_data_mixed/" # Debug path
+
+# --- Cleanup ---
+# Remove temporary files and previous performance logs
+rm -f temp_face.txt temp_non-face.txt nf_stage*.txt performance*.txt face.txt non-face.txt evalEfds.txt
+
+# --- Processing: Face ---
+../efds_graph_driver.exe "${INPUT_DIR}/face" temp_face.txt "$CONFIG" > performance-face.txt
+cat temp_face.txt nf_stage*.txt 2>/dev/null | sort -n > face.txt
+
+# --- Processing: Non-Face ---
+../efds_graph_driver.exe "${INPUT_DIR}/non-face" temp_non-face.txt "$CONFIG" > performance-non-face.txt
+cat temp_non-face.txt nf_stage*.txt 2>/dev/null | sort -n > non-face.txt
+
+# --- Evaluation ---
 g++ evalTrain_driver.cpp ../../src/evaluation/EvalMetrics.cpp -o evalTrain_driver
 ./evalTrain_driver > evalEfds.txt
