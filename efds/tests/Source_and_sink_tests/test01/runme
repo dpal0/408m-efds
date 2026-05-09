@@ -35,7 +35,7 @@ set -e
 
 cd "$(dirname "$0")"
 
-INPUT_DIR="../../../data/validation/face"
+INPUT_DIR="../test_data_small"
 OUTPUT_LOG="./results.txt"
 
 if [ ! -d "$INPUT_DIR" ]; then

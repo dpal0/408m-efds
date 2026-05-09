@@ -1,3 +1,3 @@
 test_source_sink: done. Check ./results.txt
-expected 487 tokens, got 1461 lines in log
-FAIL
+expected 3 tokens, got 3 lines in log
+PASS

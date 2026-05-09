@@ -25,6 +25,7 @@ add_library(efds ${EFDS_SRCS})
 # Build the test executable
 add_executable(test_source_sink.exe ${EFDS_ACTORS}/test_source_sink.cpp)
 add_executable(efds_graph_driver.exe ${EFDS_GRAPH}/efds_graph_driver.cpp)
+add_executable(classifier_actor_driver.exe ${EFDS_ACTORS}/classifier_actor_driver.cpp)
 
 # Link the test exe against efds + the actual Welter libs that exist on the server
 target_link_libraries(test_source_sink.exe
@@ -73,8 +74,31 @@ target_link_libraries(efds_graph_driver.exe
     welt_c_router_basic
 )
 
+target_link_libraries(classifier_actor_driver.exe
+    efds
+    welt_cpp_graph
+    welt_cpp_actor
+    welt_cpp_actors_basic
+    welt_cpp_actors_image
+    welt_cpp_runtime
+    welt_cpp_utils
+    welt_cpp_graph_basic
+    welt_c_app_basic
+    welt_c_actors_basic
+    welt_c_actors_common
+    welt_c_edges
+    welt_c_runtime
+    welt_c_graph_common
+    welt_c_dsg_actors_common
+    welt_c_dsg_scheduler
+    welt_c_add_cdsg
+    welt_c_ref_actor
+    welt_c_router_basic
+)
+
 # Install both to the project root (so libefds.a appears next to src/, like the welter example)
 INSTALL(TARGETS efds DESTINATION ${PROJECT_SOURCE_DIR})
-INSTALL(TARGETS test_source_sink.exe DESTINATION ${PROJECT_SOURCE_DIR}/tests/source_sink_tests)
+INSTALL(TARGETS test_source_sink.exe DESTINATION ${PROJECT_SOURCE_DIR}/tests/Source_and_sink_tests)
 INSTALL(TARGETS efds_graph_driver.exe DESTINATION ${PROJECT_SOURCE_DIR}/demo)
 INSTALL(TARGETS efds_graph_driver.exe DESTINATION ${PROJECT_SOURCE_DIR}/tests)
+INSTALL(TARGETS classifier_actor_driver.exe DESTINATION ${PROJECT_SOURCE_DIR}/tests/Classifier_actor_tests)

@@ -1,0 +1,6 @@
+k=1 NON-FACE
+k=2 NON-FACE
+k=3 NON-FACE
+---
+FACE:     0
+NON-FACE: 3

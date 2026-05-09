@@ -1,8 +1,3 @@
-Test count: 3; test failures: 3; error output mismatches: 2
-Test failures: 
-/afs/glue.umd.edu/home/glue/d/p/dpal1/home/enee408m/project/efds/tests/source_sink_tests/test01
-/afs/glue.umd.edu/home/glue/d/p/dpal1/home/enee408m/project/efds/tests/source_sink_tests/test02
-/afs/glue.umd.edu/home/glue/d/p/dpal1/home/enee408m/project/efds/tests/source_sink_tests/test03
+Test count: 3; test failures: 0; error output mismatches: 1
 Error comparison failures: 
-/afs/glue.umd.edu/home/glue/d/p/dpal1/home/enee408m/project/efds/tests/source_sink_tests/test02
-/afs/glue.umd.edu/home/glue/d/p/dpal1/home/enee408m/project/efds/tests/source_sink_tests/test03
+/afs/glue.umd.edu/home/glue/d/p/dpal1/home/enee408m/project/efds/tests/Source_and_sink_tests/test03

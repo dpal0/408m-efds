@@ -22,7 +22,8 @@ MARYLAND HAS NO OBLIGATION TO PROVIDE MAINTENANCE, SUPPORT, UPDATES,
 ENHANCEMENTS, OR MODIFICATIONS.
 ----------------------------------------------------------------------------
 
-FIXME: Enter a brief description of the test here
+This is for testing where the graph throws an error when a invalid input directory is fed to it
+
 
 @author Diksha Pal.
 

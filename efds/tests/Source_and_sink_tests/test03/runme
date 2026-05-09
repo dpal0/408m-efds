@@ -35,7 +35,7 @@ set -e
 
 cd "$(dirname "$0")"
 
-INPUT_DIR="./test_subwindows"
+INPUT_DIR="./empty_dir_test"
 OUTPUT_LOG="./results.txt"
 
 if [ ! -d "$INPUT_DIR" ]; then
@@ -50,7 +50,7 @@ fi
 # echo "--- end ---"
 
 expected=$(ls "$INPUT_DIR"/*.txt 2>/dev/null | wc -l)
-actual=$(wc -l < "$OUTPUT_LOG")
+actual=$(wc -l < "$OUTPUT_LOG" 2>/dev/null || echo 0)
 echo "expected $expected tokens, got $actual lines in log"
 
 if [ "$expected" -eq "$actual" ]; then

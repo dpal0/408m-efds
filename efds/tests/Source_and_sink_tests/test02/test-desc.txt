@@ -22,10 +22,10 @@ MARYLAND HAS NO OBLIGATION TO PROVIDE MAINTENANCE, SUPPORT, UPDATES,
 ENHANCEMENTS, OR MODIFICATIONS.
 ----------------------------------------------------------------------------
 
-FIXME: Enter a brief description of the test here
+This checks whether source actor corrects throws error when the input 
+directory path is invalid. 
 
 @author Diksha Pal.
 
-This checks whether source actor corrects throws error when the input 
-directory path is invalid. 
+
 

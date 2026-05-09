@@ -1,0 +1,1 @@
+Sends images through the classifier using a pass-all config (threshold = -9999), so every image should come out as FACE. Verifies the cont_out path works end-to-end.

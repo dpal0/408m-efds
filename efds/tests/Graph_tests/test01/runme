@@ -29,4 +29,4 @@
 # Usage: runme [no arguments]
 
 # [FIXME: complete this script, this is just a template]
-../efds_graph_driver.exe ../../dataset/project-dataset/gray/testing/face/ face.txt ../../../configs/train5
+../efds_graph_driver.exe ../../dataset/proj/gray/testing/face/ face.txt ../../../configs/train5

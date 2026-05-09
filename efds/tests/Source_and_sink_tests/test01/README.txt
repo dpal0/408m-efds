@@ -22,7 +22,10 @@ MARYLAND HAS NO OBLIGATION TO PROVIDE MAINTENANCE, SUPPORT, UPDATES,
 ENHANCEMENTS, OR MODIFICATIONS.
 ----------------------------------------------------------------------------
 
-FIXME: Enter a brief description of the test here
+This validates that the iis_source actor correctly reads all .txt files from 
+the input dataset directory and passes each as an IIS token to the 
+iis_sink actor. The test passes if the number of lines logged by the sink 
+matches the number of .txt files in the input directory.
 
 @author Diksha Pal.
 

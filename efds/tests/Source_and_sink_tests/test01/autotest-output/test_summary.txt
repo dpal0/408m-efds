@@ -1,5 +1,1 @@
-Test count: 1; test failures: 1; error output mismatches: 1
-Test failures: 
-/afs/glue.umd.edu/home/glue/d/p/dpal1/home/enee408m/project/efds/tests/source_sink_tests/test01
-Error comparison failures: 
-/afs/glue.umd.edu/home/glue/d/p/dpal1/home/enee408m/project/efds/tests/source_sink_tests/test01
+Test count: 1; test failures: 0; error output mismatches: 0

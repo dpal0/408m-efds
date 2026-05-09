@@ -128,10 +128,9 @@ void classifierActor::invoke() {
                 mode=FALSE_MOD;
                 break;
             }
-
+         
             //cout<<"before classify"<<endl;
             bool face=sc->classify(ii.getImage()); //created intImg used to classify face or non face. 
-            //cout<<"after classify"<<endl;
             if(face){ //face==1 is found mode=true
                 mode=TRUE_MOD;
             }else{ //non face is found, mode=false

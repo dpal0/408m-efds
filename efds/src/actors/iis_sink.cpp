@@ -19,7 +19,7 @@ bool iis_sink::enable() {
             result = (welt_c_fifo_population(in) > 0);
             break;
         case IIS_SINK_MODE_ERROR:
-            result = true;
+            result = false;
             break;
         default:
             result = false;
@@ -59,7 +59,7 @@ void iis_sink::reset() {
     if (out_stream.is_open()) {
         out_stream.close();
     }
-    out_stream.open(file_name.c_str(),ios::app);
+    out_stream.open(file_name.c_str(), ios::trunc);
     if (!out_stream.is_open()) {
         cerr << "iis_sink: could not open output file \"" << file_name << "\"" << endl;
         mode = IIS_SINK_MODE_ERROR;

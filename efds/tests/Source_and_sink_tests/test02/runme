@@ -35,15 +35,15 @@ set -e
 
 cd "$(dirname "$0")"
 
-INPUT_DIR="../../../data/validation/face"
-OUTPUT_LOG="./results.txt"
+INPUT_DIR="../../../validation/face" #incorect path
+ OUTPUT_LOG="./results.txt"
 
 # if [ ! -d "$INPUT_DIR" ]; then
 #     echo "FAIL: input dir $INPUT_DIR not found"
 #     exit 1
 # fi
 
-../test_source_sink.exe "$INPUT_DIR" "$OUTPUT_LOG"
+../test_source_sink.exe "../../../validation/face" "./results.txt"
 
 # echo "--- $OUTPUT_LOG ---"
 # cat "$OUTPUT_LOG"
