@@ -19,35 +19,93 @@ MARYLAND HAS NO OBLIGATION TO PROVIDE MAINTENANCE, SUPPORT, UPDATES,
 ENHANCEMENTS, OR MODIFICATIONS.
 
 
-@Author Erica Zhang
+@Author Erica Zhang and Diksha Pal
 
-# Classifier Actor README
-## What it Does
-classifierActor is an actor of the cascade graph pipeline. This actor classifies image windows as either face or non-face based on the strong classifier that is built from weak classifiers and Haar features. 
-This actor takes in an image from input FIFO and outputs to abort_cont FIFO or cont_out FIFO. "abort_out" FIFO is used when image is detected as not face. "cont_out" FIFO is used when image is detected as face. 
+This directory contains all source code for the Embedded Face Detection System.
+It is organized into three subdirectories: actors/, graph/, and evaluation/.
 
-## Actor Modes
-The actor has CONFIGURE, READ, CLASSIFY, TRUE_MOD, and FALSE_MOD modes.
-### CONFIGURE mode
-This mode reads from a config file. It reads one strong classifier threshold, Haar Feature values which include x and y position, width (w), height (h), and type of feature, and weak classifier values including weak classifier threshold, polarity, and weight of the error. 
-Multiple weak classifiers are created from config file and stored in a vector called wc_vector, which is used to create one strong classifier called "sc". "sc" is later used in CLASSIFY mode. 
-Goes to READ mode. 
-### READ mode
-This mode reads in the token (I,k) from the input FIFO. Then it checks if token is NULL or valid. If NULL, no action will be done. Otherwise, this input token is stored in currToken which will later be used in CLASSIFY, TRUE_MOD or FALSE_MOD. 
-Goes to CLASSIFY mode.
-### CLASSIFY mode
-This mode checks if the "I" or image in the token (I,k) is valid or not. If the image is valid, it converts the image into a integral image. Then it checks if "sc" is valid or not. If it is valid, this function will using "sc" to classify the generated integral image. Strong classifier's classify method returns a boolean value which returns true if the integral image is a face. Otherwise, it will return false. 
-If the integral image is a face, mode will be set to TRUE_MOD. Otherwise mode will be set to FALSE_MOD. 
-If "sc" or token are invalid program breaks or returns. 
-### TRUE_MOD mode
-This is when classfied integral image is a face. Checks if currToken is valid or not. If it is invalid, it returns. Otherwise, this function creates a new token and copies the currToken into the new token called copyToken. Then it will write to the cont_out with that copyToken, which will be sent to the next classifierActor stage in the cascade. 
-Mode goes to READ. 
-### FALSE_MOD mode
-This is when classfied integral image is not a face. Checks if currToken is valid or not. If it is invalid, it returns. Otherwise, this function creates a new token and copies the currToken into the new token called copyToken. Then it will write to the abort_out with that copyToken. 
-Mode goes to READ. 
 
-## Token 
-Stores IIS* tokens. Where I is the image window and k is the image index.
+Usage
+-----
 
-## integral_image.cpp
-Takes in a vector<vector<int>> image which will be used to calculate the integral image. Nothing is returned, but values are changed in the input image. 
+From this directory (efds/src/):
+
+    ./buildsetup      # first-time CMake setup
+    ./makeme          # compile and install
+
+
+
+Subdirectories
+--------------
+
+actors/
+    Contains the dataflow actors and supporting headers.
+
+    iis_source.h/.cpp       - Source actor. Reads 24x24 pixel window .txt files
+                              from a directory and emits IIS tokens into the pipeline.
+    iis_sink.h/.cpp         - Sink actor. Receives IIS tokens and writes results
+                              (face or non-face) to an output file.
+    classifierActor.h/.cpp  - Cascade classifier actor. One instance per stage.
+                              Reads a config file, classifies an image window using
+                              Haar features and a strong classifier, and routes the
+                              token to either cont_out (face) or abort_out (non-face).
+    integral_image.h/.cpp   - Computes the integral image in-place on a 2D pixel
+                              vector. Used by classifierActor during classification.
+    test_source_sink.cpp    - Standalone test for the source and sink actors.
+    classifier_actor_driver.cpp    - Standalone test for the classifier Actor .
+
+graph/
+    Contains the graph definition and the main driver executable.
+
+    efds_graph.h/.cpp       - Defines efds_graph, which wires together the source
+                              actor, N classifier actors (one per config file found
+                              in the config directory), and the face/non-face sinks.
+                              The number of stages is determined at runtime.
+    efds_graph_driver.cpp   - main() entry point. Constructs the graph, runs the
+                              scheduler, and prints timing and face-count stats.
+    runme                   - Convenience shell script to invoke efds_graph_driver.exe
+                              with default dataset and config paths.
+    face.txt / nonface_stage*.txt
+                            - Sample output files from a previous run.
+
+evaluation/
+    EvalMetrics.h/.cpp      - Reads a face output file and computes detection metrics:
+                              Recall, Precision, F1-Score, and FPR against a ground
+                              truth vector.
+
+
+Top-level Files
+---------------
+
+iis.h           - Defines the IIS token: a PTIS* image pointer and int sequence index.
+ptis.h          - Defines the PTIS struct representing a raw 24x24 pixel sub-window.
+CMakeLists.txt  - Build config. Builds libefds.a from all actor and graph sources,
+                  and compiles efds_graph_driver.exe and test_source_sink.exe.
+buildsetup      - Run once to configure CMake (first time only).
+makeme          - Compiles, builds libefds.a, and installs executables.
+
+
+Output File Format
+------------------
+
+Face and non-face log files use the same format:
+
+    1 F
+    2 NF
+    3 F
+
+Each line is: <sequence_index> <F|NF>
+This format is consumed directly by EvalMetrics for performance evaluation.
+
+----
+## classifierActor Summary 
+ 
+One actor instance per cascade stage. Takes an `IIS` token `(I, k)` on `in`, classifies the 24×24 window, and routes it to either `cont_out` (face → next stage) or `abort_out` (non-face → rejected).
+ 
+| Mode | What it does |
+|---|---|
+| `CONFIGURE` | Reads config file → builds `wc_vector` of weak classifiers → constructs `sc` (StrongClassifier) |
+| `READ` | Reads next `IIS*` token from input FIFO → stores in `currToken` |
+| `CLASSIFY` | Computes integral image, runs `sc->classify()` → sets mode to `TRUE_MOD` or `FALSE_MOD` |
+| `TRUE_MOD` | Copies token → writes to `cont_out` → back to READ |
+| `FALSE_MOD` | Copies token → writes to `abort_out` → back to READ |
