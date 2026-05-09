@@ -1,6 +1,6 @@
 #ifndef eval_metrics_h
 #define eval_metrics_h
-
+#include <iostream>
 #include <fstream>
 using namespace std;
 
@@ -14,7 +14,7 @@ public:
     // destructor
     ~EvalMetrics ();
 
-    void calculateCascade (char* out_filename);
+    void calculateCascade (const char* out_filename);
     
 private:
 

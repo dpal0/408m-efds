@@ -36,6 +36,7 @@ efds_graph::efds_graph(const char *input_dir,
     } //diksha
     sort(config_files.begin(), config_files.end());
     num_stages = (int)config_files.size();
+    face_count = 0;
 
     /* ---- FIFOs ---------------------------------------------------- */
     /* cont_fifos has num_stages+1 entries:
@@ -70,13 +71,13 @@ efds_graph::efds_graph(const char *input_dir,
     }
 
     /* ---- Face sink ------------------------------------------------- */
-    face_sink = new iis_sink(cont_fifos[num_stages], face_out_file, "face");
+    face_sink = new iis_sink(cont_fifos[num_stages], face_out_file, "F");
 
     /* ---- Non-face sinks (one per stage) ---------------------------- */
     for (int i = 0; i < num_stages; i++) {
-        string out_name = "nonface_stage" + to_string(i) + ".txt";
+        //string out_name = "nonface_stage" + to_string(i) + ".txt";
         nonface_sinks.push_back(
-            new iis_sink(abort_fifos[i], out_name.c_str(), "nonface"));
+            new iis_sink(abort_fifos[i],face_out_file, "NF"));
     }
 }
 
@@ -109,6 +110,7 @@ void efds_graph::scheduler() {
         /* Face sink */
         if (face_sink->enable()) {
             face_sink->invoke();
+            face_count++; //For time performance
             progress = true;
         }
 
@@ -142,3 +144,4 @@ efds_graph::~efds_graph() {
         welt_c_fifo_free(abort_fifos[i]);
     }
 }
+

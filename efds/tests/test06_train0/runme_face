@@ -1,0 +1,8 @@
+#!/usr/bin/env bash
+#!/bin/bash
+# runme - sanity check for iis_source and iis_sink
+#!/bin/bash
+#../efds_graph_driver.exe ../../data/validation/face/ face.txt ../../../training/src/config
+#for the actual config files in the project: ../../../configs/train0 etc...
+../efds_graph_driver.exe ../../../dataset/project-dataset/gray/testing/face/ face.txt ../../../configs/train0
+sort -n face.txt -o face.txt

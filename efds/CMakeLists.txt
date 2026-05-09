@@ -1,6 +1,8 @@
 project(efds_project)
 cmake_minimum_required(VERSION 2.8)
 set(CMAKE_CXX_STANDARD 14)
+set(CMAKE_CXX_STANDARD_REQUIRED ON)
+set(CMAKE_CXX_EXTENSIONS OFF)
 
 # 1. Define the path (relative to your efds folder)
 # If 'efds' and 'training' are both inside 'project/', use ../

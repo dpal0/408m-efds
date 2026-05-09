@@ -1,0 +1,2 @@
+This is for a simple test for testing it the graph is firing with the correct number of stages.
+The small input directory have 2 face and 1 non face image

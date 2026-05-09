@@ -1,0 +1,12 @@
+test_classifier_actor: done.
+  FACE:     0
+  NON-FACE: 3
+  See ./results.txt for per-image results.
+
+=== results ===
+k=1 NON-FACE
+k=2 NON-FACE
+k=3 NON-FACE
+---
+FACE:     0
+NON-FACE: 3
