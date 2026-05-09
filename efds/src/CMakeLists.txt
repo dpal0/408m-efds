@@ -98,6 +98,7 @@ target_link_libraries(classifier_actor_driver.exe
 
 # Install both to the project root (so libefds.a appears next to src/, like the welter example)
 INSTALL(TARGETS efds DESTINATION ${PROJECT_SOURCE_DIR})
+
 INSTALL(TARGETS test_source_sink.exe DESTINATION ${PROJECT_SOURCE_DIR}/tests/Source_and_sink_tests)
 INSTALL(TARGETS efds_graph_driver.exe DESTINATION ${PROJECT_SOURCE_DIR}/demo)
 INSTALL(TARGETS efds_graph_driver.exe DESTINATION ${PROJECT_SOURCE_DIR}/tests)
