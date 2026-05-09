@@ -1,3 +1,4 @@
 #!/usr/bin/env bash
-./efds_graph_driver.exe ./test_data_mixed output.txt ../../configs/train6
-sort -n output.txt -o output.txt 
+rm -f face.txt face.txt.nf*.txt
+./efds_graph_driver.exe ./test_data_mixed face.txt ../../configs/train6 > performance.txt
+cat face.txt nf_stage*.txt | sort -n > results.txt
