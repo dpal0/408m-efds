@@ -1,9 +1,11 @@
 Usage:
 
-Run: ```makeme```
+Run: 
+
+	makeme
 
 then 
 
-``` runme ```
+ 	runme
 
 Evaluation report for the given config files are generated

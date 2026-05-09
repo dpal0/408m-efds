@@ -1,7 +1,9 @@
 Usage:
 
 Run:
-``` makeme```
+  makeme
 then 
-```runme```
+  runme
+
+
 Config files with time stamps are generated and stored in efds/configs
