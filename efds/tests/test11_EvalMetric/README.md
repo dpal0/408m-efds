@@ -52,4 +52,5 @@ test8.txt = shows when ground truth is all false or all non faces.
 # runme
 runme is used to compile and execute the evalMetric_driver. It stores its output in the diagnostics.txt. This will be used to compare the actual output when using dxtest. 
 
-
+# How to use dxtest
+Just run dxtest in terminal 

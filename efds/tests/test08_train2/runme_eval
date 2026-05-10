@@ -19,6 +19,6 @@ cat temp_non-face.txt nf_stage*.txt 2>/dev/null | sort -n > non-face.txt
 
 # --- Evaluation ---
 g++ evalTrain_driver.cpp ../../src/evaluation/EvalMetrics.cpp -o evalTrain_driver
-./evalTrain_driver > evalEfds.txt#!/usr/bin/env bash
+./evalTrain_driver > evalEfds.txt
 
 # Maryland DSPCAD Research Group, The University of Maryland at College Park 

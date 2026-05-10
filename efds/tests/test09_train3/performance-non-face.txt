@@ -1,0 +1,3 @@
+Tpos (total time):   374.763 ms
+Npos (face count):   37
+Avg latency/face:    10.1287 ms
