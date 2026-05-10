@@ -1,0 +1,18 @@
+_____________All Face_______
+TP: 463
+FP: 0
+TN: 0
+FN: 22
+FPR: 0
+TPR/Recall: 0.954639
+Precision: 1
+F1-Score: 0.976793
+_____________All No Face_______
+TP: 0
+FP: 35
+TN: 874
+FN: 0
+FPR: 0.0385039
+TPR/Recall: 0
+Precision: 0
+F1-Score: 0

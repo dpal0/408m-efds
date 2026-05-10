@@ -1,30 +1,46 @@
 Tests started on:
-Thu 07 May 2026 01:56:07 AM EDT
+Fri May  8 17:58:52 EDT 2026
 -----------------------------------------------------
 Test result for:
-/homes/d/p/dpal1/home/enee408m/project/efds/tests/test01
------------------------------------------------------
-Error comparison result for: 
-/homes/d/p/dpal1/home/enee408m/project/efds/tests/test01
------------------------------------------------------
-Test result for:
-/homes/d/p/dpal1/home/enee408m/project/efds/tests/test02
------------------------------------------------------
-Error comparison result for: 
-/homes/d/p/dpal1/home/enee408m/project/efds/tests/test02
------------------------------------------------------
-Test result for:
-/homes/d/p/dpal1/home/enee408m/project/efds/tests/test03
------------------------------------------------------
-Error comparison result for: 
-/homes/d/p/dpal1/home/enee408m/project/efds/tests/test03
------------------------------------------------------
-Test result for:
-/homes/d/p/dpal1/home/enee408m/project/efds/tests/test04
+/afs/glue.umd.edu/home/glue/d/p/dpal1/home/enee408m/project/efds/tests/test01
 Files ../correct-output.txt and output.txt differ
 -----------------------------------------------------
 Error comparison result for: 
-/homes/d/p/dpal1/home/enee408m/project/efds/tests/test04
+/afs/glue.umd.edu/home/glue/d/p/dpal1/home/enee408m/project/efds/tests/test01
+-----------------------------------------------------
+Test result for:
+/afs/glue.umd.edu/home/glue/d/p/dpal1/home/enee408m/project/efds/tests/test02
+-----------------------------------------------------
+Error comparison result for: 
+/afs/glue.umd.edu/home/glue/d/p/dpal1/home/enee408m/project/efds/tests/test02
+-----------------------------------------------------
+Test result for:
+/afs/glue.umd.edu/home/glue/d/p/dpal1/home/enee408m/project/efds/tests/test03
+Files ../correct-output.txt and output.txt differ
+-----------------------------------------------------
+Error comparison result for: 
+/afs/glue.umd.edu/home/glue/d/p/dpal1/home/enee408m/project/efds/tests/test03
+Files ../expected-errors.txt and error_output.txt differ
+-----------------------------------------------------
+Test result for:
+/afs/glue.umd.edu/home/glue/d/p/dpal1/home/enee408m/project/efds/tests/test11_EvalMetric
+-----------------------------------------------------
+Error comparison result for: 
+/afs/glue.umd.edu/home/glue/d/p/dpal1/home/enee408m/project/efds/tests/test11_EvalMetric
+-----------------------------------------------------
+Test result for:
+/afs/glue.umd.edu/home/glue/d/p/dpal1/home/enee408m/project/efds/tests/test12_classifierActor
+Files ../correct-output.txt and output.txt differ
+-----------------------------------------------------
+Error comparison result for: 
+/afs/glue.umd.edu/home/glue/d/p/dpal1/home/enee408m/project/efds/tests/test12_classifierActor
+Files ../expected-errors.txt and error_output.txt differ
+-----------------------------------------------------
+Test result for:
+/afs/glue.umd.edu/home/glue/d/p/dpal1/home/enee408m/project/efds/tests/test-eval_metrics
+-----------------------------------------------------
+Error comparison result for: 
+/afs/glue.umd.edu/home/glue/d/p/dpal1/home/enee408m/project/efds/tests/test-eval_metrics
 Files ../expected-errors.txt and error_output.txt differ
 Tests completed on:
-Thu 07 May 2026 01:56:09 AM EDT
+Fri May  8 17:58:54 EDT 2026

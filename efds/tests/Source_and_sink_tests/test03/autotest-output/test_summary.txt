@@ -1,0 +1,3 @@
+Test count: 1; test failures: 0; error output mismatches: 1
+Error comparison failures: 
+/afs/glue.umd.edu/home/glue/d/p/dpal1/home/enee408m/project/efds/tests/Source_and_sink_tests/test03
