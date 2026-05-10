@@ -1,5 +1,0 @@
-Tests makeConfigFile() in main.cpp
-
-This function takes a strong classifier, computed in main.cpp, and writes its text representation into a config file.
-
-This test ensures functionality by running a 2 cascade alogirhtm where the first cascade contains 2 weak classifiers and the second cascade contains 1 weak classifier.

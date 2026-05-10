@@ -157,6 +157,9 @@ void makeConfigFile(StrongClassifier *sc, int stage, const string &dir)
 {
     ofstream configFile(dir + "/config" + to_string(stage) + ".txt");
 
+    if (!configFile.is_open()) 
+        cerr << "main.cpp: makeConfigFile() could not open " + dir + "/config" + to_string(stage) + ".txt" << endl;
+
     configFile << sc->getThreshold() << endl;
 
     vector<StrongClassifier::wc_weight_pair> wc_vector = sc->getWeakClassifiers();
@@ -198,6 +201,9 @@ void makeConfigFile(StrongClassifier *sc, int stage, const string &dir)
 void makeTrainingReport(const string &dir, int numStages, double elapsed, int sc_rounds[])
 {
     ofstream reportFile(dir + "/training_report.txt");
+
+    if (!reportFile.is_open()) 
+        cerr << "main.cpp: makeTrainingReport() could not open " + dir + "/training_report.txt" << endl;
 
     reportFile << "Training Report for run " << dir << endl;
     reportFile << "=================" << endl;

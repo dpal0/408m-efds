@@ -1,0 +1,5 @@
+Tests makeTrainingReport() in training/src/train/main.cpp
+
+This function trained model and writes, to a file, the key aspects of the model (num weak classifiers, num strong classifiers, time to run).
+
+This test ensures error handling if the train report file path is incorrect/does not exist.

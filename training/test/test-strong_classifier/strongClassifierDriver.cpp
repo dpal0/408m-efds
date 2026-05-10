@@ -1,7 +1,8 @@
 #define UNIT_TESTING
+
 #include <iostream>
 #include <vector>
-#include "../../src/main.cpp"
+#include "../../src/train/main.cpp"
 
 using namespace std;
 
@@ -27,13 +28,16 @@ int main() {
         // Construct and train the strong classifier
         StrongClassifier sc;
         int rounds = stage + 1; // number of weak classifiers to use in this stage
-        sc.train(features, face_training, currentNegatives, rounds, stage + 1, numStages);
+        sc.train(features, face_training, currentNegatives, rounds, stage + 1, numStages, 0.99f);
 
         // nonface_training shrinks each stage: only false positives from 
         // the previous stage are passed to the next stage as negatives.
-        for (size_t i = 0; i < currentNegatives.size(); i++) {
+        for (size_t i = 0; i < currentNegatives.size();) {
             if (!sc.classify(currentNegatives[i])) {
                 currentNegatives.erase(currentNegatives.begin() + i);
+            }
+            else {
+                i++;
             }
         }
     }

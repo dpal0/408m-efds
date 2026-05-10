@@ -1,0 +1,1 @@
+main.cpp: readConfigFile() couldnt open config file:./config1.txt

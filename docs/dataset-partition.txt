@@ -1,0 +1,40 @@
+This document outlines the dataset organization within this project. The dataset is in the top level directory under the /dataset.
+
+The /dataset directory contains three things
+- README.txt
+- /scripts directory
+- /project_dataset directory
+
+The README.txt file explains the structure of the dataset within the project.
+
+The /scripts directory contains the scripts and instructions (in README.txt) needed to create the /project_dataset directory
+
+The /project_dataset directory does not exist on the remote server. It must instead be created using the instructions within the /script directory. Once created, the /project_dataset directory should be as follows:
+- /orig directory
+- /gray directory
+- /integral directory
+
+The /orig directory contains the original images given to us for this project. All images are in the form of *.png files.
+
+The /gray directory contains the original images converted into their grayscale (one-channel) text representation. These images are used by the EFDS module. All images are in the form of *.txt files.
+
+The /integral directory contains the integral image representations computed from the grayscale images. An integral image is a way to represent images using their cumulative sums. This representation makes certain image calculations quicker and easier. These images are used by the training module. All images are in the form of *.txt files.
+
+Besides the specific representation of the images, /orig, /gray, and /integral directories all contain the same layout.
+- /testing directory
+- /training directory
+- /validation directory
+
+The /testing directory contains 485 face images and 909 non-face images totalling 1394 images. This directory was partitioned prior to this project and has not been modified. It contains 20% of the data.
+
+The /training directory contains 1457 face images and 2792 non-face images totalling 4249 images. This directory was originally larger, containing 80% of the data. For this project, this directory partitioned into two, the /training and /validation directories. Currently it contains 60% of the data.
+
+The /validation directory contains 487 face images and 847 non-face images totalling 1334 images. This directory was partitioned using images from the training directory. 20% of the face images were partitioned and 20% of the non-face images were partitioned. The images chosen were the last 20% (i.e. images 1458 to 1945 for face). It contains 20% of the data. 
+
+Within each the /testing, /training, and /validation directories, there are two divisions
+- /face directory
+- /non-face directory
+
+The /face directory contains all the images that contain a face. They are also numerically named from 0 to the total number of images within that directory. The specific representation (original, grayscale, integral) of the images were discussed above.
+
+The /nonface directory contains all the images that do not contain a face. They are also numerically named from 0 to the total number of images within that directory. The specific representation (original, grayscale, integral) of the images were discussed above.

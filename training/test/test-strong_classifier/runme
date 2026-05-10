@@ -1,3 +1,31 @@
 #!/usr/bin/env bash
 
-./strongClassifierDriver.exe
+./strongClassifierDriver.exe > out.txt
+
+if ! grep -q "Loaded 5 images from data/face" out.txt; then
+    echo "error: faces not loaded"
+fi
+
+if ! grep -q "Loaded 5 images from data/non-face" out.txt; then
+    echo "error: nonfaces not loaded"
+fi
+
+if ! grep -q "Generated 162336 candidate features." out.txt; then
+    echo "error: candidate features not generated"
+fi
+
+if ! grep -q "=== Training stage 1 / 3 ===" out.txt; then
+    echo "error: training stage 1 not conducted"
+fi
+
+if ! grep -q "=== Training stage 2 / 3 ===" out.txt; then
+    echo "error: training stage 2 not conducted"
+fi
+
+if ! grep -q "=== Training stage 3 / 3 ===" out.txt; then
+    echo "error: training stage 3 not conducted"
+fi
+
+if ! grep -q "=== Training complete ===" out.txt; then
+    echo "error: training did not complete"
+fi

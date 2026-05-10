@@ -1,17 +1,41 @@
 Tests started on:
-Thu 30 Apr 2026 06:43:29 PM EDT
+Sat 09 May 2026 07:28:50 PM EDT
 -----------------------------------------------------
 Test result for:
-/homes/s/r/srod26/home/team4/training/test/test-config
+/homes/s/r/srod26/home/team4/training/test/test-config_read
 -----------------------------------------------------
 Error comparison result for: 
-/homes/s/r/srod26/home/team4/training/test/test-config
+/homes/s/r/srod26/home/team4/training/test/test-config_read
+-----------------------------------------------------
+Test result for:
+/homes/s/r/srod26/home/team4/training/test/test-config_read_error
+-----------------------------------------------------
+Error comparison result for: 
+/homes/s/r/srod26/home/team4/training/test/test-config_read_error
+-----------------------------------------------------
+Test result for:
+/homes/s/r/srod26/home/team4/training/test/test-config_write
+-----------------------------------------------------
+Error comparison result for: 
+/homes/s/r/srod26/home/team4/training/test/test-config_write
+-----------------------------------------------------
+Test result for:
+/homes/s/r/srod26/home/team4/training/test/test-config_write_error
+-----------------------------------------------------
+Error comparison result for: 
+/homes/s/r/srod26/home/team4/training/test/test-config_write_error
 -----------------------------------------------------
 Test result for:
 /homes/s/r/srod26/home/team4/training/test/test-gen_features
 -----------------------------------------------------
 Error comparison result for: 
 /homes/s/r/srod26/home/team4/training/test/test-gen_features
+-----------------------------------------------------
+Test result for:
+/homes/s/r/srod26/home/team4/training/test/test-haar_features
+-----------------------------------------------------
+Error comparison result for: 
+/homes/s/r/srod26/home/team4/training/test/test-haar_features
 -----------------------------------------------------
 Test result for:
 /homes/s/r/srod26/home/team4/training/test/test-load_images1
@@ -42,5 +66,17 @@ Test result for:
 -----------------------------------------------------
 Error comparison result for: 
 /homes/s/r/srod26/home/team4/training/test/test-load_txt3
+-----------------------------------------------------
+Test result for:
+/homes/s/r/srod26/home/team4/training/test/test-strong_classifier
+-----------------------------------------------------
+Error comparison result for: 
+/homes/s/r/srod26/home/team4/training/test/test-strong_classifier
+-----------------------------------------------------
+Test result for:
+/homes/s/r/srod26/home/team4/training/test/test-weak_classifier
+-----------------------------------------------------
+Error comparison result for: 
+/homes/s/r/srod26/home/team4/training/test/test-weak_classifier
 Tests completed on:
-Thu 30 Apr 2026 06:43:39 PM EDT
+Sat 09 May 2026 07:29:33 PM EDT

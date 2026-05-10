@@ -1,0 +1,5 @@
+Tests readConfigFile() in training/src/validate/main.cpp
+
+This function reads in a config file representing a strong classifier and creates the corresponding strong classifier.
+
+This test ensures error handling if the config file path is incorrect/does not exist.

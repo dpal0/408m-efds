@@ -1,0 +1,5 @@
+#!/usr/bin/env bash
+
+./trainReportDriver.exe
+
+diff training_report.txt out.txt

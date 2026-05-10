@@ -1,6 +1,0 @@
-#!/usr/bin/env bash
-
-./configDriver.exe
-
-diff config1.txt correct-config1.txt
-diff config2.txt correct-config2.txt

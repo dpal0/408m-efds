@@ -1,8 +1,5 @@
-g++ -c strongClassifierDriver.cpp
-g++ -c ../../src/HaarFeature.cpp
-g++ -c ../../src/WeakClassifier.cpp
-g++ -c ../../src/StrongClassifier.cpp
+g++ -DTRAINING -c strongClassifierDriver.cpp ../../src/HaarFeature.cpp ../../src/WeakClassifier.cpp ../../src/StrongClassifier.cpp
 
-g++ -o strongClassifierDriver.exe strongClassifierDriver.o HaarFeature.o WeakClassifier.o StrongClassifier.o
+g++ -o strongClassifierDriver.exe strongClassifierDriver.o HaarFeature.o WeakClassifier.o StrongClassifier.o -lpthread
 
 rm *.o

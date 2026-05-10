@@ -1,0 +1,12 @@
+Tests started on:
+Sat 09 May 2026 07:50:15 PM EDT
+-----------------------------------------------------
+Test result for:
+/homes/s/r/srod26/home/team4/training/test/test-eval_report_error
+Files ../correct-output.txt and output.txt differ
+-----------------------------------------------------
+Error comparison result for: 
+/homes/s/r/srod26/home/team4/training/test/test-eval_report_error
+Files ../expected-errors.txt and error_output.txt differ
+Tests completed on:
+Sat 09 May 2026 07:50:17 PM EDT

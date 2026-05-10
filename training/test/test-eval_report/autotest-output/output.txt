@@ -1,0 +1,18 @@
+
+TP: 9, FP: 2, TN: 18, FN:1
+TPR: 0.9, FPR: 0.1
+Precision: 0.818182, Recall: 0.9, F1: 0.857143
+
+Time elapsed: 1.23457e+07 ns
+
+TP: 9, FP: 2, TN: 18, FN:1
+TPR: 0.81, FPR: 0.01
+Precision: 0.818182, Recall: 0.9, F1: 0.857143
+
+Time elapsed: 1.23457e+07 ns
+
+TP: 9, FP: 2, TN: 18, FN:1
+TPR: 0.729, FPR: 0.001
+Precision: 0.818182, Recall: 0.9, F1: 0.857143
+
+Time elapsed: 1.23457e+07 ns
