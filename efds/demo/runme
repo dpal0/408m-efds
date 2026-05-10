@@ -1,2 +1,4 @@
 #!/usr/bin/env bash
-./efds_graph_driver.exe ../../dataset/project-dataset/gray/validation/non-face/ face.txt ../../configs/train5
+rm -f face.txt nf_stage*.txt 
+./efds_graph_driver.exe ./test_data_mixed face.txt ../../configs/train6 > performance.txt
+cat face.txt nf_stage*.txt | sort -n > results.txt

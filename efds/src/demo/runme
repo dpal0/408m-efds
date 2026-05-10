@@ -1,2 +1,0 @@
-#!/usr/bin/env bash
-./efds_graph_driver.exe ../../../dataset/project-dataset/gray/validation/face/ face.txt ../../../configs/train5

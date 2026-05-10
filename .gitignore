@@ -1,6 +1,7 @@
 dataset/project-dataset
 .vscode/
 build/
+build-raspi/
 # Ignore compiled static libraries
 *.a
 

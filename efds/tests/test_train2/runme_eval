@@ -1,0 +1,21 @@
+#!/bin/bash
+
+# --- Configuration ---
+INPUT_DIR="../../../dataset/project-dataset/gray/testing"
+CONFIG="../../../configs/train2"
+# INPUT_DIR="../../demo/test_data_mixed/" # Debug path
+
+# --- Cleanup ---
+# Remove temporary files and previous performance logs
+rm -f temp_face.txt temp_non-face.txt nf_stage*.txt performance*.txt face.txt non-face.txt evalEfds.txt
+
+# --- Processing: Face ---
+../efds_graph_driver.exe "${INPUT_DIR}/face" temp_face.txt "$CONFIG" > performance-face.txt
+cat temp_face.txt nf_stage*.txt 2>/dev/null | sort -n > face.txt
+
+# --- Processing: Non-Face ---
+../efds_graph_driver.exe "${INPUT_DIR}/non-face" temp_non-face.txt "$CONFIG" > performance-non-face.txt
+cat temp_non-face.txt nf_stage*.txt 2>/dev/null | sort -n > non-face.txt
+
+# --- Evaluation ---
+../evalTrain_driver.exe > evalEfds.txt

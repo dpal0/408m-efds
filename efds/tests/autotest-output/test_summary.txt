@@ -1,9 +1,0 @@
-Test count: 6; test failures: 3; error output mismatches: 3
-Test failures: 
-/afs/glue.umd.edu/home/glue/d/p/dpal1/home/enee408m/project/efds/tests/test01
-/afs/glue.umd.edu/home/glue/d/p/dpal1/home/enee408m/project/efds/tests/test03
-/afs/glue.umd.edu/home/glue/d/p/dpal1/home/enee408m/project/efds/tests/test12_classifierActor
-Error comparison failures: 
-/afs/glue.umd.edu/home/glue/d/p/dpal1/home/enee408m/project/efds/tests/test03
-/afs/glue.umd.edu/home/glue/d/p/dpal1/home/enee408m/project/efds/tests/test12_classifierActor
-/afs/glue.umd.edu/home/glue/d/p/dpal1/home/enee408m/project/efds/tests/test-eval_metrics

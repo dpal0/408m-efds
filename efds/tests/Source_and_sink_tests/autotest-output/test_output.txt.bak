@@ -1,9 +1,8 @@
 Tests started on:
-Sat May  9 13:28:02 EDT 2026
+Sat May  9 19:34:06 EDT 2026
 -----------------------------------------------------
 Test result for:
 /afs/glue.umd.edu/home/glue/d/p/dpal1/home/enee408m/project/efds/tests/Source_and_sink_tests/test01
-Files ../correct-output.txt and output.txt differ
 -----------------------------------------------------
 Error comparison result for: 
 /afs/glue.umd.edu/home/glue/d/p/dpal1/home/enee408m/project/efds/tests/Source_and_sink_tests/test01
@@ -21,4 +20,4 @@ Error comparison result for:
 /afs/glue.umd.edu/home/glue/d/p/dpal1/home/enee408m/project/efds/tests/Source_and_sink_tests/test03
 Files ../expected-errors.txt and error_output.txt differ
 Tests completed on:
-Sat May  9 13:28:02 EDT 2026
+Sat May  9 19:34:07 EDT 2026

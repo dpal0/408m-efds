@@ -149,6 +149,10 @@ void classifierActor::invoke() {
             copyToken->I=new PTIS();
             copyToken->I->pix=this->currToken->I->pix;
             welt_c_fifo_write(cont_out,&copyToken); //writes the (I,K) token and send it to the next actor
+             // free original
+            delete this->currToken->I;
+            delete this->currToken;
+            this->currToken = nullptr;
             mode=READ;
             break;
         }
@@ -163,6 +167,10 @@ void classifierActor::invoke() {
             copyToken->I=new PTIS();
             copyToken->I->pix=this->currToken->I->pix;
             welt_c_fifo_write(abort_out,&copyToken); //writes to abort output to send (I,K) as non-face. 
+             // free original
+            delete this->currToken->I;
+            delete this->currToken;
+            this->currToken = nullptr;
             mode=READ;
             break;
         }

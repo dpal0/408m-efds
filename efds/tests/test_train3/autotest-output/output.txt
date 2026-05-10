@@ -1,0 +1,232 @@
+classifierActor is in "CONFIGURE" mode
+config file opened
+x: 12
+y: 0
+w: 2
+wc in vector
+x: 0
+y: 6
+w: 20
+wc in vector
+strong classifier created
+classifierActor is in "CONFIGURE" mode
+config file opened
+x: 0
+y: 6
+w: 20
+wc in vector
+x: 12
+y: 0
+w: 2
+wc in vector
+x: 17
+y: 21
+w: 5
+wc in vector
+x: 1
+y: 0
+w: 9
+wc in vector
+x: 0
+y: 5
+w: 7
+wc in vector
+strong classifier created
+classifierActor is in "CONFIGURE" mode
+config file opened
+x: 0
+y: 5
+w: 19
+wc in vector
+x: 17
+y: 1
+w: 6
+wc in vector
+x: 1
+y: 1
+w: 9
+wc in vector
+x: 0
+y: 3
+w: 6
+wc in vector
+x: 0
+y: 9
+w: 14
+wc in vector
+x: 12
+y: 0
+w: 2
+wc in vector
+x: 4
+y: 21
+w: 10
+wc in vector
+x: 0
+y: 13
+w: 14
+wc in vector
+x: 21
+y: 0
+w: 2
+wc in vector
+strong classifier created
+classifierActor is in "CONFIGURE" mode
+config file opened
+x: 0
+y: 6
+w: 6
+wc in vector
+x: 9
+y: 1
+w: 15
+wc in vector
+x: 12
+y: 1
+w: 2
+wc in vector
+x: 5
+y: 17
+w: 3
+wc in vector
+x: 2
+y: 1
+w: 22
+wc in vector
+x: 8
+y: 13
+w: 12
+wc in vector
+x: 0
+y: 1
+w: 21
+wc in vector
+x: 4
+y: 10
+w: 6
+wc in vector
+x: 1
+y: 1
+w: 20
+wc in vector
+x: 0
+y: 13
+w: 14
+wc in vector
+x: 0
+y: 1
+w: 14
+wc in vector
+x: 9
+y: 13
+w: 14
+wc in vector
+x: 0
+y: 1
+w: 5
+wc in vector
+x: 0
+y: 5
+w: 8
+wc in vector
+x: 12
+y: 9
+w: 2
+wc in vector
+strong classifier created
+classifierActor is in "READ" mode
+classifierActor is in "CLASSIFY" mode
+currToken ok
+imgI ok
+integral image created
+before classify
+after classify
+classifierActor is in "TRUE_MOD" mode
+classifierActor is in "READ" mode
+classifierActor is in "READ" mode
+classifierActor is in "CLASSIFY" mode
+currToken ok
+imgI ok
+integral image created
+before classify
+after classify
+classifierActor is in "CLASSIFY" mode
+currToken ok
+imgI ok
+integral image created
+before classify
+after classify
+classifierActor is in "TRUE_MOD" mode
+classifierActor is in "READ" mode
+classifierActor is in "TRUE_MOD" mode
+classifierActor is in "READ" mode
+classifierActor is in "CLASSIFY" mode
+currToken ok
+imgI ok
+integral image created
+before classify
+after classify
+classifierActor is in "READ" mode
+classifierActor is in "CLASSIFY" mode
+currToken ok
+imgI ok
+integral image created
+before classify
+after classify
+classifierActor is in "TRUE_MOD" mode
+classifierActor is in "READ" mode
+classifierActor is in "CLASSIFY" mode
+currToken ok
+imgI ok
+integral image created
+before classify
+after classify
+classifierActor is in "TRUE_MOD" mode
+classifierActor is in "READ" mode
+classifierActor is in "CLASSIFY" mode
+currToken ok
+imgI ok
+integral image created
+before classify
+after classify
+classifierActor is in "TRUE_MOD" mode
+classifierActor is in "READ" mode
+classifierActor is in "CLASSIFY" mode
+currToken ok
+imgI ok
+integral image created
+before classify
+after classify
+classifierActor is in "FALSE_MOD" mode
+classifierActor is in "CLASSIFY" mode
+currToken ok
+imgI ok
+integral image created
+before classify
+after classify
+classifierActor is in "TRUE_MOD" mode
+classifierActor is in "READ" mode
+classifierActor is in "TRUE_MOD" mode
+classifierActor is in "READ" mode
+classifierActor is in "CLASSIFY" mode
+currToken ok
+imgI ok
+integral image created
+before classify
+after classify
+classifierActor is in "CLASSIFY" mode
+currToken ok
+imgI ok
+integral image created
+before classify
+after classify
+classifierActor is in "FALSE_MOD" mode
+classifierActor is in "TRUE_MOD" mode
+classifierActor is in "READ" mode
+classifierActor is in "CLASSIFY" mode
+currToken ok
+imgI ok
+integral image created
+before classify
+after classify
+classifierActor is in "FALSE_MOD" mode
