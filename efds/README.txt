@@ -44,10 +44,8 @@ CMakeLists.txt
     Top-level CMake config. Sets up include paths for the Welter C++ framework
     headers and pulls in the src/ subdirectory build.
 
-libefds.a
-    The compiled static library containing all actor and graph code. Built
-    automatically by make. Linked into the test and demo executables.
-
+drivers/
+	Where the drivers for unit testing, evaluation, and train runs live.
 
 Build Instructions
 ------------------
