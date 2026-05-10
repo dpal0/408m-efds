@@ -1,3 +1,3 @@
-Tpos (total time):   1.018 ms
-Npos (face count):   0
-No positive detections.
+Tpos (total time):   264.378 ms
+Npos (face count):   35
+Avg latency/face:    7.55366 ms

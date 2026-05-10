@@ -94,6 +94,10 @@ iis.h
 ptis.h
 /homes/e/z/ezhang21/home/enee408m/project/team4/efds/src/actors/ptis.h
 
+/homes/e/z/ezhang21/home/enee408m/project/team4/efds/src/actors/integral_image.cpp
+integral_image.h
+/homes/e/z/ezhang21/home/enee408m/project/team4/efds/src/actors/integral_image.h
+
 /homes/e/z/ezhang21/home/enee408m/project/team4/efds/src/actors/integral_image.h
 vector
 -
@@ -114,9 +118,29 @@ string
 ../../src/actors/classifierActor.h
 /homes/e/z/ezhang21/home/enee408m/project/team4/efds/src/actors/classifierActor.h
 
+/homes/e/z/ezhang21/home/enee408m/project/team4/training/src/HaarFeature.cpp
+iostream
+-
+HaarFeature.h
+/homes/e/z/ezhang21/home/enee408m/project/team4/training/src/HaarFeature.h
+
 /homes/e/z/ezhang21/home/enee408m/project/team4/training/src/HaarFeature.h
 vector
 -
+
+/homes/e/z/ezhang21/home/enee408m/project/team4/training/src/StrongClassifier.cpp
+iostream
+-
+typeinfo
+-
+thread
+-
+mutex
+-
+atomic
+-
+StrongClassifier.h
+/homes/e/z/ezhang21/home/enee408m/project/team4/training/src/StrongClassifier.h
 
 /homes/e/z/ezhang21/home/enee408m/project/team4/training/src/StrongClassifier.h
 WeakClassifier.h
@@ -131,6 +155,20 @@ numeric
 -
 iostream
 -
+
+/homes/e/z/ezhang21/home/enee408m/project/team4/training/src/WeakClassifier.cpp
+vector
+-
+limits
+-
+iostream
+-
+algorithm
+-
+numeric
+-
+WeakClassifier.h
+/homes/e/z/ezhang21/home/enee408m/project/team4/training/src/WeakClassifier.h
 
 /homes/e/z/ezhang21/home/enee408m/project/team4/training/src/WeakClassifier.h
 vector

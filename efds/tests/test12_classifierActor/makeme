@@ -30,3 +30,9 @@
 
 # [FIXME: complete this script, this is just a template]
 
+rm -rf build
+mkdir -p build
+cd build
+cmake ..
+make clean
+make

@@ -24,6 +24,6 @@ test04_train5 to test10_train4 have the same functionality, but they use differe
 
 runme_face -> generate face.txt
 runme_noface -> generate non-face.txt
-runme_evalEfds -> generate face.txt, non-face.txt, and evalEfds.txt
+runme_eval -> generate face.txt, non-face.txt, and evalEfds.txt
 
 Each test has face.txt, non-face.txt, and evalEfds.txt generated. These generated files can also be found in configs/train#/ folder which are named: outputFace.txt, outputNonFace.txt, evalEfds.txt.

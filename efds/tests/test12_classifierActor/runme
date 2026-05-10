@@ -21,9 +21,7 @@
 # PROVIDED HEREUNDER IS ON AN "AS IS" BASIS, AND THE UNIVERSITY OF
 # MARYLAND HAS NO OBLIGATION TO PROVIDE MAINTENANCE, SUPPORT, UPDATES,
 # ENHANCEMENTS, OR MODIFICATIONS.
-#
-cd build 
-cmake ..
-make
-./classActor_driver 
 
+cd build || exit 1
+./classActor_driver
+exit 0

@@ -55,4 +55,12 @@ Config 1  ____Summary____
 all faces passed
 number of nonfaces failed: 4
 ```
+# How to Run dxtest 
+1st: rm -rf autotest*
+2nd: dxtest
 
+# Makeme
+makeme  configures and builds the test files using cmake and make. After makeme is completed, the executable file classActor_driver is created inside build directory. 
+
+# Runme
+runme is used run the executable classActor_driver. 
