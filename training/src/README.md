@@ -1,4 +1,4 @@
-This directory contains the source code for the training module. It includes: 
+# training/src
 
 (1) HaarFeature.h: creates and calculates the Haar (rectangle) Features values.
 
@@ -8,11 +8,7 @@ This directory contains the source code for the training module. It includes:
 
 (4) main.cpp: Loads in images for training, trains strong classifiers (the number of weak classifiers per strong classifier and the number of strong classifiers are set by the developer), and returns the resulting config files.
 
-(5) makeme: Builds the cpp files into an executable.
-
-(6) runme: Runs the training module. Arguments are specified within the runme script and should be modified depending on the desired inputs.
-
-It also has two sub-directories 
+# subdirectories
 
 (1) train: This directory contains scripts to train the classifiers. It was used to created multiple config files quickly.
 

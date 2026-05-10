@@ -1,8 +1,10 @@
-Producing the Dataset:
+# dataset
 
-To produce this dataset, the scripts used are in the scripts/ subdirectory with instructions on how to run in the scripts/README.txt file. 
+# producing the dataset
 
-Contents:
+To produce this dataset, the scripts used are in the scripts/ subdirectory with instructions on how to run in the scripts/README.txt file.
+
+# contents
 
 the project-dataset/ contains all the images (face and non-face) to be used within this project. There are three representations of each image:
 
@@ -21,7 +23,7 @@ Furthermore, within each of those subdirectories, there are two more subdirector
 (1) face/ subdirectory contains each individual image file that contains a face. The images’ representation follows the outer directory categories (i.e. original image, grayscale text, integral text).
 (2) non-face/ subdirectory contains each individual image file that does not contain a face. As with the face/ subdirectory, the images’ representation follows the outer directory categories.
 
-Usage:
+# usage
 
 For the training module, the integral textual images are utilized (dataset/project-dataset/integral/*).
 For the EFDS module, the grayscale textual images are utilized (dataset/project-dataset/gray/*).
