@@ -25,7 +25,7 @@ rm -f "${SUMMARY_DIR}/latency_${CONFIG_NAME}.csv"
 rm -f nf_stage*.txt
 find . -maxdepth 1 -name "tmp_config_k*" -type d -exec rm -rf {} + 2>/dev/null
 
-L=$(ls "$CONFIG_DIR"/*.txt 2>/dev/null | wc -l)
+L=$(ls "$CONFIG_DIR"/config[0-9]*.txt 2>/dev/null | wc -l)
 if [ "$L" -eq 0 ]; then
     echo "No config files found in $CONFIG_DIR"
     exit 1
@@ -41,7 +41,7 @@ for ((k=1; k<=L; k++)); do
     # Build truncated config dir with first k files only
     TMPDIR="./tmp_config_k${k}"
     mkdir -p "$TMPDIR"
-    ls "$CONFIG_DIR"/*.txt | sort | head -n "$k" | xargs -I{} cp {} "$TMPDIR/"
+    ls "$CONFIG_DIR"/config[0-9]*.txt | sort | head -n "$k" | xargs -I{} cp {} "$TMPDIR/"
 
     # Run driver on face input, capture output
     OUT=$(./efds_graph_driver.exe "${INPUT_DIR}/face" /dev/null "$TMPDIR")
