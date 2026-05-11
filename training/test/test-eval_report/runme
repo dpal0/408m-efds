@@ -1,0 +1,7 @@
+#!/usr/bin/env bash
+
+rm eval_report.txt
+
+./evalReportDriver.exe
+
+diff eval_report.txt out.txt

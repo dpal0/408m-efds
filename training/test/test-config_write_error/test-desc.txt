@@ -1,0 +1,5 @@
+Tests makeConfigFile() in training/src/train/main.cpp
+
+This function takes a strong classifier, computed in main.cpp, and writes its text representation into a config file.
+
+This test ensures error handling if the config file path is incorrect/does not exist.

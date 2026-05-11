@@ -1,0 +1,5 @@
+#!/usr/bin/env bash
+
+./configReadDriver.exe
+
+diff config1.txt out.txt

@@ -26,9 +26,7 @@ public:
 
     // accessors
     std::vector<wc_weight_pair> getWeakClassifiers() { return weak_classifiers; }
-    float getThreshold() { 
-        cout << "Threshold: " << threshold << endl;
-        return threshold; }
+    float getThreshold() { return threshold; }
 
     // mutators
     void set_threshold(float threshold) { this->threshold = threshold; }

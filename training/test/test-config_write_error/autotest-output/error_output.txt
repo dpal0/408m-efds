@@ -1,0 +1,1 @@
+main.cpp: makeConfigFile() could not open ./configs/config1.txt

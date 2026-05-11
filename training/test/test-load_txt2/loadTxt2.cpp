@@ -3,7 +3,7 @@
 #include <iostream>
 #include <fstream>
 #include <vector>
-#include "../../src/main.cpp"
+#include "../../src/train/main.cpp"
 
 using namespace std;
 

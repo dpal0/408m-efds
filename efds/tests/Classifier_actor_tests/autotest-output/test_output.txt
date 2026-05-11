@@ -1,5 +1,9 @@
 Tests started on:
+<<<<<<< HEAD
 Sat May  9 19:33:58 EDT 2026
+=======
+Sun May 10 11:43:20 EDT 2026
+>>>>>>> main
 -----------------------------------------------------
 Test result for:
 /afs/glue.umd.edu/home/glue/d/p/dpal1/home/enee408m/project/efds/tests/Classifier_actor_tests/test01
@@ -13,4 +17,8 @@ Test result for:
 Error comparison result for: 
 /afs/glue.umd.edu/home/glue/d/p/dpal1/home/enee408m/project/efds/tests/Classifier_actor_tests/test02
 Tests completed on:
+<<<<<<< HEAD
 Sat May  9 19:33:58 EDT 2026
+=======
+Sun May 10 11:43:20 EDT 2026
+>>>>>>> main

@@ -1,0 +1,97 @@
+Loaded 5 images from data/face
+Loaded 5 images from data/non-face
+Generated 162336 candidate features.
+
+=== Training stage 1 / 3 ===
+Positives: 5  Negatives: 5
+Training strong classifier with 1 round(s) and 6 threads for stage 1
+
+Begin training round 1 / 1 of stage 1/3
+1 WC trained in 0s, round 1/1 of stage 1/3 is ~0.000616006% complete
+16158 WC trained in 0s, round 1/1 of stage 1/3 is ~9.95343% complete
+32486 WC trained in 1s, round 1/1 of stage 1/3 is ~20.0116% complete
+48653 WC trained in 1s, round 1/1 of stage 1/3 is ~29.9706% complete
+64861 WC trained in 1s, round 1/1 of stage 1/3 is ~39.9548% complete
+81072 WC trained in 1s, round 1/1 of stage 1/3 is ~49.9409% complete
+97558 WC trained in 2s, round 1/1 of stage 1/3 is ~60.0963% complete
+113589 WC trained in 2s, round 1/1 of stage 1/3 is ~69.9715% complete
+129636 WC trained in 2s, round 1/1 of stage 1/3 is ~79.8566% complete
+145496 WC trained in 3s, round 1/1 of stage 1/3 is ~89.6265% complete
+Stage 1/3 Round 1/1: Selected WC 13 w/ error 1e-10 and alpha 23.0259 in 3s
+
+=== Training stage 2 / 3 ===
+Positives: 5  Negatives: 5
+Training strong classifier with 2 round(s) and 6 threads for stage 2
+
+Begin training round 1 / 2 of stage 2/3
+1 WC trained in 0s, round 1/2 of stage 2/3 is ~0.000616006% complete
+16455 WC trained in 0s, round 1/2 of stage 2/3 is ~10.1364% complete
+32404 WC trained in 1s, round 1/2 of stage 2/3 is ~19.9611% complete
+48638 WC trained in 1s, round 1/2 of stage 2/3 is ~29.9613% complete
+64885 WC trained in 1s, round 1/2 of stage 2/3 is ~39.9696% complete
+81674 WC trained in 2s, round 1/2 of stage 2/3 is ~50.3117% complete
+98510 WC trained in 2s, round 1/2 of stage 2/3 is ~60.6828% complete
+114727 WC trained in 2s, round 1/2 of stage 2/3 is ~70.6726% complete
+130933 WC trained in 2s, round 1/2 of stage 2/3 is ~80.6556% complete
+147214 WC trained in 3s, round 1/2 of stage 2/3 is ~90.6848% complete
+Stage 2/3 Round 1/2: Selected WC 13 w/ error 1e-10 and alpha 23.0259 in 3s
+
+Begin training round 2 / 2 of stage 2/3
+1 WC trained in 0s, round 2/2 of stage 2/3 is ~0.000616006% complete
+16221 WC trained in 0s, round 2/2 of stage 2/3 is ~9.99224% complete
+32414 WC trained in 1s, round 2/2 of stage 2/3 is ~19.9672% complete
+48649 WC trained in 1s, round 2/2 of stage 2/3 is ~29.9681% complete
+64910 WC trained in 1s, round 2/2 of stage 2/3 is ~39.985% complete
+81185 WC trained in 2s, round 2/2 of stage 2/3 is ~50.0105% complete
+97486 WC trained in 2s, round 2/2 of stage 2/3 is ~60.052% complete
+113989 WC trained in 2s, round 2/2 of stage 2/3 is ~70.2179% complete
+130308 WC trained in 2s, round 2/2 of stage 2/3 is ~80.2705% complete
+146543 WC trained in 3s, round 2/2 of stage 2/3 is ~90.2714% complete
+Stage 2/3 Round 2/2: Selected WC 8 w/ error 1e-10 and alpha 23.0259 in 3s
+
+=== Training stage 3 / 3 ===
+Positives: 5  Negatives: 5
+Training strong classifier with 3 round(s) and 6 threads for stage 3
+
+Begin training round 1 / 3 of stage 3/3
+1 WC trained in 0s, round 1/3 of stage 3/3 is ~0.000616006% complete
+16373 WC trained in 0s, round 1/3 of stage 3/3 is ~10.0859% complete
+32677 WC trained in 0s, round 1/3 of stage 3/3 is ~20.1292% complete
+48910 WC trained in 0s, round 1/3 of stage 3/3 is ~30.1289% complete
+65107 WC trained in 1s, round 1/3 of stage 3/3 is ~40.1063% complete
+81276 WC trained in 1s, round 1/3 of stage 3/3 is ~50.0665% complete
+97454 WC trained in 1s, round 1/3 of stage 3/3 is ~60.0323% complete
+113548 WC trained in 2s, round 1/3 of stage 3/3 is ~69.9463% complete
+129885 WC trained in 2s, round 1/3 of stage 3/3 is ~80.01% complete
+145923 WC trained in 2s, round 1/3 of stage 3/3 is ~89.8895% complete
+Stage 3/3 Round 1/3: Selected WC 13 w/ error 1e-10 and alpha 23.0259 in 3s
+
+Begin training round 2 / 3 of stage 3/3
+2 WC trained in 0s, round 2/3 of stage 3/3 is ~0.00123201% complete
+16600 WC trained in 0s, round 2/3 of stage 3/3 is ~10.2257% complete
+32542 WC trained in 0s, round 2/3 of stage 3/3 is ~20.0461% complete
+48616 WC trained in 0s, round 2/3 of stage 3/3 is ~29.9478% complete
+64741 WC trained in 1s, round 2/3 of stage 3/3 is ~39.8809% complete
+80835 WC trained in 1s, round 2/3 of stage 3/3 is ~49.7949% complete
+96937 WC trained in 1s, round 2/3 of stage 3/3 is ~59.7138% complete
+112937 WC trained in 2s, round 2/3 of stage 3/3 is ~69.5699% complete
+128996 WC trained in 2s, round 2/3 of stage 3/3 is ~79.4623% complete
+145129 WC trained in 2s, round 2/3 of stage 3/3 is ~89.4004% complete
+Stage 3/3 Round 2/3: Selected WC 8 w/ error 1e-10 and alpha 23.0259 in 3s
+
+Begin training round 3 / 3 of stage 3/3
+1 WC trained in 0s, round 3/3 of stage 3/3 is ~0.000616006% complete
+16766 WC trained in 0s, round 3/3 of stage 3/3 is ~10.328% complete
+33625 WC trained in 0s, round 3/3 of stage 3/3 is ~20.7132% complete
+50167 WC trained in 0s, round 3/3 of stage 3/3 is ~30.9032% complete
+66818 WC trained in 1s, round 3/3 of stage 3/3 is ~41.1603% complete
+83680 WC trained in 1s, round 3/3 of stage 3/3 is ~51.5474% complete
+101065 WC trained in 1s, round 3/3 of stage 3/3 is ~62.2567% complete
+118186 WC trained in 2s, round 3/3 of stage 3/3 is ~72.8033% complete
+135662 WC trained in 2s, round 3/3 of stage 3/3 is ~83.5686% complete
+152429 WC trained in 2s, round 3/3 of stage 3/3 is ~93.8972% complete
+Stage 3/3 Round 3/3: Selected WC 16 w/ error 1e-20 and alpha 46.0517 in 3s
+
+=== Training complete ===
+Positives: 5  Negatives: 1
+

@@ -1,58 +1,106 @@
 Tests started on:
-Thu 30 Apr 2026 07:09:40 PM EDT
+Sat 09 May 2026 08:03:01 PM EDT
 -----------------------------------------------------
 Test result for:
-/afs/glue.umd.edu/home/glue/s/r/srod26/home/team4/training/test/test-config
+/homes/s/r/srod26/home/team4/training/test/test-config_read
 -----------------------------------------------------
 Error comparison result for: 
-/afs/glue.umd.edu/home/glue/s/r/srod26/home/team4/training/test/test-config
+/homes/s/r/srod26/home/team4/training/test/test-config_read
 -----------------------------------------------------
 Test result for:
-/afs/glue.umd.edu/home/glue/s/r/srod26/home/team4/training/test/test-gen_features
+/homes/s/r/srod26/home/team4/training/test/test-config_read_error
 -----------------------------------------------------
 Error comparison result for: 
-/afs/glue.umd.edu/home/glue/s/r/srod26/home/team4/training/test/test-gen_features
+/homes/s/r/srod26/home/team4/training/test/test-config_read_error
 -----------------------------------------------------
 Test result for:
-/afs/glue.umd.edu/home/glue/s/r/srod26/home/team4/training/test/test-haar_features
+/homes/s/r/srod26/home/team4/training/test/test-config_write
 -----------------------------------------------------
 Error comparison result for: 
-/afs/glue.umd.edu/home/glue/s/r/srod26/home/team4/training/test/test-haar_features
+/homes/s/r/srod26/home/team4/training/test/test-config_write
 -----------------------------------------------------
 Test result for:
-/afs/glue.umd.edu/home/glue/s/r/srod26/home/team4/training/test/test-load_images1
+/homes/s/r/srod26/home/team4/training/test/test-config_write_error
 -----------------------------------------------------
 Error comparison result for: 
-/afs/glue.umd.edu/home/glue/s/r/srod26/home/team4/training/test/test-load_images1
+/homes/s/r/srod26/home/team4/training/test/test-config_write_error
 -----------------------------------------------------
 Test result for:
-/afs/glue.umd.edu/home/glue/s/r/srod26/home/team4/training/test/test-load_images2
+/homes/s/r/srod26/home/team4/training/test/test-eval_report
 -----------------------------------------------------
 Error comparison result for: 
-/afs/glue.umd.edu/home/glue/s/r/srod26/home/team4/training/test/test-load_images2
+/homes/s/r/srod26/home/team4/training/test/test-eval_report
 -----------------------------------------------------
 Test result for:
-/afs/glue.umd.edu/home/glue/s/r/srod26/home/team4/training/test/test-load_txt1
+/homes/s/r/srod26/home/team4/training/test/test-eval_report_error
 -----------------------------------------------------
 Error comparison result for: 
-/afs/glue.umd.edu/home/glue/s/r/srod26/home/team4/training/test/test-load_txt1
+/homes/s/r/srod26/home/team4/training/test/test-eval_report_error
 -----------------------------------------------------
 Test result for:
-/afs/glue.umd.edu/home/glue/s/r/srod26/home/team4/training/test/test-load_txt2
+/homes/s/r/srod26/home/team4/training/test/test-gen_features
 -----------------------------------------------------
 Error comparison result for: 
-/afs/glue.umd.edu/home/glue/s/r/srod26/home/team4/training/test/test-load_txt2
+/homes/s/r/srod26/home/team4/training/test/test-gen_features
 -----------------------------------------------------
 Test result for:
-/afs/glue.umd.edu/home/glue/s/r/srod26/home/team4/training/test/test-load_txt3
+/homes/s/r/srod26/home/team4/training/test/test-haar_features
 -----------------------------------------------------
 Error comparison result for: 
-/afs/glue.umd.edu/home/glue/s/r/srod26/home/team4/training/test/test-load_txt3
+/homes/s/r/srod26/home/team4/training/test/test-haar_features
 -----------------------------------------------------
 Test result for:
-/afs/glue.umd.edu/home/glue/s/r/srod26/home/team4/training/test/test-weak_classifier
+/homes/s/r/srod26/home/team4/training/test/test-load_images1
 -----------------------------------------------------
 Error comparison result for: 
-/afs/glue.umd.edu/home/glue/s/r/srod26/home/team4/training/test/test-weak_classifier
+/homes/s/r/srod26/home/team4/training/test/test-load_images1
+-----------------------------------------------------
+Test result for:
+/homes/s/r/srod26/home/team4/training/test/test-load_images2
+-----------------------------------------------------
+Error comparison result for: 
+/homes/s/r/srod26/home/team4/training/test/test-load_images2
+-----------------------------------------------------
+Test result for:
+/homes/s/r/srod26/home/team4/training/test/test-load_txt1
+-----------------------------------------------------
+Error comparison result for: 
+/homes/s/r/srod26/home/team4/training/test/test-load_txt1
+-----------------------------------------------------
+Test result for:
+/homes/s/r/srod26/home/team4/training/test/test-load_txt2
+-----------------------------------------------------
+Error comparison result for: 
+/homes/s/r/srod26/home/team4/training/test/test-load_txt2
+-----------------------------------------------------
+Test result for:
+/homes/s/r/srod26/home/team4/training/test/test-load_txt3
+-----------------------------------------------------
+Error comparison result for: 
+/homes/s/r/srod26/home/team4/training/test/test-load_txt3
+-----------------------------------------------------
+Test result for:
+/homes/s/r/srod26/home/team4/training/test/test-strong_classifier
+-----------------------------------------------------
+Error comparison result for: 
+/homes/s/r/srod26/home/team4/training/test/test-strong_classifier
+-----------------------------------------------------
+Test result for:
+/homes/s/r/srod26/home/team4/training/test/test-train_report
+-----------------------------------------------------
+Error comparison result for: 
+/homes/s/r/srod26/home/team4/training/test/test-train_report
+-----------------------------------------------------
+Test result for:
+/homes/s/r/srod26/home/team4/training/test/test-train_report_error
+-----------------------------------------------------
+Error comparison result for: 
+/homes/s/r/srod26/home/team4/training/test/test-train_report_error
+-----------------------------------------------------
+Test result for:
+/homes/s/r/srod26/home/team4/training/test/test-weak_classifier
+-----------------------------------------------------
+Error comparison result for: 
+/homes/s/r/srod26/home/team4/training/test/test-weak_classifier
 Tests completed on:
-Thu 30 Apr 2026 07:09:53 PM EDT
+Sat 09 May 2026 08:03:53 PM EDT

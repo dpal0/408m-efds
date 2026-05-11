@@ -1,3 +1,7 @@
+<<<<<<< HEAD
 Tpos (total time):   23.163 ms
+=======
+Tpos (total time):   5.289 ms
+>>>>>>> main
 Npos (face count):   0
 No positive detections.

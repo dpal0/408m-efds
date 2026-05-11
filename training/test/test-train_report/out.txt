@@ -1,0 +1,9 @@
+Training Report for run .
+=================
+Number of Stages: 3
+Total Training Time: 12345.7 seconds
+
+Stage Configurations:
+Stage 1: 10 weak classifiers
+Stage 2: 20 weak classifiers
+Stage 3: 30 weak classifiers

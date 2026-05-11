@@ -1,0 +1,5 @@
+Tests makeTrainingReport() in training/src/train/main.cpp
+
+This function trained model and writes, to a file, the key aspects of the model (num weak classifiers, num strong classifiers, time to run).
+
+This test ensures functionality by creating a training_report.txt with 3 strong classifiers of 10, 20, and 30 weak classifiers each.

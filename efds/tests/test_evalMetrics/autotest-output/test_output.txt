@@ -1,0 +1,10 @@
+Tests started on:
+Sat 09 May 2026 10:26:25 PM EDT
+-----------------------------------------------------
+Test result for:
+/homes/e/z/ezhang21/home/enee408m/project/team4/efds/tests/test11_EvalMetric
+-----------------------------------------------------
+Error comparison result for: 
+/homes/e/z/ezhang21/home/enee408m/project/team4/efds/tests/test11_EvalMetric
+Tests completed on:
+Sat 09 May 2026 10:26:26 PM EDT

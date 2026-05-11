@@ -1,29 +1,62 @@
-This the main testing directory for the efds
+EFDS Tests
+==========
 
-Here we did test runs with different config files and generated eval reports
+This directory contains the test suite and evaluation runs for the EFDS.
+Executables are built and installed here via makeme in efds/src/.
 
-It contains three sub directories for unit testing of the graph, source actor and sink actor.
+Directory Structure
+-------------------
 
-The rest of them are train test runs
+ITS Suites (run with dxtest)
+    These follow the standard DICE ITS convention with runme scripts
+    and can be exercised using the dxtest utility.
 
-----
+    Source_and_sink_tests/
+        ITS suite for the iis_source and iis_sink actors.
+        Driver: test_source_sink.exe
 
-test04_train5 to test10_train4
+    Classifier_actor_tests/
+        ITS suite for the classifierActor.
+        Driver: classifier_actor_driver.exe
 
-These tests use different training components to classify the images.
+    Graph_tests/
+        ITS suite for the full EFDS graph pipeline.
+        Driver: efds_graph_driver.exe
 
-For example: 
+    test_evalMetrics/ and test-utils-evalmetrics/
+        ITS suite for the EvalMetrics utility.
+        Driver: evalTrain_driver.exe
 
-1. test04_train5 uses configs/train5/config#.txt files to create a cascade graph with classifier Actors from stages 0 to 4 to classify the images in project-dataset/gray/testing/face/ and project-dataset/gray/testing/non-face/ files.
+Evaluation Runs (not ITS)
+    These are design space exploration runs using different classifier
+    configurations. Each has a runme_eval script instead of a runme,
+    and is not intended to be exercised with dxtest.
 
-2. efds_graph_driver is ran and outputs a face.txt and non-face.txt file which contains the classfication of the images in the project-dataset/gray/testing/face/ and project-dataset/gray/testing/non-face/ files. Where the output classification from the graph for classifying the images in project-dataset/gray/testing/face/ are stored in face.txt and simiarly with non-face.txt.
+    test_train0/ - test_train6/
+        Evaluation runs with different config files to explore
+        trade-offs in detection rate, false positive rate, and
+        processing speed.
 
-Since some of the images are aborted and classfied early compared to others because it is classified as non-face, then it may appear earlier and out of order in the output files in face.txt and non-face.txt. Therefore, these files must be sorted before running evalTrain_driver to obtain the evaluation metrics of the output face.txt and non-face.txt files.
+    train_narrow/
+        Evaluation run with a narrow (more restrictive) cascade config.
 
-test04_train5 to test10_train4 have the same functionality, but they use different config files to create their classifier actors and graph. All of these tests uses runme_face, runme_noface, and runme_eval to generate face.txt, non-face.txt, and evalEfds.txt.
+    train_normal/
+        Evaluation run with a normal cascade config.
 
-runme_face -> generate face.txt
-runme_noface -> generate non-face.txt
-runme_evalEfds -> generate face.txt, non-face.txt, and evalEfds.txt
+Installed Executables
+---------------------
 
-Each test has face.txt, non-face.txt, and evalEfds.txt generated. These generated files can also be found in configs/train#/ folder which are named: outputFace.txt, outputNonFace.txt, evalEfds.txt.
+    test_source_sink.exe       - used by Source_and_sink_tests/
+    classifier_actor_driver.exe - used by Classifier_actor_tests/  (in Classifier_actor_tests/)
+    efds_graph_driver.exe      - used by Graph_tests/ and evaluation runs
+    evalTrain_driver.exe       - used by test_evalMetrics/
+
+Utilities
+---------
+
+    cleanup.sh
+        Removes generated output files (face.txt, non-face.txt,
+        temp_face.txt, temp_non-face.txt, nf*.txt) from all test_*/
+        subdirectories. Run from this directory:
+
+            ./cleanup.sh

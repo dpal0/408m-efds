@@ -1,0 +1,5 @@
+Tests makeConfigFile() in training/src/validate/main.cpp
+
+This function takes a cascade round and computes the evaluation metrics used for analysis. The metrics are both printed to the console and saved to a file.
+
+This test ensures error handling if the eval report file path is incorrect/does not exist.

@@ -96,7 +96,7 @@ StrongClassifier readConfigFile (int stage, const string &dir) {
     ifstream configFile(dir + "/config" + to_string(stage) + ".txt");
 
     if(!configFile.is_open()) {
-        cerr << "Error: couldnt open config file:" << dir + "/config" + to_string(stage) + ".txt" << endl;
+        cerr << "main.cpp: readConfigFile() couldnt open config file:" << dir + "/config" + to_string(stage) + ".txt" << endl;
     }
 
     float sc_threshold, weight, wc_threshold, error;
@@ -135,8 +135,12 @@ vector<double> makeEvalReport (const string &dir, double TPR, double FPR, int TP
     std::ofstream evalFile;
     evalFile.open(dir + "/eval_report.txt", std::ios_base::app);
 
+    if(!evalFile.is_open()) {
+        cerr << "main.cpp: makeEvalReport() couldn't find directory to put eval report file: " << dir << endl;
+    }
+
     float precision = (float)TP / (TP + FP);
-    float recall = (float)TP / (TP + TN);
+    float recall = (float)TP / (TP + FN);
     float f1 = (2 * precision * recall) / (precision + recall);
     TPR *= ((double)TP / (TP + FN));
     FPR *= ((double)FP / (FP + TN));

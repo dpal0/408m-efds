@@ -1,0 +1,1 @@
+main.cpp: makeTrainingReport() could not open ./randomDir/training_report.txt

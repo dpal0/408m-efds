@@ -1,0 +1,8 @@
+g++ -c evalReportErrorDriver.cpp
+g++ -c ../../src/HaarFeature.cpp
+g++ -c ../../src/WeakClassifier.cpp
+g++ -c ../../src/StrongClassifier.cpp
+
+g++ -o evalReportErrorDriver.exe evalReportErrorDriver.o HaarFeature.o WeakClassifier.o StrongClassifier.o
+
+rm *.o

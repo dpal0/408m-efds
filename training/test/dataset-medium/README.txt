@@ -1,0 +1,1 @@
+Medium sized dataset of face and nonface images to be used for testing purposes

@@ -1,0 +1,8 @@
+g++ -c configWriteDriver.cpp
+g++ -c ../../src/HaarFeature.cpp
+g++ -c ../../src/WeakClassifier.cpp
+g++ -c ../../src/StrongClassifier.cpp
+
+g++ -o configWriteDriver.exe configWriteDriver.o HaarFeature.o WeakClassifier.o StrongClassifier.o
+
+rm *.o

@@ -1,0 +1,1 @@
+Small dataset of face and nonface images to be used for testing purposes
