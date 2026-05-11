@@ -27,8 +27,8 @@ fi
 SUMMARY_DIR="./Per_stage_summary"
 mkdir -p "$SUMMARY_DIR"
 
-# Count number of stages L by counting .txt files in the config dir.
-L=$(ls "$CONFIG_DIR"/*.txt 2>/dev/null | wc -l)
+# Count number of stages L by counting files named config<number>.txt in the config dir.
+L=$(ls "$CONFIG_DIR"/config[0-9]*.txt 2>/dev/null | wc -l)
 if [ "$L" -eq 0 ]; then
     echo "No config files found in $CONFIG_DIR"
     exit 1
