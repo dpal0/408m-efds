@@ -16,9 +16,9 @@ idxupdate project-dataset
 to pre process the dataset, in the team4/dataset/scripts/ directory, run:
 
 
-./splitData.sh
-./rgbToGray.sh
-./integralImage.sh
+./split_training_validation.sh
+./rgb_to_gray.sh
+./gray_to_integral.sh
 
 
 # description of scripts
