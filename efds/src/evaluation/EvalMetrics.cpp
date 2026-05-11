@@ -6,11 +6,10 @@ EvalMetrics::EvalMetrics (int cascades, int faces, int nonfaces) {
     this->faces = faces;
     this->nonfaces = nonfaces;
      // Running confusion-matrix totals across accumulate() calls.
-    int TP_total;
-    int FP_total;
-    int TN_total;
-    int FN_total;
-
+    this->TP_total = 0;
+    this->FP_total = 0;
+    this->TN_total = 0;
+    this->FN_total = 0;
     groundTruth();
 }
 
