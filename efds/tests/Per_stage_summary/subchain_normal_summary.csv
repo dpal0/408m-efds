@@ -1,0 +1,10 @@
+config,k,TP,FP,TN,FN,FPR,TPR,Precision,F1
+normal,1,0,0,0,0,0,0,0,0
+normal,2,0,0,0,0,0,0,0,0
+normal,3,0,0,0,0,0,0,0,0
+normal,4,0,0,0,0,0,0,0,0
+normal,5,0,0,0,0,0,0,0,0
+normal,6,0,0,0,0,0,0,0,0
+normal,7,0,0,0,0,0,0,0,0
+normal,8,0,0,0,0,0,0,0,0
+normal,9,0,0,0,0,0,0,0,0
