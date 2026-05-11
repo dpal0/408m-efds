@@ -1,8 +1,8 @@
 TP: 443
 FP: 43
 TN: 866
-FN: 42
+FN: 0
 FPR: 0.0473047
-TPR/Recall: 0.913402
+TPR/Recall: 1
 Precision: 0.911523
-F1-Score: 0.912461
+F1-Score: 0.953714

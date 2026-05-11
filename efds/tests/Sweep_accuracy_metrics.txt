@@ -88,3 +88,13 @@ TPR/Recall: 0.97732
 Precision: 0.857143
 F1-Score: 0.913295
 
+====wide=====
+TP: 474
+FP: 79
+TN: 830
+FN: 11
+FPR: 0.0869087
+TPR/Recall: 0.97732
+Precision: 0.857143
+F1-Score: 0.913295
+

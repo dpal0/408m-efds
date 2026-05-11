@@ -39,5 +39,5 @@ done
 
 run_eval "narrow" "$SCRIPT_DIR/test_train_narrow"
 run_eval "normal" "$SCRIPT_DIR/test_train_normal"
-
+run_eval "wide" "$SCRIPT_DIR/test_train_wide"
 echo "Done. Results written to $OUTPUT"
