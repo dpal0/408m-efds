@@ -1,0 +1,5 @@
+config,k,Tpos_ms,Npos,avg_latency_ms
+normal,1,58.008,484,0.119851
+normal,2,118.72,484,0.245289
+normal,3,246.282,474,0.519582
+normal,4,376.846,474,0.795034

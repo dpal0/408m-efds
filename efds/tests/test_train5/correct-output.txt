@@ -1,3 +1,0 @@
-test_source_sink: done. Check ./results.txt
-expected 0 tokens, got 0 lines in log
-PASS

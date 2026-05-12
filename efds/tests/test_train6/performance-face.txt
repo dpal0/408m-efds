@@ -1,3 +1,0 @@
-Tpos (total time):   16.927 ms
-Npos (face count):   0
-No positive detections.

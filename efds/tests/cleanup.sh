@@ -5,5 +5,6 @@ for dir in test_*/; do
           "$dir"non-face.txt \
           "$dir"temp_face.txt \
           "$dir"temp_non-face.txt \
-          "$dir"nf*.txt
+          "$dir"nf*.txt \
+	  "$dir"performance*.txt
 done

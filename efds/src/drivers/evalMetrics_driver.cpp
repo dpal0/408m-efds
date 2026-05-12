@@ -3,7 +3,7 @@
 int main(){
     EvalMetrics evaluate(1,3,3);
     //ground truth has faces=3 and nonfaces=3
-//   So actual truth is 1F, 2F, 3F, 4NF, 5NF, 6NF
+    //So actual truth is 1F, 2F, 3F, 4NF, 5NF, 6NF
     // test normal output
     cout<<"_____test normal output_____"<<endl;
     evaluate.calculateCascade("test1.txt");

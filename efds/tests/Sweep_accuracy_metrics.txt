@@ -1,0 +1,100 @@
+====train0=====
+TP: 443
+FP: 43
+TN: 866
+FN: 42
+FPR: 0.0473047
+TPR/Recall: 0.913402
+Precision: 0.911523
+F1-Score: 0.912461
+
+====train1=====
+TP: 440
+FP: 31
+TN: 878
+FN: 45
+FPR: 0.0341034
+TPR/Recall: 0.907216
+Precision: 0.934183
+F1-Score: 0.920502
+
+====train2=====
+TP: 463
+FP: 35
+TN: 874
+FN: 22
+FPR: 0.0385039
+TPR/Recall: 0.954639
+Precision: 0.929719
+F1-Score: 0.942014
+
+====train3=====
+TP: 463
+FP: 37
+TN: 872
+FN: 22
+FPR: 0.0407041
+TPR/Recall: 0.954639
+Precision: 0.926
+F1-Score: 0.940102
+
+====train4=====
+TP: 57
+FP: 8
+TN: 901
+FN: 428
+FPR: 0.00880088
+TPR/Recall: 0.117526
+Precision: 0.876923
+F1-Score: 0.207273
+
+====train5=====
+TP: 479
+FP: 115
+TN: 794
+FN: 6
+FPR: 0.126513
+TPR/Recall: 0.987629
+Precision: 0.806397
+F1-Score: 0.887859
+
+====train6=====
+TP: 476
+FP: 87
+TN: 822
+FN: 9
+FPR: 0.0957096
+TPR/Recall: 0.981443
+Precision: 0.845471
+F1-Score: 0.908397
+
+====narrow=====
+TP: 437
+FP: 88
+TN: 821
+FN: 48
+FPR: 0.0968097
+TPR/Recall: 0.901031
+Precision: 0.832381
+F1-Score: 0.865347
+
+====normal=====
+TP: 474
+FP: 79
+TN: 830
+FN: 11
+FPR: 0.0869087
+TPR/Recall: 0.97732
+Precision: 0.857143
+F1-Score: 0.913295
+
+====wide=====
+TP: 474
+FP: 79
+TN: 830
+FN: 11
+FPR: 0.0869087
+TPR/Recall: 0.97732
+Precision: 0.857143
+F1-Score: 0.913295
+
